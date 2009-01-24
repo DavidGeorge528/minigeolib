@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="BoostUnitTest"
+	>
+	<Tool
+		Name="VCPostBuildEventTool"
+		Description="$(ProjectName) - Running unit tests"
+		CommandLine="SET PATH=%PATH%;$(BoostLibDir)&#x0D;&#x0A;&quot;$(TargetDir)\$(TargetName).exe&quot; --result_code=no --report_level=short&#x0D;&#x0A;"
+	/>
+</VisualStudioPropertySheet>

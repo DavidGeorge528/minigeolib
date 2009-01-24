@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="3rdPartyComponents"
+	OutputDirectory="$(SolutionDir)\..\build\$(ConfigurationName)"
+	IntermediateDirectory="$(SolutionDir)\..\build\$(ConfigurationName)\$(ProjectName)"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalIncludeDirectories="$(BoostIncludeDir)"
+		PreprocessorDefinitions="BOOST_ALL_DYN_LINK"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		AdditionalLibraryDirectories="$(BoostLibDir)"
+	/>
+	<UserMacro
+		Name="BoostIncludeDir"
+		Value="c:\libs\Boost\include\boost-1_35\"
+	/>
+	<UserMacro
+		Name="BoostLibDir"
+		Value="c:\Libs\Boost\lib\1.35\vc09\"
+	/>
+	<UserMacro
+		Name="QtVersion"
+		Value="4.4.0"
+	/>
+	<UserMacro
+		Name="QtDir"
+		Value="c:\libs\Qt\$(QtVersion)"
+	/>
+	<UserMacro
+		Name="QtLibDir"
+		Value="$(QtDir)\lib"
+	/>
+	<UserMacro
+		Name="QtIncludeDir"
+		Value="$(QtDir)\include"
+	/>
+	<UserMacro
+		Name="QtMoc"
+		Value="$(QtDir)/bin/moc"
+	/>
+  <UserMacro
+      Name="QtCoreLibDebug"
+      Value="qtmaind.lib QtCored4.lib"
+  />
+  <UserMacro
+      Name="QtCoreLibRelease"
+      Value="qtmain.lib QtCore4.lib"
+  />
+  <UserMacro
+      Name="QtGuiLibDebug"
+      Value="$(QtCoreLibDebug) QtGuid4.lib"
+      />
+  <UserMacro
+      Name="QtGuiLibRelease"
+      Value="$(QtCoreLibRelease) QtGui4.lib"
+      />
+</VisualStudioPropertySheet>
