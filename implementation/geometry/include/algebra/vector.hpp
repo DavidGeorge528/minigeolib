@@ -61,5 +61,6 @@ public:
 } // namespace algebra
 
 #include "vector_2.hpp"
+#include "vector_3.hpp"
 
 #endif // ALG_VECTOR_HPP
