@@ -62,5 +62,6 @@ public:
 
 #include "vector_2.hpp"
 #include "vector_3.hpp"
+#include "vector_4.hpp"
 
 #endif // ALG_VECTOR_HPP
