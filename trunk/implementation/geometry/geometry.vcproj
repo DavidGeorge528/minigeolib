@@ -99,6 +99,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\algebra\vector_4.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\include\algebra\details\vector_base.hpp"
 				>
 			</File>
