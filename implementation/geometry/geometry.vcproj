@@ -75,6 +75,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\algebra\details\matrix_base.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\algebra\matrrix.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\include\algebra\unit_traits.hpp"
 				>
 			</File>
