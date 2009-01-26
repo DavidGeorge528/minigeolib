@@ -14,17 +14,10 @@
 
 typedef boost::mpl::list< float, double> algebraic_types;
 
-/// \brief 
-///		Definition of the testing contexts that are used by generic test cases. It is a tuple of number of 
-///		dimensions, the type of the unit and the traits for the unit type.
-typedef boost::mpl::list< 
-	boost::mpl::vector< boost::mpl::int_<2>,	float,	algebra::unit_traits< float> >,
-	boost::mpl::vector< boost::mpl::int_<2>,	double,	algebra::unit_traits< double> >,
-	boost::mpl::vector< boost::mpl::int_<3>,	float,	algebra::unit_traits< float> >,
-	boost::mpl::vector< boost::mpl::int_<3>,	double,	algebra::unit_traits< double> >,
-	boost::mpl::vector< boost::mpl::int_<4>,	float,	algebra::unit_traits< float> >,
-	boost::mpl::vector< boost::mpl::int_<4>,	double,	algebra::unit_traits< double> >
-> algebraic_traited_types;
+
+/// \brief It checks the equality two values of type unit_type, using the tolerance specified by the test traits.
+#define ALGTEST_CHECK_EQUAL_UNIT( E, O) \
+	BOOST_CHECK_CLOSE( static_cast< unit_type>(E), O, test_traits< unit_type>::check_tolerance())
 
 
 #endif // TESTS_COMMON_HPP

@@ -75,11 +75,23 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\algebra\details\matrix_base.hpp"
+				RelativePath=".\include\algebra\matrix.hpp"
 				>
 			</File>
 			<File
-				RelativePath=".\include\algebra\matrrix.hpp"
+				RelativePath=".\include\algebra\matrix_2_2.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\algebra\matrix_3_3.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\algebra\matrix_4_4.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\algebra\details\matrix_base.hpp"
 				>
 			</File>
 			<File

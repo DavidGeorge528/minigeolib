@@ -10,6 +10,18 @@
 namespace algebra
 {
 
+/// \brief 
+///		Definition of the testing contexts that are used by generic vector test cases. It is a tuple of number of 
+///		dimensions, the type of the unit and the traits for the unit type.
+typedef boost::mpl::list< 
+	boost::mpl::vector< boost::mpl::int_<2>,	float,	algebra::unit_traits< float> >,
+	boost::mpl::vector< boost::mpl::int_<2>,	double,	algebra::unit_traits< double> >,
+	boost::mpl::vector< boost::mpl::int_<3>,	float,	algebra::unit_traits< float> >,
+	boost::mpl::vector< boost::mpl::int_<3>,	double,	algebra::unit_traits< double> >,
+	boost::mpl::vector< boost::mpl::int_<4>,	float,	algebra::unit_traits< float> >,
+	boost::mpl::vector< boost::mpl::int_<4>,	double,	algebra::unit_traits< double> >
+> vector_test_types;
+
 template< unsigned D, typename U, typename UT>
 struct vector_test_fixture;
 
@@ -84,14 +96,13 @@ boost::test_tools::predicate_result check_equal_vector(
 		return res;
 	}
 
-	bool success = true;
 	unsigned index = 0;
-	U tollerance = test_traits<U>::check_tollerance();
+	U tolerance = test_traits<U>::check_tolerance();
 	for( ; exp_begin != exp_end; ++index, ++exp_begin)
 	{
 		U obt = obtained(index);
 		if( !tt::check_is_close( *exp_begin, obt, 
-			tt::fraction_tolerance( tollerance)))
+			tt::fraction_tolerance( tolerance)))
 		{
 			res.message() << "Vector mismatch at position " << index 
 				<< " [" << *exp_begin << "!=" << obtained(index) << "];";
