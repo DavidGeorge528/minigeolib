@@ -3,6 +3,7 @@
 
 #include "algebra/details/matrix_base.hpp"
 #include "algebra/unit_traits.hpp"
+#include <cassert>
 
 namespace algebra
 {

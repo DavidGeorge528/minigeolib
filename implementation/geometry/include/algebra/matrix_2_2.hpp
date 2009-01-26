@@ -13,6 +13,31 @@ public:
 		a11_ = a12_ = a21_ = a22_ = unit_traits_type::zero();
 	}
 
+	template< typename It>
+	matrix( It begin, It end)
+	{
+		assert( ROWS*COLUMNS == std::distance( begin, end));
+		for( unsigned int r = 0; r < ROWS; ++r)
+		{
+			for( unsigned int c = 0; c < COLUMNS; ++c, ++begin)
+			{
+				m_[r][c] = *begin;
+			}
+		}
+	}
+
+	template< typename It>
+	matrix( It begin)
+	{
+		for( unsigned int r = 0; r < ROWS; ++r)
+		{
+			for( unsigned int c = 0; c < COLUMNS; ++c, ++begin)
+			{
+				m_[r][c] = *begin;
+			}
+		}
+	}
+
 	matrix(
 		const unit_type& a11, const unit_type& a12, 
 		const unit_type& a21, const unit_type& a22)
@@ -35,6 +60,49 @@ public:
 	{
 		static matrix I( 1, 0, 0, 1);
 		return I;
+	}
+
+	/// \brief It adds two matrices.
+	/// \param left_op the left operand.
+	/// \param right_op the right operand.
+	/// \return the resulted matrix.
+	friend matrix operator+( const matrix& left_op, const matrix& right_op)
+	{
+		return matrix( 
+			left_op.a11_ + right_op.a11_, left_op.a12_ + right_op.a12_,
+			left_op.a21_ + right_op.a21_, left_op.a22_ + right_op.a22_);
+	}
+
+	/// \brief It adds two matrices.
+	/// \param right_op the right operand.
+	/// \return this object.
+	matrix& operator+=( const matrix& right_op)
+	{
+		a11_ += right_op.a11_; a12_ += right_op.a12_;
+		a21_ += right_op.a21_; a22_ += right_op.a22_;
+		return *this;
+	}
+
+
+	/// \brief It subtracts two matrices.
+	/// \param left_op the left operand.
+	/// \param right_op the right operand.
+	/// \return the resulted matrix.
+	friend matrix operator-( const matrix& left_op, const matrix& right_op)
+	{
+		return matrix( 
+			left_op.a11_ - right_op.a11_, left_op.a12_ - right_op.a12_,
+			left_op.a21_ - right_op.a21_, left_op.a22_ - right_op.a22_);
+	}
+
+	/// \brief It subtracts two matrices.
+	/// \param right_op the right operand.
+	/// \return this object.
+	matrix& operator-=( const matrix& right_op)
+	{
+		a11_ -= right_op.a11_; a12_ -= right_op.a12_;
+		a21_ -= right_op.a21_; a22_ -= right_op.a22_;
+		return *this;
 	}
 
 private:
