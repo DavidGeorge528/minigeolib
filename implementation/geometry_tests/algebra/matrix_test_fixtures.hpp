@@ -85,16 +85,95 @@ struct fp_matrix_test_fixture
 	std::vector< unit_type> op2_;
 	std::vector< unit_type> added_;
 	std::vector< unit_type> subtracted_;
+	std::vector< unit_type> mulop1_;
+	std::vector< unit_type> mulop2_;
+	std::vector< unit_type> multiplied_;
 };
 
 } // namespace details
 
 template< typename U, typename UT>
-class matrix_test_fixture< 2, 2, U, UT>: public details::fp_matrix_test_fixture< 2, 2, U, UT> { };
+class matrix_test_fixture< 2, 2, U, UT>: public details::fp_matrix_test_fixture< 2, 2, U, UT> 
+{ 
+public:
+	matrix_test_fixture()
+	{
+		unit_type op1[ SIZE] = { 			
+			10.0, 20.0,
+			15.0, 16.0,
+		};
+		unit_type op2[ SIZE] = {
+			23.0, 43.0,
+			22.0, 34.0
+		};
+		unit_type result[SIZE] = {
+			670.0, 1110.0,
+			697.0, 1189.0,
+		};
+
+		mulop1_.assign( &op1[0], &op1[0] + SIZE);
+		mulop2_.assign( &op2[0], &op2[0] + SIZE);
+		multiplied_.assign( &result[0], &result[0] + SIZE);
+	}
+};
+
+
 template< typename U, typename UT>
-class matrix_test_fixture< 3, 3, U, UT>: public details::fp_matrix_test_fixture< 3, 3, U, UT> { };
+class matrix_test_fixture< 3, 3, U, UT>: public details::fp_matrix_test_fixture< 3, 3, U, UT> 
+{ 
+public:
+	matrix_test_fixture()
+	{
+		unit_type op1[ SIZE] = { 			
+			10.0, 20.0, 30.0,
+			15.0, 16.0, 17.0,
+			18.0, 28.0, 34.0};
+		unit_type op2[ SIZE] = {
+			23.0, 43.0, 51.0,
+			22.0, 34.0, 45.0,
+			73.0, 32.0, 55.0
+		};
+		unit_type result[SIZE] = {
+			2860.0, 2070.0, 3060.0,
+			1938.0, 1733.0, 2420.0,
+			3512.0, 2814.0, 4048.0
+		};
+
+		mulop1_.assign( &op1[0], &op1[0] + SIZE);
+		mulop2_.assign( &op2[0], &op2[0] + SIZE);
+		multiplied_.assign( &result[0], &result[0] + SIZE);
+	}
+};
+
 template< typename U, typename UT>
-class matrix_test_fixture< 4, 4, U, UT>: public details::fp_matrix_test_fixture< 4, 4, U, UT> { };
+class matrix_test_fixture< 4, 4, U, UT>: public details::fp_matrix_test_fixture< 4, 4, U, UT> 
+{ 
+public:
+	matrix_test_fixture()
+	{
+		unit_type op1[ SIZE] = { 			
+			111.0, 112.0, 113.0, 114.0,
+			121.0, 122.0, 123.0, 124.0,
+			131.0, 132.0, 133.0, 134.0,
+			141.0, 142.0, 143.0, 144.0};
+		unit_type op2[ SIZE] = {
+			211.0, 212.0, 213.0, 214.0,
+			221.0, 222.0, 223.0, 224.0,
+			231.0, 232.0, 233.0, 234.0,
+			241.0, 242.0, 243.0, 244.0
+			};
+		unit_type result[SIZE] = {
+			101750.0, 102200.0, 102650.0, 103100.0,
+			110790.0, 111280.0, 111770.0, 112260.0,
+			119830.0, 120360.0, 120890.0, 121420.0,
+			128870.0, 129440.0, 130010.0, 130580.0
+		};
+
+		mulop1_.assign( &op1[0], &op1[0] + SIZE);
+		mulop2_.assign( &op2[0], &op2[0] + SIZE);
+		multiplied_.assign( &result[0], &result[0] + SIZE);
+	}
+};
 
 
 /// \brief Boost Test predicate for checking vectors.

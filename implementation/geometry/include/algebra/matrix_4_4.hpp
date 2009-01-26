@@ -126,6 +126,32 @@ public:
 		return *this;
 	}
 
+	friend matrix operator*( const matrix& left_op, const matrix& right_op)
+	{
+#define E( i, j) a##i##j
+#define ELEM( i, j) \
+	left_op.E(i,1)_ * right_op.E(1,j)_ + \
+	left_op.E(i,2)_ * right_op.E(2,j)_ + \
+	left_op.E(i,3)_ * right_op.E(3,j)_ + \
+	left_op.E(i,4)_ * right_op.E(4,j)_
+
+		return matrix(
+			ELEM( 1, 1), ELEM( 1, 2), ELEM( 1, 3), ELEM( 1, 4),
+			ELEM( 2, 1), ELEM( 2, 2), ELEM( 2, 3), ELEM( 2, 4),
+			ELEM( 3, 1), ELEM( 3, 2), ELEM( 3, 3), ELEM( 3, 4),
+			ELEM( 4, 1), ELEM( 4, 2), ELEM( 4, 3), ELEM( 4, 4));
+
+#undef ELEM
+#undef E
+	}
+
+	matrix& operator*=( const matrix& right_op)
+	{
+		matrix r( operator*( *this, right_op));
+		*this = r;
+		return *this;
+	}
+
 
 private:
 	union
