@@ -16,7 +16,7 @@ public:
 	matrix(
 		const unit_type& a11, const unit_type& a12, 
 		const unit_type& a21, const unit_type& a22)
-		: a11_( a11), a12_( a12), 
+		: a11_( a11), a12_( a12) 
 		, a21_( a21), a22_( a22)
 	{
 	}

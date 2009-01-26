@@ -175,6 +175,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\algebra\matrix_2_2_tests.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\algebra\matrix_3_3_tests.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\algebra\matrix_4_4_tests.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\algebra\matrix_common_tests.cpp"
 				>
 			</File>
