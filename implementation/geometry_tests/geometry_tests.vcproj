@@ -204,10 +204,6 @@
 				RelativePath=".\algebra\vector_test_fixtures.hpp"
 				>
 			</File>
-			<File
-				RelativePath=".\algebra\vector_test_macros.hpp"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"

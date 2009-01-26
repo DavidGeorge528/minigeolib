@@ -1,6 +1,5 @@
 #include "algebra/vector.hpp"
 #include "vector_test_fixtures.hpp"
-#include "vector_test_macros.hpp"
 #include "../tests_common.hpp"
 #include "../test_traits.hpp"
 
@@ -9,10 +8,10 @@ namespace
 
 using namespace algebra;
 
-#define DEF_TYPES( P) \
-	TSTVECTOR_UNIT_ALIAS(P); \
-	typedef algebra::vector< TSTVECTOR_DIM_NUMBER(P), TSTVECTOR_UNIT_TYPE(P), TSTVECTOR_TRAITS_TYPE(P) > tested_vector; \
-	typedef algebra::vector_test_fixture< TSTVECTOR_DIM_NUMBER(P), TSTVECTOR_UNIT_TYPE(P), TSTVECTOR_TRAITS_TYPE(P) > test_fixture
+#define DEF_TYPES( V) \
+	typedef V tested_vector; \
+	typedef typename tested_vector::unit_type unit_type; \
+	typedef vector_test_fixture< tested_vector::DIMENSIONS, unit_type, typename tested_vector::unit_traits_type > test_fixture
 
 // ---------------------------------------------------------------------------------------------------------------------
 
