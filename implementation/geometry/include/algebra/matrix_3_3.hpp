@@ -153,6 +153,26 @@ public:
 		return *this;
 	}
 
+	friend matrix operator*( const unit_type& s, const matrix& right_op)
+	{
+		return matrix( 
+			s * right_op.a11_, s * right_op.a12_, s * right_op.a13_,
+			s * right_op.a21_, s * right_op.a22_, s * right_op.a23_,
+			s * right_op.a31_, s * right_op.a32_, s * right_op.a33_);
+	}
+
+	friend matrix operator*( const matrix& left_op, const unit_type& s)
+	{
+		return s * left_op;
+	}
+
+	matrix& operator*=( const unit_type& s)
+	{
+		a11_ *= s; a12_ *= s; a13_ *= s;
+		a21_ *= s; a22_ *= s; a23_ *= s;
+		a31_ *= s; a32_ *= s; a33_ *= s;
+		return *this;
+	}
 
 private:
 	union

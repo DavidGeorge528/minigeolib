@@ -65,6 +65,8 @@ struct fp_matrix_test_fixture
 		}
 		END_INIT_LOOP
 
+		scalar_ = 2;
+
 		INIT_LOOP( r, c)
 		{
 			unsigned index = r*COLUMNS + c;
@@ -72,6 +74,7 @@ struct fp_matrix_test_fixture
 			op2_.push_back( (r+c)/(r*c+1));
 			added_.push_back( op1_[ index] + op2_[index]); 
 			subtracted_.push_back( op1_[index] - op2_[index]);
+			scmul_.push_back( op1_[ index] * scalar_);
 		}
 		END_INIT_LOOP
 	}
@@ -88,6 +91,8 @@ struct fp_matrix_test_fixture
 	std::vector< unit_type> mulop1_;
 	std::vector< unit_type> mulop2_;
 	std::vector< unit_type> multiplied_;
+	unit_type scalar_;
+	std::vector< unit_type> scmul_;
 };
 
 } // namespace details
