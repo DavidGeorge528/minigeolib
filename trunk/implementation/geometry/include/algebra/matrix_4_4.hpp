@@ -16,6 +16,32 @@ public:
 			= unit_traits_type::zero();
 	}
 
+	template< typename It>
+	matrix( It begin, It end)
+	{
+		assert( ROWS*COLUMNS == std::distance( begin, end));
+		for( unsigned int r = 0; r < ROWS; ++r)
+		{
+			for( unsigned int c = 0; c < COLUMNS; ++c, ++begin)
+			{
+				m_[r][c] = *begin;
+			}
+		}
+	}
+
+	template< typename It>
+	matrix( It begin)
+	{
+		for( unsigned int r = 0; r < ROWS; ++r)
+		{
+			for( unsigned int c = 0; c < COLUMNS; ++c, ++begin)
+			{
+				m_[r][c] = *begin;
+			}
+		}
+	}
+
+
 	/// \brief It initializes the matrix with its elements.
 	matrix(
 		const unit_type& a11, const unit_type& a12, const unit_type& a13, const unit_type& a14,
@@ -48,6 +74,58 @@ public:
 			0, 0, 0, 1);
 		return I;
 	}
+
+	/// \brief It adds two matrices.
+	/// \param left_op the left operand.
+	/// \param right_op the right operand.
+	/// \return the resulted matrix.
+	friend matrix operator+( const matrix& left_op, const matrix& right_op)
+	{
+		return matrix( 
+			left_op.a11_ + right_op.a11_, left_op.a12_ + right_op.a12_, left_op.a13_ + right_op.a13_, left_op.a14_ + right_op.a14_,
+			left_op.a21_ + right_op.a21_, left_op.a22_ + right_op.a22_, left_op.a23_ + right_op.a23_, left_op.a24_ + right_op.a24_,
+			left_op.a31_ + right_op.a31_, left_op.a32_ + right_op.a32_, left_op.a33_ + right_op.a33_, left_op.a34_ + right_op.a34_,
+			left_op.a41_ + right_op.a41_, left_op.a42_ + right_op.a42_, left_op.a43_ + right_op.a43_, left_op.a44_ + right_op.a44_);
+	}
+
+	/// \brief It adds two matrices.
+	/// \param right_op the right operand.
+	/// \return this object.
+	matrix& operator+=( const matrix& right_op)
+	{
+		a11_ += right_op.a11_; a12_ += right_op.a12_; a13_ += right_op.a13_; a14_ += right_op.a14_;
+		a21_ += right_op.a21_; a22_ += right_op.a22_; a23_ += right_op.a23_; a24_ += right_op.a24_;
+		a31_ += right_op.a31_; a32_ += right_op.a32_; a33_ += right_op.a33_; a34_ += right_op.a34_;
+		a41_ += right_op.a41_; a42_ += right_op.a42_; a43_ += right_op.a43_; a44_ += right_op.a44_;
+		return *this;
+	}
+
+
+	/// \brief It subtracts two matrices.
+	/// \param left_op the left operand.
+	/// \param right_op the right operand.
+	/// \return the resulted matrix.
+	friend matrix operator-( const matrix& left_op, const matrix& right_op)
+	{
+		return matrix( 
+			left_op.a11_ - right_op.a11_, left_op.a12_ - right_op.a12_, left_op.a13_ - right_op.a13_, left_op.a14_ - right_op.a14_,
+			left_op.a21_ - right_op.a21_, left_op.a22_ - right_op.a22_, left_op.a23_ - right_op.a23_, left_op.a24_ - right_op.a24_,
+			left_op.a31_ - right_op.a31_, left_op.a32_ - right_op.a32_, left_op.a33_ - right_op.a33_, left_op.a34_ - right_op.a34_,
+			left_op.a41_ - right_op.a41_, left_op.a42_ - right_op.a42_, left_op.a43_ - right_op.a43_, left_op.a44_ - right_op.a44_);
+	}
+
+	/// \brief It subtracts two matrices.
+	/// \param right_op the right operand.
+	/// \return this object.
+	matrix& operator-=( const matrix& right_op)
+	{
+		a11_ -= right_op.a11_; a12_ -= right_op.a12_; a13_ -= right_op.a13_; a14_ -= right_op.a14_;
+		a21_ -= right_op.a21_; a22_ -= right_op.a22_; a23_ -= right_op.a23_; a24_ -= right_op.a24_;
+		a31_ -= right_op.a31_; a32_ -= right_op.a32_; a33_ -= right_op.a33_; a34_ -= right_op.a34_;
+		a41_ -= right_op.a41_; a42_ -= right_op.a42_; a43_ -= right_op.a43_; a44_ -= right_op.a44_;
+		return *this;
+	}
+
 
 private:
 	union

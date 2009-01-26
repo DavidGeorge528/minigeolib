@@ -42,7 +42,7 @@ struct fp_matrix_test_fixture
 {
 	typedef U unit_type;
 	typedef UT unit_traits_type;
-	enum { ROWS = R, COLUMNS = C };
+	enum { ROWS = R, COLUMNS = C, SIZE = R*C };
 
 	fp_matrix_test_fixture()
 	{
@@ -64,12 +64,27 @@ struct fp_matrix_test_fixture
 			identity_[r][c] = (r == c) ? unit_traits_type::one() : unit_traits_type::zero();
 		}
 		END_INIT_LOOP
+
+		INIT_LOOP( r, c)
+		{
+			unsigned index = r*COLUMNS + c;
+			op1_.push_back( (r*c)/(r+c+1));
+			op2_.push_back( (r+c)/(r*c+1));
+			added_.push_back( op1_[ index] + op2_[index]); 
+			subtracted_.push_back( op1_[index] - op2_[index]);
+		}
+		END_INIT_LOOP
 	}
 
 	unit_type zeros_[ROWS][COLUMNS];
 	unit_type c_array_[ROWS][COLUMNS];
 	std::vector< unit_type> stl_vector_;
 	unit_type identity_[ROWS][COLUMNS];
+
+	std::vector< unit_type> op1_;
+	std::vector< unit_type> op2_;
+	std::vector< unit_type> added_;
+	std::vector< unit_type> subtracted_;
 };
 
 } // namespace details
