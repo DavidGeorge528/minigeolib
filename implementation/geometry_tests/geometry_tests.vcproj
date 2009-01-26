@@ -175,7 +175,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\algebra\vector_tests.cpp"
+				RelativePath=".\algebra\matrix_common_tests.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\algebra\vector_common_tests.cpp"
 				>
 			</File>
 		</Filter>
@@ -185,7 +189,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\test_macros.hpp"
+				RelativePath=".\algebra\matrix_test_fixtures.hpp"
 				>
 			</File>
 			<File
@@ -198,6 +202,10 @@
 			</File>
 			<File
 				RelativePath=".\algebra\vector_test_fixtures.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\algebra\vector_test_macros.hpp"
 				>
 			</File>
 		</Filter>

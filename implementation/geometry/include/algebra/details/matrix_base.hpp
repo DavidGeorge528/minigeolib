@@ -13,14 +13,6 @@ public:
 	enum { ROWS = R, COLUMNS = C };
 	typedef UT unit_traits_type;
 	typedef typename unit_traits_type::unit_type unit_type;
-
-protected:
-	vector_base()
-	{
-	}
-
-protected:
-	unit_type m_[R][C];
 };
 
 } // namespace details
