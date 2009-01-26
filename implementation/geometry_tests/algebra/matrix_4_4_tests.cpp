@@ -45,4 +45,14 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_specialized_initialization, M, tested_types)
 	ALGTEST_CHECK_EQUAL_UNIT( f.c_array_[3][3], m(3,3));
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_identity, M, tested_types)
+{
+	DEF_TEST( M);
+	test_fixture f;
+	const tested_matrix& m = tested_matrix::IDENTITY();
+	BOOST_CHECK( check_equal_matrix( &f.identity_[0][0], &f.identity_[0][0] + M::ROWS*M::COLUMNS, m));
+}
+
 } // namespace
