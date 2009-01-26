@@ -28,7 +28,6 @@ public:
 		}
 	}
 
-	// TODO: Test
 	vector( const U& v0, const U& v1, const U& v2, const U& v3)
 	{
 		v_[0] = v0;

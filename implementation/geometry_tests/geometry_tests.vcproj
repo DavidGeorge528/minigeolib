@@ -179,6 +179,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\algebra\vector_2_tests.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\algebra\vector_3_tests.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\algebra\vector_4_tests.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\algebra\vector_common_tests.cpp"
 				>
 			</File>
