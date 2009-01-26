@@ -31,6 +31,12 @@ public:
 		return m_[r][c];
 	}
 
+	static const matrix& IDENTITY()
+	{
+		static matrix I( 1, 0, 0, 1);
+		return I;
+	}
+
 private:
 	union
 	{

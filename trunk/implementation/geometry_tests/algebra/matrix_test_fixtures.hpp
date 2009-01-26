@@ -29,6 +29,14 @@ class matrix_test_fixture;
 namespace details
 {
 
+#define INIT_LOOP( r, c) \
+	for( unsigned r = 0; r < ROWS; ++r) \
+	{ \
+		for( unsigned c = 0; c < COLUMNS; ++c) 
+
+#define END_INIT_LOOP }
+		
+
 template< unsigned R, unsigned C, typename U, typename UT>
 struct fp_matrix_test_fixture
 {
@@ -38,27 +46,30 @@ struct fp_matrix_test_fixture
 
 	fp_matrix_test_fixture()
 	{
-		for( unsigned r = 0; r < ROWS; ++r)
+		INIT_LOOP( r, c)
 		{
-			for( unsigned c = 0; c < COLUMNS; ++c)
-			{
 				zeros_[r][c] = unit_traits_type::zero();
-			}
 		}
+		END_INIT_LOOP
 
-		for( unsigned r = 0; r < ROWS; ++r)
+		INIT_LOOP( r, c)
 		{
-			for( unsigned c = 0; c < COLUMNS; ++c)
-			{
-				c_array_[r][c] = r + c;
-				stl_vector_.push_back( c_array_[r][c]);
-			}
+			c_array_[r][c] = r + c;
+			stl_vector_.push_back( c_array_[r][c]);
 		}
+		END_INIT_LOOP
+
+		INIT_LOOP( r, c)
+		{
+			identity_[r][c] = (r == c) ? unit_traits_type::one() : unit_traits_type::zero();
+		}
+		END_INIT_LOOP
 	}
 
 	unit_type zeros_[ROWS][COLUMNS];
 	unit_type c_array_[ROWS][COLUMNS];
 	std::vector< unit_type> stl_vector_;
+	unit_type identity_[ROWS][COLUMNS];
 };
 
 } // namespace details
