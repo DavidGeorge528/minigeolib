@@ -43,6 +43,22 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_one_iter_constructor, M, matrix_test_types)
 	BOOST_CHECK( check_equal_matrix( f.stl_vector_.begin(), f.stl_vector_.end(), m));
 }
 
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_assignment_operator, M, matrix_test_types)
+{
+	DEF_TEST( M);
+	test_fixture f;
+	matrix_type orig( f.stl_vector_.begin()), m;
+	m = orig;
+
+	BOOST_CHECK( check_equal_matrix( f.stl_vector_.begin(), f.stl_vector_.end(), m));
+
+	m = m;
+	BOOST_CHECK( check_equal_matrix( f.stl_vector_.begin(), f.stl_vector_.end(), m));
+}
+
 // ---------------------------------------------------------------------------------------------------------------------
 
 BOOST_AUTO_TEST_CASE_TEMPLATE( test_addition, M, matrix_test_types)
