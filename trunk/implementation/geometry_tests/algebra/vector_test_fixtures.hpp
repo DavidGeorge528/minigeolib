@@ -14,12 +14,12 @@ namespace algebra
 ///		Definition of the testing contexts that are used by generic vector test cases. It is a tuple of number of 
 ///		dimensions, the type of the unit and the traits for the unit type.
 typedef boost::mpl::list< 
-	boost::mpl::vector< boost::mpl::int_<2>,	float,	algebra::unit_traits< float> >,
-	boost::mpl::vector< boost::mpl::int_<2>,	double,	algebra::unit_traits< double> >,
-	boost::mpl::vector< boost::mpl::int_<3>,	float,	algebra::unit_traits< float> >,
-	boost::mpl::vector< boost::mpl::int_<3>,	double,	algebra::unit_traits< double> >,
-	boost::mpl::vector< boost::mpl::int_<4>,	float,	algebra::unit_traits< float> >,
-	boost::mpl::vector< boost::mpl::int_<4>,	double,	algebra::unit_traits< double> >
+	vector< 2, float, unit_traits< float> >,
+	vector< 2, double, unit_traits< double> >,
+	vector< 3, float, unit_traits< float> >,
+	vector< 3, double, unit_traits< double> >,
+	vector< 4, float, unit_traits< float> >,
+	vector< 4, double, unit_traits< double> >
 > vector_test_types;
 
 template< unsigned D, typename U, typename UT>
