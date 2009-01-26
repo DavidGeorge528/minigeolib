@@ -46,6 +46,16 @@ public:
 	{
 	}
 
+	matrix& operator=( const matrix& op)
+	{
+		if( this != &op)
+		{
+			a11_ = op.a11_; a12_ = op.a12_;
+			a21_ = op.a21_; a22_ = op.a22_;
+		}
+		return *this;
+	}
+
 	unit_type& operator()( unsigned r, unsigned c)
 	{
 		return m_[r][c];
