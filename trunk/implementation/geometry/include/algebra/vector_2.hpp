@@ -34,6 +34,16 @@ public:
 		v_[1] = v1;
 	}
 
+	my_type_& operator=( const my_type_& op)
+	{
+		if( this != &op)
+		{
+			v_[0] = op.v_[0];
+			v_[1] = op.v_[1];
+		}
+		return *this;
+	}
+
 	friend my_type_ operator+( const my_type_& op1, const my_type_& op2)
 	{
 		return my_type_( op1.v_[0] + op2.v_[0], op1.v_[1] + op2.v_[1]);

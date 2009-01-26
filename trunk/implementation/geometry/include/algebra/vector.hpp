@@ -31,6 +31,15 @@ public:
 		}
 	}
 
+	my_type_& operator=( const my_type_& op)
+	{
+		if( this != &op)
+		{
+			std::copy( op.begin(), op.end(), &v_[0]);
+		}
+		return *this;
+	}
+
 	friend my_type_ operator+( const my_type_& op1, const my_type_& op2)
 	{
 		my_type_ result;
