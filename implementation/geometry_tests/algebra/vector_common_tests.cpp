@@ -198,5 +198,28 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_scalar_division, T, vector_test_types)
 	BOOST_CHECK_EQUAL_ALG_VECTOR( f.operand1_.begin(), f.operand1_.end(), result);
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_matrix_multiplication, T, vector_test_types)
+{
+	DEF_TYPES( T);
+	test_fixture f;
+	typename test_fixture::matrix_type m( f.mulmatrix_.begin());
+	tested_vector v( f.mulvec_.begin());
+	tested_vector result;
+
+	result = v*m;
+	BOOST_CHECK_EQUAL_ALG_VECTOR( f.vec_matrix_.begin(), f.vec_matrix_.end(), result);
+
+	result = v;
+	result *= m;
+	BOOST_CHECK_EQUAL_ALG_VECTOR( f.vec_matrix_.begin(), f.vec_matrix_.end(), result);
+
+	result = m*v;
+	BOOST_CHECK_EQUAL_ALG_VECTOR( f.matrix_vec_.begin(), f.matrix_vec_.end(), result);
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+
 
 } // namespace

@@ -9,6 +9,7 @@ namespace algebra
 template< typename U, typename UT>
 class matrix< 2, 2, U, UT>: public details::matrix_base< 2, 2, U, UT>
 {
+	friend class vector< 2, U, UT>;
 public:
 	matrix()
 	{

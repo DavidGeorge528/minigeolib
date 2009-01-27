@@ -1,7 +1,7 @@
 #ifndef ALGEBRA_DETAILS_VECTOR_BASE_HPP
 #define ALGEBRA_DETAILS_VECTOR_BASE_HPP
 
-#include "algebra/unit_traits.hpp"
+#include "algebra/matrix.hpp"
 #include <cassert>
 
 namespace algebra
@@ -23,6 +23,7 @@ public:
 
 	typedef UT unit_traits_type;
 	typedef typename unit_traits_type::unit_type unit_type;
+	typedef matrix< DIMENSIONS, DIMENSIONS,unit_type,unit_traits_type> matrix_type;
 
 protected:
 	vector_base()

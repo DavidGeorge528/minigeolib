@@ -80,11 +80,86 @@ struct fp_test_fixture
 
 } // namespace details
 
-template< unsigned D, typename UT>
-struct vector_test_fixture< D, float, UT>: public details::fp_test_fixture< D, float, UT> { };
 
-template< unsigned D, typename UT>
-struct vector_test_fixture< D, double, UT>: public details::fp_test_fixture< D, double, UT> { };
+template< typename U, typename UT>
+struct vector_test_fixture< 2, U, UT>: public details::fp_test_fixture< 2, U, UT> 
+{ 
+	typedef matrix< DIMS, DIMS, U, UT> matrix_type;
+
+	vector_test_fixture()
+	{
+		unit_type mulvec[] = { 1.0, 2.0 };
+		unit_type mulmatrix[] = { 
+			10, 20,
+			30, 40};
+		unit_type vec_matrix[] = { 70, 100};
+		unit_type matrix_vec[] = { 50, 110};
+
+		mulvec_.assign( &mulvec[0], &mulvec[0] + DIMS);
+		mulmatrix_.assign( &mulmatrix[0], &mulmatrix[0] + DIMS*DIMS);
+		vec_matrix_.assign( &vec_matrix[0], &vec_matrix[0] + DIMS);
+		matrix_vec_.assign( &matrix_vec[0], &matrix_vec[0] + DIMS);
+	}
+
+	std::vector< unit_type> mulvec_;
+	std::vector< unit_type> mulmatrix_;
+	std::vector< unit_type> vec_matrix_;
+	std::vector< unit_type> matrix_vec_;
+};
+
+template< typename U, typename UT>
+struct vector_test_fixture< 3, U, UT>: public details::fp_test_fixture< 3, U, UT> 
+{ 
+	typedef matrix< DIMS, DIMS, U, UT> matrix_type;
+
+	vector_test_fixture()
+	{
+		unit_type mulvec[] = { 1.0, 2.0, 3.0 };
+		unit_type mulmatrix[] = { 
+			10, 20, 30,
+			30, 40, 50,
+			40, 30, 20};
+		unit_type vec_matrix[] = { 190, 190, 190};
+		unit_type matrix_vec[] = { 140, 260, 160};
+
+		mulvec_.assign( &mulvec[0], &mulvec[0] + DIMS);
+		mulmatrix_.assign( &mulmatrix[0], &mulmatrix[0] + DIMS*DIMS);
+		vec_matrix_.assign( &vec_matrix[0], &vec_matrix[0] + DIMS);
+		matrix_vec_.assign( &matrix_vec[0], &matrix_vec[0] + DIMS);
+	}
+	std::vector< unit_type> mulvec_;
+	std::vector< unit_type> mulmatrix_;
+	std::vector< unit_type> vec_matrix_;
+	std::vector< unit_type> matrix_vec_;
+};
+
+template< typename U, typename UT>
+struct vector_test_fixture< 4, U, UT>: public details::fp_test_fixture< 4, U, UT> 
+{ 
+	typedef matrix< DIMS, DIMS, U, UT> matrix_type;
+
+	vector_test_fixture()
+	{
+		unit_type mulvec[] = { 1, 2, 3, 4 };
+		unit_type mulmatrix[] = { 
+			11, 12, 13, 14,
+			21, 22, 23, 24,
+			31, 32, 33, 34,
+			41, 42, 43, 44};
+		unit_type vec_matrix[] = {310, 320, 330, 340};
+		unit_type matrix_vec[] = {130, 230, 330, 430};
+
+		mulvec_.assign( &mulvec[0], &mulvec[0] + DIMS);
+		mulmatrix_.assign( &mulmatrix[0], &mulmatrix[0] + DIMS*DIMS);
+		vec_matrix_.assign( &vec_matrix[0], &vec_matrix[0] + DIMS);
+		matrix_vec_.assign( &matrix_vec[0], &matrix_vec[0] + DIMS);
+	}
+
+	std::vector< unit_type> mulvec_;
+	std::vector< unit_type> mulmatrix_;
+	std::vector< unit_type> vec_matrix_;
+	std::vector< unit_type> matrix_vec_;
+};
 
 /// \brief Boost Test predicate for checking vectors.
 template< unsigned D, typename U, typename UT, typename I>
