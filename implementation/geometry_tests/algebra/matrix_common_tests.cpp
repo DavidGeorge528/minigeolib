@@ -153,7 +153,6 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_scalar_multiplication, M, matrix_test_types)
 	BOOST_CHECK( check_equal_matrix( f.op1_.begin(), f.op1_.end(), result));
 }
 
-
 // ---------------------------------------------------------------------------------------------------------------------
 
 BOOST_AUTO_TEST_CASE_TEMPLATE( test_scalar_division, M, matrix_test_types)
@@ -175,6 +174,24 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_scalar_division, M, matrix_test_types)
 	result = op1;
 	result /= typename test_fixture::unit_traits_type::one();
 	BOOST_CHECK( check_equal_matrix( f.op1_.begin(), f.op1_.end(), result));
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_transposition, M, matrix_test_types)
+{
+	DEF_TEST( M);
+	test_fixture f;
+	matrix_type op1( f.op1_.begin()), result;
+
+	result = transposed( op1);
+	BOOST_CHECK( check_equal_matrix( f.transposed_.begin(), f.transposed_.end(), result));
+
+	result = op1;
+	matrix_type& r = result.transpose();
+	BOOST_CHECK_EQUAL( &r, &result);
+	BOOST_CHECK( check_equal_matrix( f.transposed_.begin(), f.transposed_.end(), result));
 }
 
 } // namespace

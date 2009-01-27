@@ -193,6 +193,29 @@ public:
 		return *this;
 	}
 
+	friend matrix transposed( const matrix& m)
+	{
+		return matrix(
+			m.a11_, m.a21_, m.a31_, 
+			m.a12_, m.a22_, m.a32_, 
+			m.a13_, m.a23_, m.a33_);
+	}
+
+	matrix& transpose()
+	{
+		unit_type t;
+
+#define E( i, j) a##i##j
+#define TR( i, j) t = E(i,j)_; E(i,j)_ = E(j,i)_; E(j,i)_ = t;
+
+		TR(1,2); TR(1,3); 
+		TR(2,3); 
+
+#undef TR
+#undef E
+
+		return *this;
+	}
 
 private:
 	union

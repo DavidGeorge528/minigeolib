@@ -89,10 +89,6 @@ public:
 		return I;
 	}
 
-	/// \brief It adds two matrices.
-	/// \param left_op the left operand.
-	/// \param right_op the right operand.
-	/// \return the resulted matrix.
 	friend matrix operator+( const matrix& left_op, const matrix& right_op)
 	{
 		return matrix( 
@@ -102,9 +98,6 @@ public:
 			left_op.a41_ + right_op.a41_, left_op.a42_ + right_op.a42_, left_op.a43_ + right_op.a43_, left_op.a44_ + right_op.a44_);
 	}
 
-	/// \brief It adds two matrices.
-	/// \param right_op the right operand.
-	/// \return this object.
 	matrix& operator+=( const matrix& right_op)
 	{
 		a11_ += right_op.a11_; a12_ += right_op.a12_; a13_ += right_op.a13_; a14_ += right_op.a14_;
@@ -114,11 +107,6 @@ public:
 		return *this;
 	}
 
-
-	/// \brief It subtracts two matrices.
-	/// \param left_op the left operand.
-	/// \param right_op the right operand.
-	/// \return the resulted matrix.
 	friend matrix operator-( const matrix& left_op, const matrix& right_op)
 	{
 		return matrix( 
@@ -128,9 +116,6 @@ public:
 			left_op.a41_ - right_op.a41_, left_op.a42_ - right_op.a42_, left_op.a43_ - right_op.a43_, left_op.a44_ - right_op.a44_);
 	}
 
-	/// \brief It subtracts two matrices.
-	/// \param right_op the right operand.
-	/// \return this object.
 	matrix& operator-=( const matrix& right_op)
 	{
 		a11_ -= right_op.a11_; a12_ -= right_op.a12_; a13_ -= right_op.a13_; a14_ -= right_op.a14_;
@@ -204,6 +189,32 @@ public:
 		a21_ /= s; a22_ /= s; a23_ /= s; a24_ /= s;
 		a31_ /= s; a32_ /= s; a33_ /= s; a34_ /= s;
 		a41_ /= s; a42_ /= s; a43_ /= s; a44_ /= s;
+		return *this;
+	}
+
+	friend matrix transposed( const matrix& m)
+	{
+		return matrix(
+			m.a11_, m.a21_, m.a31_, m.a41_, 
+			m.a12_, m.a22_, m.a32_, m.a42_, 
+			m.a13_, m.a23_, m.a33_, m.a43_, 
+			m.a14_, m.a24_, m.a34_, m.a44_);
+	}
+
+	matrix& transpose()
+	{
+		unit_type t;
+
+#define E( i, j) a##i##j
+#define TR( i, j) t = E(i,j)_; E(i,j)_ = E(j,i)_; E(j,i)_ = t;
+
+		TR(1,2); TR(1,3); TR(1,4);
+		TR(2,3); TR(2,4);
+		TR(3,4);
+
+#undef TR
+#undef E
+
 		return *this;
 	}
 
