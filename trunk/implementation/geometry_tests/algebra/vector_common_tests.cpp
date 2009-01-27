@@ -133,4 +133,70 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_subtraction, T, vector_test_types)
 	BOOST_CHECK_EQUAL_ALG_VECTOR( f.operand1_.begin(), f.operand1_.end(), v);
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_scalar_multiply, T, vector_test_types)
+{
+	DEF_TYPES( T);
+	test_fixture f;
+	tested_vector v1( f.operand1_.begin());
+	tested_vector result;
+
+	result = v1*f.scalar_;
+	BOOST_CHECK_EQUAL_ALG_VECTOR( f.smul_.begin(), f.smul_.end(), result);
+
+	result = f.scalar_ * v1;
+	BOOST_CHECK_EQUAL_ALG_VECTOR( f.smul_.begin(), f.smul_.end(), result);
+
+	result = v1;
+	result *= f.scalar_;
+	BOOST_CHECK_EQUAL_ALG_VECTOR( f.smul_.begin(), f.smul_.end(), result);
+
+	result = v1 * tested_vector::unit_traits_type::zero();
+	BOOST_CHECK_EQUAL_ALG_VECTOR( f.zeros_.begin(), f.zeros_.end(), result);
+
+	result = tested_vector::unit_traits_type::zero() * v1;
+	BOOST_CHECK_EQUAL_ALG_VECTOR( f.zeros_.begin(), f.zeros_.end(), result);
+
+	result = v1;
+	result *= tested_vector::unit_traits_type::zero();
+	BOOST_CHECK_EQUAL_ALG_VECTOR( f.zeros_.begin(), f.zeros_.end(), result);
+
+	result = v1 * tested_vector::unit_traits_type::one();
+	BOOST_CHECK_EQUAL_ALG_VECTOR( f.operand1_.begin(), f.operand1_.end(), result);
+
+	result = tested_vector::unit_traits_type::one() * v1;
+	BOOST_CHECK_EQUAL_ALG_VECTOR( f.operand1_.begin(), f.operand1_.end(), result);
+
+	result = v1;
+	result *= tested_vector::unit_traits_type::one();
+	BOOST_CHECK_EQUAL_ALG_VECTOR( f.operand1_.begin(), f.operand1_.end(), result);
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_scalar_division, T, vector_test_types)
+{
+	DEF_TYPES( T);
+	test_fixture f;
+	tested_vector v1( f.operand1_.begin());
+	tested_vector result;
+
+
+	result = v1/f.scalar_;
+	BOOST_CHECK_EQUAL_ALG_VECTOR( f.sdiv_.begin(), f.sdiv_.end(), result);
+
+	result = v1;
+	result /= f.scalar_;
+	BOOST_CHECK_EQUAL_ALG_VECTOR( f.sdiv_.begin(), f.sdiv_.end(), result);
+
+	result = v1/tested_vector::unit_traits_type::one();
+	BOOST_CHECK_EQUAL_ALG_VECTOR( f.operand1_.begin(), f.operand1_.end(), result);
+
+	result = v1;
+	result /= tested_vector::unit_traits_type::one();
+	BOOST_CHECK_EQUAL_ALG_VECTOR( f.operand1_.begin(), f.operand1_.end(), result);
+}
+
+
 } // namespace
