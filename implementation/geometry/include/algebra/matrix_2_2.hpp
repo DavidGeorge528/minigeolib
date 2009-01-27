@@ -4,6 +4,8 @@
 namespace algebra
 {
 
+/// \ingroup algebra
+/// \copydoc template< unsigned R, unsigned C, typename U, typename UT> matrix< R, C, U, UT> 
 template< typename U, typename UT>
 class matrix< 2, 2, U, UT>: public details::matrix_base< 2, 2, U, UT>
 {
@@ -72,10 +74,6 @@ public:
 		return I;
 	}
 
-	/// \brief It adds two matrices.
-	/// \param left_op the left operand.
-	/// \param right_op the right operand.
-	/// \return the resulted matrix.
 	friend matrix operator+( const matrix& left_op, const matrix& right_op)
 	{
 		return matrix( 
@@ -83,9 +81,6 @@ public:
 			left_op.a21_ + right_op.a21_, left_op.a22_ + right_op.a22_);
 	}
 
-	/// \brief It adds two matrices.
-	/// \param right_op the right operand.
-	/// \return this object.
 	matrix& operator+=( const matrix& right_op)
 	{
 		a11_ += right_op.a11_; a12_ += right_op.a12_;
@@ -93,11 +88,6 @@ public:
 		return *this;
 	}
 
-
-	/// \brief It subtracts two matrices.
-	/// \param left_op the left operand.
-	/// \param right_op the right operand.
-	/// \return the resulted matrix.
 	friend matrix operator-( const matrix& left_op, const matrix& right_op)
 	{
 		return matrix( 
@@ -105,9 +95,6 @@ public:
 			left_op.a21_ - right_op.a21_, left_op.a22_ - right_op.a22_);
 	}
 
-	/// \brief It subtracts two matrices.
-	/// \param right_op the right operand.
-	/// \return this object.
 	matrix& operator-=( const matrix& right_op)
 	{
 		a11_ -= right_op.a11_; a12_ -= right_op.a12_;
