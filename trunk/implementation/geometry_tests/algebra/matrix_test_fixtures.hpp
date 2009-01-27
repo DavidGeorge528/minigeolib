@@ -124,7 +124,10 @@ public:
 		mulop1_.assign( &op1[0], &op1[0] + SIZE);
 		mulop2_.assign( &op2[0], &op2[0] + SIZE);
 		multiplied_.assign( &result[0], &result[0] + SIZE);
+		op1_det_ = -140.0;
 	}
+
+	unit_type op1_det_;
 };
 
 
@@ -152,7 +155,10 @@ public:
 		mulop1_.assign( &op1[0], &op1[0] + SIZE);
 		mulop2_.assign( &op2[0], &op2[0] + SIZE);
 		multiplied_.assign( &result[0], &result[0] + SIZE);
+		op1_det_ = 560.0;
 	}
+
+	unit_type op1_det_;
 };
 
 template< typename U, typename UT>
@@ -163,8 +169,8 @@ public:
 	{
 		unit_type op1[ SIZE] = { 			
 			111.0, 112.0, 113.0, 114.0,
-			121.0, 122.0, 123.0, 124.0,
-			131.0, 132.0, 133.0, 134.0,
+			121.0, 122.0, 1.0, 124.0,
+			11.0, 132.0, 133.0, 134.0,
 			141.0, 142.0, 143.0, 144.0};
 		unit_type op2[ SIZE] = {
 			211.0, 212.0, 213.0, 214.0,
@@ -174,15 +180,18 @@ public:
 			};
 		unit_type result[SIZE] = {
 			101750.0, 102200.0, 102650.0, 103100.0,
-			110790.0, 111280.0, 111770.0, 112260.0,
-			119830.0, 120360.0, 120890.0, 121420.0,
+			82608.0,  82976.0,  83344.0,  83712.0,
+			94510.0,  94920.0,  95330.0,  95740.0,
 			128870.0, 129440.0, 130010.0, 130580.0
 		};
 
 		mulop1_.assign( &op1[0], &op1[0] + SIZE);
 		mulop2_.assign( &op2[0], &op2[0] + SIZE);
 		multiplied_.assign( &result[0], &result[0] + SIZE);
+		op1_det_ = -878400.000;
 	}
+
+	unit_type op1_det_;
 };
 
 

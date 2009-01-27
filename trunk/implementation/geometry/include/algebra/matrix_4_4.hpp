@@ -218,6 +218,37 @@ public:
 		return *this;
 	}
 
+	friend unit_type det( const matrix& m)
+	{
+		return m.det();
+	}
+
+	unit_type det() const
+	{
+#define E(l,c) a##l##c
+#define P(i,x, j,y, k,z) E(i,x)_*E(j,y)_*E(k,z)_
+
+		// ix iy iz
+		// jx jy jz
+		// kx ky kz
+
+		// COF = ix*jy*kz + iy*jz*kx + jx*ky*iz - iz*jy*kx - jz*ky*ix - jx*iy*kz
+#define COF(i,j,k,x,y,z) P(i,x, j,y, k,z) + P(i,y, j,z, k,x) + P(j,x, k,y, i,z) - P(i,z, j,y, k,x) - P(j,z, k,y, i,x) - P(j,x, i,y, k,z)
+
+		unit_type c11 = COF(   2,3,4,   2,3,4);
+		unit_type c12 = COF(   2,3,4, 1,  3,4);
+		unit_type c13 = COF(   2,3,4, 1,2,  4);
+		unit_type c14 = COF(   2,3,4, 1,2,3  );
+
+		unit_type result = a11_*c11 - a12_*c12 + a13_*c13 - a14_*c14;
+
+		return result;
+
+#undef COF
+#undef P
+#undef E
+	}
+
 private:
 	union
 	{
