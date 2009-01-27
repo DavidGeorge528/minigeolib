@@ -58,7 +58,7 @@ public:
 	/// \brief It implements the product of two matrices.
 	/// \todo Implement for generic matrix.
 	template< unsigned R1, unsigned C1, unsigned R2>
-	friend matrix<R1,R2> operator*( const matrix<R1,C1>& left_op, const matrix<C1,R2>& right_op);
+	friend matrix<R1,R2,U,UT> operator*( const matrix<R1,C1,U,UT>& left_op, const matrix<C1,R2,U,UT>& right_op);
 
 	/// \brief It implements the product of two matrices.
 	/// \todo Implement for generic matrix. Enable only if square matrix.

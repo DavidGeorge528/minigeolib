@@ -66,6 +66,7 @@ struct fp_matrix_test_fixture
 		END_INIT_LOOP
 
 		scalar_ = 2;
+		transposed_.assign( SIZE, unit_traits_type::zero());
 
 		INIT_LOOP( r, c)
 		{
@@ -76,6 +77,7 @@ struct fp_matrix_test_fixture
 			subtracted_.push_back( op1_[index] - op2_[index]);
 			scmul_.push_back( op1_[ index] * scalar_);
 			scdiv_.push_back( op1_[ index] / scalar_);
+			transposed_[ c*ROWS + r] = op1_.back();
 		}
 		END_INIT_LOOP
 	}
@@ -95,6 +97,7 @@ struct fp_matrix_test_fixture
 	unit_type scalar_;
 	std::vector< unit_type> scmul_;
 	std::vector< unit_type> scdiv_;
+	std::vector< unit_type> transposed_; // Transposition of op1_
 };
 
 } // namespace details
