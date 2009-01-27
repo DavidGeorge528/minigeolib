@@ -3,8 +3,6 @@
 #include "../tests_common.hpp"
 #include "../test_traits.hpp"
 
-// TODO: Update tests - test fixture data provide std::vector, so use begin,end on checks.
-
 namespace
 {
 
@@ -67,20 +65,20 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_addition, M, matrix_test_types)
 {
 	DEF_TEST( M);
 	test_fixture f;
-	matrix_type op1( &f.op1_[0]), op2( &f.op2_[0]), result, zero;
+	matrix_type op1( f.op1_.begin()), op2( f.op2_.begin()), result, zero;
 
 	result = op1 + op2;
-	BOOST_CHECK( check_equal_matrix( &f.added_[0], &f.added_[0] + test_fixture::SIZE, result));
+	BOOST_CHECK( check_equal_matrix( f.added_.begin(), f.added_.end(), result));
 
 	result = op1;
 	result += op2;
-	BOOST_CHECK( check_equal_matrix( &f.added_[0], &f.added_[0] + test_fixture::SIZE, result));
+	BOOST_CHECK( check_equal_matrix( f.added_.begin(), f.added_.end(), result));
 
 	result += zero;
-	BOOST_CHECK( check_equal_matrix( &f.added_[0], &f.added_[0] + test_fixture::SIZE, result));
+	BOOST_CHECK( check_equal_matrix( f.added_.begin(), f.added_.end(), result));
 
 	result = op1 + zero;
-	BOOST_CHECK( check_equal_matrix( &f.op1_[0], &f.op1_[0] + test_fixture::SIZE, result));
+	BOOST_CHECK( check_equal_matrix( f.op1_.begin(), f.op1_.end(), result));
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -89,20 +87,20 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_subtraction, M, matrix_test_types)
 {
 	DEF_TEST( M);
 	test_fixture f;
-	matrix_type op1( &f.op1_[0]), op2( &f.op2_[0]), result, zero;
+	matrix_type op1( f.op1_.begin()), op2( f.op2_.begin()), result, zero;
 
 	result = op1 - op2;
-	BOOST_CHECK( check_equal_matrix( &f.subtracted_[0], &f.subtracted_[0] + test_fixture::SIZE, result));
+	BOOST_CHECK( check_equal_matrix( f.subtracted_.begin(), f.subtracted_.end(), result));
 
 	result = op1;
 	result -= op2;
-	BOOST_CHECK( check_equal_matrix( &f.subtracted_[0], &f.subtracted_[0] + test_fixture::SIZE, result));
+	BOOST_CHECK( check_equal_matrix( f.subtracted_.begin(), f.subtracted_.end(), result));
 
 	result -= zero;
-	BOOST_CHECK( check_equal_matrix( &f.subtracted_[0], &f.subtracted_[0] + test_fixture::SIZE, result));
+	BOOST_CHECK( check_equal_matrix( f.subtracted_.begin(), f.subtracted_.end(), result));
 
 	result = op1 - zero;
-	BOOST_CHECK( check_equal_matrix( &f.op1_[0], &f.op1_[0] + test_fixture::SIZE, result));
+	BOOST_CHECK( check_equal_matrix( f.op1_.begin(), f.op1_.end(), result));
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -111,23 +109,23 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_multiplication, M, matrix_test_types)
 {
 	DEF_TEST( M);
 	test_fixture f;
-	matrix_type op1( &f.mulop1_[0]), op2( &f.mulop2_[0]), result, identity = matrix_type::IDENTITY();
+	matrix_type op1( f.mulop1_.begin()), op2( f.mulop2_.begin()), result, identity = matrix_type::IDENTITY();
 
 	result = op1 * op2;
-	BOOST_CHECK( check_equal_matrix( &f.multiplied_[0], &f.multiplied_[0] + test_fixture::SIZE, result));
+	BOOST_CHECK( check_equal_matrix( f.multiplied_.begin(), f.multiplied_.end(), result));
 	
 	result = op1*identity;
-	BOOST_CHECK( check_equal_matrix( &f.mulop1_[0], &f.mulop1_[0] + test_fixture::SIZE, result));
+	BOOST_CHECK( check_equal_matrix( f.mulop1_.begin(), f.mulop1_.end(), result));
 	
 	result = identity*op1;
-	BOOST_CHECK( check_equal_matrix( &f.mulop1_[0], &f.mulop1_[0] + test_fixture::SIZE, result));
+	BOOST_CHECK( check_equal_matrix( f.mulop1_.begin(), f.mulop1_.end(), result));
 
 	result = op1;
 	result *= op2;
-	BOOST_CHECK( check_equal_matrix( &f.multiplied_[0], &f.multiplied_[0] + test_fixture::SIZE, result));
+	BOOST_CHECK( check_equal_matrix( f.multiplied_.begin(), f.multiplied_.end(), result));
 
 	result *= identity;
-	BOOST_CHECK( check_equal_matrix( &f.multiplied_[0], &f.multiplied_[0] + test_fixture::SIZE, result));
+	BOOST_CHECK( check_equal_matrix( f.multiplied_.begin(), f.multiplied_.end(), result));
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -136,20 +134,47 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_scalar_multiplication, M, matrix_test_types)
 {
 	DEF_TEST( M);
 	test_fixture f;
-	matrix_type op1( &f.op1_[0]), result;
+	matrix_type op1( f.op1_.begin()), result;
 
 	result = f.scalar_*op1;
-	BOOST_CHECK( check_equal_matrix( &f.scmul_[0], &f.scmul_[0] + test_fixture::SIZE, result));
+	BOOST_CHECK( check_equal_matrix( f.scmul_.begin(), f.scmul_.end(), result));
 
 	result = op1*f.scalar_;
-	BOOST_CHECK( check_equal_matrix( &f.scmul_[0], &f.scmul_[0] + test_fixture::SIZE, result));
+	BOOST_CHECK( check_equal_matrix( f.scmul_.begin(), f.scmul_.end(), result));
 
 	result = op1;
 	result *= f.scalar_;
-	BOOST_CHECK( check_equal_matrix( &f.scmul_[0], &f.scmul_[0] + test_fixture::SIZE, result));
+	BOOST_CHECK( check_equal_matrix( f.scmul_.begin(), f.scmul_.end(), result));
 
-	result = op1* typename test_fixture::unit_type(0);
+	result = op1* typename test_fixture::unit_traits_type::zero();
 	BOOST_CHECK( check_equal_matrix( &f.zeros_[0][0], &f.zeros_[0][0] + test_fixture::SIZE, result));
+
+	result = op1* typename test_fixture::unit_traits_type::one();
+	BOOST_CHECK( check_equal_matrix( f.op1_.begin(), f.op1_.end(), result));
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_scalar_division, M, matrix_test_types)
+{
+	DEF_TEST( M);
+	test_fixture f;
+	matrix_type op1( f.op1_.begin()), result;
+
+	result = op1 / f.scalar_;
+	BOOST_CHECK( check_equal_matrix( f.scdiv_.begin(), f.scdiv_.end(), result));
+
+	result = op1;
+	result /= f.scalar_;
+	BOOST_CHECK( check_equal_matrix( f.scdiv_.begin(), f.scdiv_.end(), result));
+
+	result = op1 / typename test_fixture::unit_traits_type::one();
+	BOOST_CHECK( check_equal_matrix( f.op1_.begin(), f.op1_.end(), result));
+
+	result = op1;
+	result /= typename test_fixture::unit_traits_type::one();
+	BOOST_CHECK( check_equal_matrix( f.op1_.begin(), f.op1_.end(), result));
 }
 
 } // namespace

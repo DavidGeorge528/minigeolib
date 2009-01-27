@@ -174,6 +174,24 @@ public:
 		return *this;
 	}
 
+
+	friend matrix operator/( const matrix& left_op, const unit_type& s)
+	{
+		return matrix( 
+			left_op.a11_ / s, left_op.a12_ / s, left_op.a13_ / s,
+			left_op.a21_ / s, left_op.a22_ / s, left_op.a23_ / s,
+			left_op.a31_ / s, left_op.a32_ / s, left_op.a33_ / s);
+	}
+
+	matrix& operator/=( const unit_type& s)
+	{
+		a11_ /= s; a12_ /= s; a13_ /= s;
+		a21_ /= s; a22_ /= s; a23_ /= s;
+		a31_ /= s; a32_ /= s; a33_ /= s;
+		return *this;
+	}
+
+
 private:
 	union
 	{
