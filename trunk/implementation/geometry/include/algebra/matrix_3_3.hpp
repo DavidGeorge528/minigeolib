@@ -4,6 +4,8 @@
 namespace algebra
 {
 
+/// \ingroup algebra
+/// \copydoc template< unsigned R, unsigned C, typename U, typename UT> matrix< R, C, U, UT> 
 template< typename U, typename UT>
 class matrix< 3, 3, U, UT>: public details::matrix_base< 3, 3, U, UT>
 {
