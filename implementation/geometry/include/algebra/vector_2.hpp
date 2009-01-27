@@ -68,6 +68,37 @@ public:
 		return *this;
 	}
 
+
+	friend my_type_ operator*( const unit_type& s, const my_type_& v)
+	{
+		return my_type_( s*v.v_[0], s*v.v_[1]);
+	}
+
+	friend my_type_ operator*( const my_type_& v, const unit_type& s)
+	{
+		return my_type_( v.v_[0]*s, v.v_[1]*s);
+	}
+
+	my_type_& operator*=( const unit_type& s)
+	{
+		v_[0]*=s;
+		v_[1]*=s;
+		return *this;
+	}
+
+
+	friend my_type_ operator/( const my_type_& v, const unit_type& s)
+	{
+		return my_type_( v.v_[0]/s, v.v_[1]/s);
+	}
+
+
+	my_type_& operator/=( const unit_type& s)
+	{
+		v_[0]/=s;
+		v_[1]/=s;
+		return *this;
+	}
 };
 
 } // namespace algebra

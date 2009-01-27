@@ -2,6 +2,7 @@
 #define ALG_VECTOR_HPP
 
 #include "algebra/details/vector_base.hpp"
+#include <boost/bind.hpp>
 #include <algorithm>
 
 namespace algebra
@@ -64,6 +65,62 @@ public:
 	{
 		std::transform( &v_[0], &v_[0] + DIMENSIONS, &op.v_[0], &v_[0], &unit_traits_type::subtract);
 		return *this;
+	}
+
+	friend my_type_ operator*( const unit_type& s, const my_type_& v)
+	{
+		my_type_ result;
+		std::transform( &v.v_[0], &v_[0] + DIMENSIONS, &result.v_[0], boost::bind( &my_type_::multiply, s, _1) );
+		return result;
+	}
+
+	friend my_type_ operator*( const my_type_& v, const unit_type& s)
+	{
+		my_type_ result;
+		std::transform( &v.v_[0], &v_[0] + DIMENSIONS, &result.v_[0], boost::bind( &my_type_::multiply, _1, s) );
+		return result;
+	}
+
+	my_type_& operator*=( const unit_type& s)
+	{
+		std::transform( &v_[0], &v_[0] + DIMENSIONS, &v_[0], boost::bind( &my_type_::multiply, _1, s));
+		return *this;
+	}
+
+
+	friend my_type_ operator/( const my_type_& v, const unit_type& s)
+	{
+		my_type_ result;
+		std::transform( &v.v_[0], &v_[0] + DIMENSIONS, &result.v_[0], boost::bind( &my_type_::divide, _1, s) );
+		return result;
+	}
+
+
+	my_type_& operator/=( const unit_type& s)
+	{
+		std::transform( &v_[0], &v_[0] + DIMENSIONS, &v_[0], boost::bind( &my_type_::divide, _1, s));
+		return *this;
+	}
+
+private:
+	static unit_type subtract( const unit_type& op1, const unit_type& op2)
+	{
+		return op1 - op2;
+	}
+
+	static unit_type add( const unit_type& op1, const unit_type& op2)
+	{
+		return op1 + op2;
+	}
+
+	static unit_type multiply( const unit_type& op1, const unit_type& op2)
+	{
+		return  op1*op2;
+	}
+
+	static unit_type divide( const unit_type& op1, const unit_type& op2)
+	{
+		return op1 / op2;
 	}
 };
 
