@@ -99,6 +99,27 @@ public:
 		v_[1]/=s;
 		return *this;
 	}
+
+	friend my_type_ operator*( const my_type_& v, const matrix_type& m)
+	{
+		return my_type_(
+			v.v_[0]*m.a11_ + v.v_[1]*m.a21_,
+			v.v_[0]*m.a12_ + v.v_[1]*m.a22_);
+	}
+
+	my_type_& operator*=( const matrix_type& m)
+	{
+		my_type_ result = operator*( *this, m);
+		*this = result;
+		return *this;
+	}
+
+	friend my_type_ operator*( const matrix_type& m, const my_type_& v)
+	{
+		return my_type_(
+			m.a11_*v.v_[0] + m.a12_*v.v_[1],
+			m.a21_*v.v_[0] + m.a22_*v.v_[1]);
+	}
 };
 
 } // namespace algebra

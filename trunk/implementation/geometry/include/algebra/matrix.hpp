@@ -8,6 +8,9 @@
 namespace algebra
 {
 
+	template< unsigned D, typename U, typename UT> class vector;
+
+
 /// \ingroup algebra
 /// \brief It implements a matrix.
 /// \tparam R the number of rows in the matrix.
