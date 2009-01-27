@@ -181,6 +181,16 @@ public:
 		return *this;
 	}
 
+	friend unit_type det( const matrix& m)
+	{
+		return m.det();
+	}
+
+	unit_type det() const
+	{
+		return a11_*a22_ - a12_*a21_;
+	}
+
 private:
 	union
 	{
