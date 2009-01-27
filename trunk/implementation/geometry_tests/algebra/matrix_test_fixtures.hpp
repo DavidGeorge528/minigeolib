@@ -75,6 +75,7 @@ struct fp_matrix_test_fixture
 			added_.push_back( op1_[ index] + op2_[index]); 
 			subtracted_.push_back( op1_[index] - op2_[index]);
 			scmul_.push_back( op1_[ index] * scalar_);
+			scdiv_.push_back( op1_[ index] / scalar_);
 		}
 		END_INIT_LOOP
 	}
@@ -93,6 +94,7 @@ struct fp_matrix_test_fixture
 	std::vector< unit_type> multiplied_;
 	unit_type scalar_;
 	std::vector< unit_type> scmul_;
+	std::vector< unit_type> scdiv_;
 };
 
 } // namespace details

@@ -157,6 +157,21 @@ public:
 		return *this;
 	}
 
+
+	friend matrix operator/( const matrix& left_op, const unit_type& s)
+	{
+		return matrix( 
+			left_op.a11_ / s, left_op.a12_ / s,
+			left_op.a21_ / s, left_op.a22_ / s);
+	}
+
+	matrix& operator/=( const unit_type& s)
+	{
+		a11_ /= s; a12_ /= s;
+		a21_ /= s; a22_ /= s;
+		return *this;
+	}
+
 private:
 	union
 	{
