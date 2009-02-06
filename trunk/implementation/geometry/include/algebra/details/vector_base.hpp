@@ -2,6 +2,7 @@
 #define ALGEBRA_DETAILS_VECTOR_BASE_HPP
 
 #include "algebra/matrix.hpp"
+#include <boost/static_assert.hpp>
 #include <cassert>
 
 namespace algebra
@@ -43,6 +44,23 @@ public:
 	{
 		assert( index < DIMENSIONS);
 		return v_[index];
+	}
+
+
+	// TODO: Test
+	template< unsigned I>
+	unit_type& at()
+	{
+		BOOST_STATIC_ASSERT( I < DIMENSIONS);
+		return v_[I];
+	}
+
+	// TODO: Test
+	template< unsigned I>
+	const unit_type& at() const
+	{
+		BOOST_STATIC_ASSERT( I < DIMENSIONS);
+		return v_[I];
 	}
 
 protected:

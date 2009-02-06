@@ -71,6 +71,42 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\include\geometry\coord_system_concept.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\coord_system_tags.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\homogenous\hcoord_system.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\homogenous\hcoord_system_3.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\homogenous\hcoord_system_concept.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\homogenous\impl_3d\hposition_3_impl.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\homogenous\impl_3d\htransform_3_impl.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\homogenous\htransformation_3.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\homogenous\hvertex_3.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\include\algebra\matrix.hpp"
 				>
 			</File>
@@ -88,6 +124,10 @@
 			</File>
 			<File
 				RelativePath=".\include\algebra\details\matrix_base.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\transformation.hpp"
 				>
 			</File>
 			<File
@@ -112,6 +152,10 @@
 			</File>
 			<File
 				RelativePath=".\include\algebra\details\vector_base.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\vertex.hpp"
 				>
 			</File>
 		</Filter>
