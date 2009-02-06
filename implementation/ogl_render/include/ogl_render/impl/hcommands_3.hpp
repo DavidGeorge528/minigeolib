@@ -3,7 +3,7 @@
 
 #include "ogl_render/impl/commands.hpp"
 #include "geometry/homogenous/hcoord_system.hpp"
-#include "geometry/homogenous/hvertex_3.hpp"
+#include "geometry/vertex.hpp"
 #include <boost/type_traits/is_same.hpp>
 #include <boost/static_assert.hpp>
 
