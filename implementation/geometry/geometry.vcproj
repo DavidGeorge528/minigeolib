@@ -79,6 +79,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\geometry\impl\enablers.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\include\geometry\homogenous\hcoord_system.hpp"
 				>
 			</File>
