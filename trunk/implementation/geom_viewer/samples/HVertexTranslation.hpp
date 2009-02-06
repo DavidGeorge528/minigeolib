@@ -2,7 +2,7 @@
 #define SAMPLES_VERTEX_TRANSLATION_HPP
 
 #include "geometry/homogenous/hcoord_system.hpp"
-#include "geometry/homogenous/hvertex_3.hpp"
+#include "geometry/vertex.hpp"
 #include "geometry/homogenous/htransformation_3.hpp"
 #include "ogl_render/opengl_object.hpp"
 #include "ogl_render/points.hpp"

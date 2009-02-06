@@ -2,7 +2,7 @@
 #define GEOMETRY_HOMOGENOUS_HCOORD_SYSTEM_3_HPP
 
 #include "geometry/homogenous/hcoord_system.hpp"
-#include "geometry/homogenous/impl_3d/hposition_3_impl.hpp"
+#include "algebra/vector.hpp"
 #include <boost/type_traits/is_same.hpp>
 #include <boost/static_assert.hpp>
 
@@ -18,7 +18,7 @@ public:
 	typedef UT unit_traits_type;
 	typedef typename unit_traits_type::unit_type unit_type;
 	typedef hcoord_system_tag system_type;
-	typedef impl_3d::hposition_3_impl< U, UT> position_type;
+	typedef algebra::vector< 4, U, UT> position_type;
 	typedef unit_type length_type;
 
 	BOOST_STATIC_ASSERT( (boost::is_same< U, unit_type>::value));

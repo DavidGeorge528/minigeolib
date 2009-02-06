@@ -91,19 +91,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\geometry\homogenous\impl_3d\hposition_3_impl.hpp"
-				>
-			</File>
-			<File
 				RelativePath=".\include\geometry\homogenous\impl_3d\htransform_3_impl.hpp"
 				>
 			</File>
 			<File
 				RelativePath=".\include\geometry\homogenous\htransformation_3.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\include\geometry\homogenous\hvertex_3.hpp"
 				>
 			</File>
 			<File
