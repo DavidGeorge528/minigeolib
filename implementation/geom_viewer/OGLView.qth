@@ -1,0 +1,53 @@
+#ifndef GEOM_VIEWER_OGL_VIEW_QTH
+#define GEOM_VIEWER_OGL_VIEW_QTH
+
+#include <QtOpenGL/QGLWidget>
+
+class OGLView : public QGLWidget
+{
+    Q_OBJECT
+
+public:
+    OGLView(QWidget *parent = 0);
+    ~OGLView();
+
+    int xRotation() const { return xRot; }
+    int yRotation() const { return yRot; }
+    int zRotation() const { return zRot; }
+
+	void setDisplayedConstruct( GLuint id);
+
+public Q_SLOTS:
+    void setXRotation(int angle);
+    void setYRotation(int angle);
+    void setZRotation(int angle);
+
+Q_SIGNALS:
+    void xRotationChanged(int angle);
+    void yRotationChanged(int angle);
+    void zRotationChanged(int angle);
+
+protected:
+    void initializeGL();
+    void paintGL();
+    void resizeGL(int width, int height);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+
+private:
+    void normalizeAngle(int *angle);
+
+    int xRot;
+    int yRot;
+    int zRot;
+    int gear1Rot;
+    
+    QPoint lastPos;
+
+	GLuint curDispObjId_;
+
+	GLuint originId_;
+};
+
+
+#endif // GEOM_VIEWER_OGL_VIEW_QTH

@@ -1,0 +1,21 @@
+#ifndef OGLMAINWINDOW_HPP
+#define OGLMAINWINDOW_HPP
+
+#include <QtGui/QMainWindow>
+
+class OGLView;
+
+class OGLMainWindow: public QMainWindow
+{
+	Q_OBJECT
+public:
+	OGLMainWindow();
+
+private:
+	OGLView* pOglView_;
+
+private Q_SLOTS:
+	void vertexTranslation();
+};
+
+#endif // OGLMAINWINDOW_HPP
