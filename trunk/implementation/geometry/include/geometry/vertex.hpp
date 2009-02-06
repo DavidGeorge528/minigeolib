@@ -3,9 +3,8 @@
 
 #include "geometry/coord_system_concept.hpp"
 #include "geometry/coord_system_tags.hpp"
+#include "geometry/impl/enablers.hpp"
 #include <boost/static_assert.hpp>
-#include <boost/utility/enable_if.hpp>
-#include <boost/type_traits/is_same.hpp>
 
 namespace geometry
 {
@@ -22,39 +21,34 @@ public:
 	typedef typename coord_system::unit_traits_type unit_traits_type;
 	typedef typename coord_system::position_type position_type;
 
-private:
-	typedef typename boost::enable_if_c< coord_system::DIMENSIONS == 3>::type enable_if_3d;
-	typedef typename boost::enable_if_c< 
-		boost::is_same< typename coord_system::system_type, hcoord_system_tag>::value >::type enable_if_homogenous;
-
 public:
 // TODO: Check position concept
 	vertex( const unit_type& x, const unit_type& y, const unit_type& z, const unit_type& w = 1.0,
-			enable_if_3d* = NULL, enable_if_homogenous* = NULL)
+			GEOMETRY_ENABLED_IF_3D, GEOMETRY_ENABLED_IF_HOMOGENEOUS)
 		: position_( x, y, z, w) { }
 
-	vertex( enable_if_3d* = NULL, enable_if_homogenous* = NULL)
+	vertex( GEOMETRY_ENABLED_IF_3D, GEOMETRY_ENABLED_IF_HOMOGENEOUS)
 		: position_( 0, 0, 0, 1) { }
 
-	const unit_type& x( typename boost::enable_if_c< coord_system::DIMENSIONS >=1>::type* = NULL) const 
+	const unit_type& x( GEOMETRY_ENABLED_IF_AT_LEAST_1D) const 
 	{ 
 		// TODO: Check 1D concept
 		return position_.at<0>(); 
 	}
 	
-	const unit_type& y( typename boost::enable_if_c< coord_system::DIMENSIONS >=2>::type* = NULL) const 
+	const unit_type& y( GEOMETRY_ENABLED_IF_AT_LEAST_2D) const 
 	{ 
 		// TODO: Check 2D Concept	
 		return position_.at<1>(); 
 	}
 	
-	const unit_type& z( typename boost::enable_if_c< coord_system::DIMENSIONS >=3>::type* = NULL) const 
+	const unit_type& z( GEOMETRY_ENABLED_IF_AT_LEAST_3D) const 
 	{
 		// TODO: CHeck 3D COncept
 		return position_.at<2>(); 
 	}
 
-	const unit_type& w( enable_if_3d* = NULL, enable_if_homogenous* = NULL) const 
+	const unit_type& w( GEOMETRY_ENABLED_IF_3D, GEOMETRY_ENABLED_IF_HOMOGENEOUS) const 
 	{ 
 		// TODO: Check 3D Homogeneous concept
 		return position_.at<3>(); 
