@@ -6,10 +6,10 @@
 
 #include "geometry/homogenous/hcoord_system.hpp"
 #include "geometry/vertex.hpp"
-#include "geometry/homogenous/htransformation_3.hpp"
+#include "geometry/transformation.hpp"
 #include "ogl_render/opengl_object.hpp"
 #include "ogl_render/points.hpp"
-#include "ogl_render/impl/hcommands_3.hpp"
+#include "ogl_render/impl/hcommands_3d.hpp"
 
 OGLView::OGLView(QWidget *parent)
 	: QGLWidget(parent)
