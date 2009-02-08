@@ -95,14 +95,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\geometry\homogenous\impl_3d\htransform_3_impl.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\include\geometry\homogenous\htransformation_3.hpp"
-				>
-			</File>
-			<File
 				RelativePath=".\include\algebra\matrix.hpp"
 				>
 			</File>
@@ -124,6 +116,18 @@
 			</File>
 			<File
 				RelativePath=".\include\geometry\transformation.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\homogenous\transformation_2d.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\homogenous\transformation_3d.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\impl\transformation_base.hpp"
 				>
 			</File>
 			<File
@@ -152,6 +156,18 @@
 			</File>
 			<File
 				RelativePath=".\include\geometry\vertex.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\homogenous\vertex_2d.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\homogenous\vertex_3d.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\impl\vertex_base.hpp"
 				>
 			</File>
 		</Filter>

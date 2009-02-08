@@ -81,7 +81,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\ogl_render\impl\hcommands_3.hpp"
+				RelativePath=".\include\ogl_render\impl\hcommands_3d.hpp"
 				>
 			</File>
 			<File

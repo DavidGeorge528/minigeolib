@@ -171,7 +171,11 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\geometry\hvertex_3_tests.cpp"
+				RelativePath=".\geometry\hvertex_2d_tests.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\geometry\hvertex_3d_tests.cpp"
 				>
 			</File>
 			<File

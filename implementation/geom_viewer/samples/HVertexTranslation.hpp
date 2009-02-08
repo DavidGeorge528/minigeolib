@@ -2,11 +2,11 @@
 #define SAMPLES_VERTEX_TRANSLATION_HPP
 
 #include "geometry/homogenous/hcoord_system.hpp"
-#include "geometry/vertex.hpp"
-#include "geometry/homogenous/htransformation_3.hpp"
+#include "geometry/homogenous/vertex_3d.hpp"
+#include "geometry/homogenous/transformation_3d.hpp"
 #include "ogl_render/opengl_object.hpp"
 #include "ogl_render/points.hpp"
-#include "ogl_render/impl/hcommands_3.hpp"
+#include "ogl_render/impl/hcommands_3d.hpp"
 #include "ogl_render/color.hpp"
 
 #include <boost/type_traits/is_float.hpp>
