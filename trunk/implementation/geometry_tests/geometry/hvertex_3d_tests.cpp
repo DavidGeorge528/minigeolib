@@ -42,4 +42,28 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_default_constructor, V, tested_types)
 	ALGTEST_CHECK_EQUAL_UNIT( 1, v.w());
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_translation, V, tested_types)
+{
+	typedef V vertex;
+	typedef transformation< typename vertex::coord_system> transformation;
+	typedef typename vertex::unit_type unit_type;
+	
+	vertex v( 1, 2, 3);
+	transformation tr = transformation::translation( 10, 20, 30);
+	vertex tv = v.transformed( tr);
+	BOOST_CHECK_EQUAL( &v, &v.transform( tr));
+	ALGTEST_CHECK_EQUAL_UNIT( 11, v.x());
+	ALGTEST_CHECK_EQUAL_UNIT( 22, v.y());
+	ALGTEST_CHECK_EQUAL_UNIT( 33, v.z());
+	ALGTEST_CHECK_EQUAL_UNIT( 1, v.w());
+
+	ALGTEST_CHECK_EQUAL_UNIT( 11, tv.x());
+	ALGTEST_CHECK_EQUAL_UNIT( 22, tv.y());
+	ALGTEST_CHECK_EQUAL_UNIT( 33, tv.z());
+	ALGTEST_CHECK_EQUAL_UNIT( 1, tv.w());
+}
+
+
 } // namespace
