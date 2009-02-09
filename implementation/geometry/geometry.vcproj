@@ -71,6 +71,10 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\include\geometry\angle.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\include\geometry\coord_system_concept.hpp"
 				>
 			</File>
@@ -128,6 +132,10 @@
 			</File>
 			<File
 				RelativePath=".\include\geometry\impl\transformation_base.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\algebra\unit_base.hpp"
 				>
 			</File>
 			<File
