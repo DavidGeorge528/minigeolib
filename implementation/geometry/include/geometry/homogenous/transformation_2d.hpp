@@ -18,7 +18,7 @@ public:
 		: tr_( a11, a12, a13, a21, a22, a23, a31, a32, a33) 
 	{ }
 
-	static transformation translation( const unit_type& dx, const unit_type& dy, const unit_type& dz)
+	static transformation translation( const unit_type& dx, const unit_type& dy)
 	{
 		return transformation( 1, 0, dx, 0, 1, dy, 0, 0, 1);
 	}

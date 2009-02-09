@@ -13,6 +13,9 @@ class vertex< CS, typename impl::enabled_for<CS,3,hcoord_system_tag>::type>
 {
 	typedef vertex<CS> my_type_;
 
+protected:
+	vertex( const position_type& pos)
+		: position_( pos) { }
 public:
 	// TODO: Check position concept
 	vertex( const unit_type& x, const unit_type& y, const unit_type& z, const unit_type& w = 1.0)
@@ -54,7 +57,7 @@ public:
 	}
 
 	template< typename T>
-	my_type_ transformed( const T& tr)
+	my_type_ transformed( const T& tr) const
 	{
 		// TODO: Check transformation concept
 		return tr.transformed( position_);
