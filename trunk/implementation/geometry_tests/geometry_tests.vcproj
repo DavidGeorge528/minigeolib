@@ -171,6 +171,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\geometry\angle_tests.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\geometry\hvertex_2d_tests.cpp"
 				>
 			</File>
@@ -196,6 +200,10 @@
 			</File>
 			<File
 				RelativePath=".\algebra\matrix_common_tests.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\algebra\unit_base_tests.cpp"
 				>
 			</File>
 			<File
