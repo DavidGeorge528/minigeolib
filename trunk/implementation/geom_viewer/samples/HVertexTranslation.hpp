@@ -17,7 +17,7 @@ namespace Samples
 {
 
 
-/// \brief It provides the sample data for 3D homogeneous coordinate vertex.
+/// \brief It provides the sample data for 3D homogeneous coordinate vertex translation
 template< typename U>
 class HVertexTranslation
 {
