@@ -83,6 +83,22 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\geometry\direction.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\homogenous\direction_2d.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\homogenous\direction_3d.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\impl\direction_base.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\include\geometry\impl\enablers.hpp"
 				>
 			</File>
