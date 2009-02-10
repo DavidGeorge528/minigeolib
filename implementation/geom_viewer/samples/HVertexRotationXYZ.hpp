@@ -5,6 +5,7 @@
 #include "geometry/homogenous/vertex_3d.hpp"
 #include "geometry/homogenous/transformation_3d.hpp"
 #include "geometry/homogenous/direction_3d.hpp"
+#include "geometry/line.hpp"
 #include "geometry/angle.hpp"
 #include "ogl_render/opengl_object.hpp"
 #include "ogl_render/points.hpp"
@@ -34,6 +35,7 @@ public:
 		typedef g::vertex< coord_system> vertex;
 		typedef g::transformation< coord_system> transformation;
 		typedef g::direction< coord_system> direction;
+		typedef g::line< coord_system> line;
 
 		opengl_object< coord_system> pts;
 		unsigned n_pts = 32;
@@ -81,6 +83,7 @@ public:
 		vertex dir_vertex( 200, 300, 400);
 		pts << vertex( 0, 0, 0) << dir_vertex;
 		pts << end_lines;
+		// Draw points
 		direction rot_dir( dir_vertex.x(), dir_vertex.y(), dir_vertex.z());
 		vertex v_rot( 2, 0, 0);
 		transformation rot_dir_tr = transformation::rotation( rot_dir, a);
@@ -90,6 +93,29 @@ public:
 		{
 			v_rot.transform( rot_dir_tr);
 			pts << v_rot;
+		}
+		pts << end_points;
+
+
+		// Rotation around arbitrary line
+		// Draw rotation axis
+		vertex base( -2, -3, -4);
+		vertex line_dir_vertex( -300, -200, -100);
+		pts << begin_lines << color( 0.75, 0.75, 0.75);
+		pts << base << line_dir_vertex;
+		pts << end_lines;
+
+		// Draw points
+		direction lrot_dir( line_dir_vertex.x() - base.x(), line_dir_vertex.y() - base.y(), line_dir_vertex.z() - base.z());
+		line rot_line( base, lrot_dir);
+		vertex lvrot( -3, 0, 0);
+		transformation line_rot_tr = transformation::rotation( rot_line, a);
+		pts << begin_points;
+		pts << color( 0, 1, 1) << lvrot << color( 1, 1, 1);
+		for( int i = 0; i < n_pts; ++i)
+		{
+			lvrot.transform( line_rot_tr);
+			pts << lvrot;
 		}
 		pts << end_points;
 
