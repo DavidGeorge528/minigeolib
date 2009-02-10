@@ -2,6 +2,8 @@
 #define GEOMETRY_HOMOGENOUS_VERTEX_2_HPP
 
 #include "geometry/vertex.hpp"
+#include "geometry/transformation_concept.hpp"
+#include <boost/concept/requires.hpp>
 
 namespace geometry
 {
@@ -26,34 +28,31 @@ public:
 
 	const unit_type& x() const 
 	{ 
-		// TODO: Check 1D concept
 		return position_.at<0>(); 
 	}
 
 	const unit_type& y() const 
 	{ 
-		// TODO: Check 2D Concept	
 		return position_.at<1>(); 
 	}
 
 	const unit_type& w() const 
 	{ 
-		// TODO: Check 3D Homogeneous concept
 		return position_.at<2>(); 
 	}
 
 	template< typename T>
-	my_type_& transform( const T& tr)
+	BOOST_CONCEPT_REQUIRES( ((Transformation<T>)), (my_type_&))
+		transform( const T& tr)
 	{
-		// TODO: Check transformation concept
 		tr.transform( position_);
 		return *this;
 	}
 
 	template< typename T>
-	my_type_ transformed( const T& tr) const
+	BOOST_CONCEPT_REQUIRES( ((Transformation<T>)), (my_type_))
+		transformed( const T& tr) const
 	{
-		// TODO: Check transformation concept
 		return tr.transformed( position_);
 	}
 
