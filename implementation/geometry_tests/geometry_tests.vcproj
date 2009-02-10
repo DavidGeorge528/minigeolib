@@ -175,6 +175,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\geometry\hdirection_2d_tests.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\geometry\hdirection_3d_tests.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\geometry\hvertex_2d_tests.cpp"
 				>
 			</File>
