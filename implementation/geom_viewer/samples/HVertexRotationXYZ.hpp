@@ -4,9 +4,11 @@
 #include "geometry/homogenous/hcoord_system.hpp"
 #include "geometry/homogenous/vertex_3d.hpp"
 #include "geometry/homogenous/transformation_3d.hpp"
+#include "geometry/homogenous/direction_3d.hpp"
 #include "geometry/angle.hpp"
 #include "ogl_render/opengl_object.hpp"
 #include "ogl_render/points.hpp"
+#include "ogl_render/lines.hpp"
 #include "ogl_render/impl/hcommands_3d.hpp"
 #include "ogl_render/color.hpp"
 
@@ -31,6 +33,7 @@ public:
 		typedef g::hcoord_system< 3, U> coord_system;
 		typedef g::vertex< coord_system> vertex;
 		typedef g::transformation< coord_system> transformation;
+		typedef g::direction< coord_system> direction;
 
 		opengl_object< coord_system> pts;
 		unsigned n_pts = 32;
@@ -69,6 +72,24 @@ public:
 		{
 			v_z.transform( rot_z);
 			pts << v_z;	
+		}
+		pts << end_points;
+
+		// Arbitrary axis through origin rotation
+		// Draw rotation axis
+		pts << begin_lines << color( 0.5, 0.5, 0.5);
+		vertex dir_vertex( 200, 300, 400);
+		pts << vertex( 0, 0, 0) << dir_vertex;
+		pts << end_lines;
+		direction rot_dir( dir_vertex.x(), dir_vertex.y(), dir_vertex.z());
+		vertex v_rot( 2, 0, 0);
+		transformation rot_dir_tr = transformation::rotation( rot_dir, a);
+		pts << begin_points;
+		pts << color( 0, 1, 1) << v_rot << color( 1, 1, 1);
+		for( int i = 0; i < n_pts; ++i)
+		{
+			v_rot.transform( rot_dir_tr);
+			pts << v_rot;
 		}
 		pts << end_points;
 
