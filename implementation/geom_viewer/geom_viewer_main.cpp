@@ -6,6 +6,6 @@ int main(int argc, char *argv[])
 {
 	QApplication app(argc, argv);
 	OGLMainWindow mainWin;
-	mainWin.show();
+	mainWin.showMaximized();
 	return app.exec();
 }
