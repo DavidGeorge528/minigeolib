@@ -83,6 +83,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\ogl_render\lines.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\include\ogl_render\opengl_object.hpp"
 				>
 			</File>
