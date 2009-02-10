@@ -2,6 +2,7 @@
 #define GEOMETRY_HOMOGENOUS_TRANSFORMATION_3_HPP
 
 #include "geometry/transformation.hpp"
+#include <cmath>
 
 namespace geometry
 {
@@ -22,6 +23,54 @@ public:
 	static transformation translation( const unit_type& dx, const unit_type& dy, const unit_type& dz)
 	{
 		return transformation( 1, 0, 0, dx, 0, 1, 0, dy, 0, 0, 1, dz, 0, 0, 0, 1);
+	}
+
+	// TEST
+	/// \sa http://en.wikipedia.org/wiki/Rotation_matrix
+	template< unsigned D>
+	static typename boost::enable_if_c< D == 1, transformation>::type rotation( const unit_type& angle)
+	{
+		unit_type 
+			cos = std::cos( angle),
+			sin = std::sin( angle);
+		return transformation( 
+			1,   0,	   0, 0,
+			0, cos, -sin, 0,
+			0, sin,  cos, 0,
+			0,   0,    0, 1
+			);
+	}
+
+	// TEST
+	/// \sa http://en.wikipedia.org/wiki/Rotation_matrix
+	template< unsigned D>
+	static typename boost::enable_if_c< D == 2, transformation>::type rotation( const unit_type& angle)
+	{
+		unit_type 
+			cos = std::cos( angle),
+			sin = std::sin( angle);
+		return transformation( 
+			 cos, 0, sin, 0,
+			   0, 1,   0, 0, 
+			-sin, 0, cos, 0,
+			   0, 0,   0, 1
+			);
+	}
+
+	// TEST
+	/// \sa http://en.wikipedia.org/wiki/Rotation_matrix
+	template< unsigned D>
+	static typename boost::enable_if_c< D == 3, transformation>::type rotation( const unit_type& angle)
+	{
+		unit_type
+			cos = std::cos( angle),
+			sin = std::sin( angle);
+		return transformation( 
+			cos, -sin, 0, 0,
+			sin,  cos, 0, 0,
+			  0,    0, 1, 0,
+			  0,    0, 0, 1
+			);
 	}
 
 	position_type transformed( const position_type& pos) const
