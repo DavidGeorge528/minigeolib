@@ -33,6 +33,7 @@ public:
 		pos = tr_ * pos;
 	}
 
+	// TODO: Implement rotation matrix
 private:
 	typedef algebra::matrix< 3, 3, unit_type, unit_traits_type> matrix_type;
 	matrix_type tr_;

@@ -99,7 +99,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\geometry\direction_concept.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\include\geometry\impl\enablers.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\impl\geometric_object.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\geometric_object_concept.hpp"
 				>
 			</File>
 			<File
@@ -151,6 +163,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\geometry\transformation_concept.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\include\algebra\unit_base.hpp"
 				>
 			</File>
@@ -192,6 +208,10 @@
 			</File>
 			<File
 				RelativePath=".\include\geometry\impl\vertex_base.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\vertex_concept.hpp"
 				>
 			</File>
 		</Filter>
