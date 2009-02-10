@@ -3,6 +3,7 @@
 
 #include "geometry/transformation.hpp"
 #include "geometry/direction_concept.hpp"
+#include "geometry/line_concept.hpp"
 #include <cmath>
 
 namespace geometry
@@ -12,6 +13,10 @@ template< typename CS >
 class transformation< CS, typename impl::enabled_for< CS, 3, hcoord_system_tag>::type >
 	: public impl::transformation_base< CS >
 {
+	typedef algebra::matrix< 4, 4, unit_type, unit_traits_type> matrix_type;
+private:
+	transformation( const matrix_type& tr)
+		: tr_( tr) {}
 public:
 	transformation(		
 		const unit_type& a11, const unit_type& a12, const unit_type& a13, const unit_type& a14,
@@ -97,6 +102,24 @@ public:
 			);
 	}
 
+	template< typename L>
+	static typename boost::enable_if< boost::is_same< typename L::tag, line_tag>, transformation>::type
+		rotation( const L& line, const unit_type& angle)
+	{
+		BOOST_CONCEPT_ASSERT( (Line<L>));
+		unit_type 
+			tr_x = line.base().x()/line.base().w(),
+			tr_y = line.base().y()/line.base().w(),
+			tr_z = line.base().z()/line.base().w();
+
+		transformation tr_to_org = transformation::translation( -tr_x, -tr_y, -tr_z);
+		transformation tr_from_org = transformation::translation( tr_x, tr_y, tr_z);
+		transformation rot = transformation::rotation( line.dir(), angle);
+		return transformation( 
+			tr_from_org.tr_ * rot.tr_ * tr_to_org.tr_  
+			);
+	}
+
 	position_type transformed( const position_type& pos) const
 	{
 		return tr_ * pos;
@@ -108,7 +131,6 @@ public:
 	}
 
 private:
-	typedef algebra::matrix< 4, 4, unit_type, unit_traits_type> matrix_type;
 	matrix_type tr_;
 };
 
