@@ -127,6 +127,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\geometry\line.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\line_concept.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\include\algebra\matrix.hpp"
 				>
 			</File>
