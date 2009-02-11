@@ -103,6 +103,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\geometry\homogenous\distances_2d.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\homogenous\distances_3d.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\include\geometry\impl\enablers.hpp"
 				>
 			</File>

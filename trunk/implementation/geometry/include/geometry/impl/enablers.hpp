@@ -30,8 +30,8 @@ struct has_dimensions
 	BOOST_STATIC_CONSTANT( bool, value = (CS::DIMENSIONS == D));
 };
 
-template< typename CS, unsigned D, typename CSType>
-struct enabled_for: public boost::enable_if_c< has_dimensions<CS,D>::value && is_system_type< CS, CSType>::value>
+template< typename CS, unsigned D, typename CSType, typename OutType = void>
+struct enabled_for: public boost::enable_if_c< has_dimensions<CS,D>::value && is_system_type< CS, CSType>::value, OutType>
 {};
 
 } } // namespace impl // namespace geometry
