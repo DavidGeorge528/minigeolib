@@ -2,6 +2,8 @@
 #include "geometry/homogenous/distances_2d.hpp" // keep this include to check on SFINAE
 #include "geometry/homogenous/hcoord_system.hpp"
 #include "geometry/homogenous/vertex_3d.hpp"
+#include "geometry/line.hpp"
+#include "geometry/homogenous/direction_3d.hpp"
 #include "../tests_common.hpp"
 #include "../test_traits.hpp"
 #include <boost/mpl/list.hpp>
@@ -11,21 +13,31 @@ namespace
 
 using namespace geometry;
 
-typedef boost::mpl::list< 
-	vertex< hcoord_system< 3, float, algebra::unit_traits< float> > >,
-	vertex< hcoord_system< 3, double, algebra::unit_traits< double> > >
-> tested_vertices;
+typedef hcoord_system< 3, float, algebra::unit_traits< float> > float_hcoord_system;
+typedef hcoord_system< 3, double, algebra::unit_traits< double> > double_hcoord_system;
+typedef vertex< float_hcoord_system> float_vertex;
+typedef vertex< double_hcoord_system> double_vertex;
+typedef line< float_hcoord_system> float_line;
+typedef line< double_hcoord_system> double_line;
+
+typedef boost::mpl::list< float_vertex, double_vertex> tested_vertices;
+
+typedef boost::mpl::list<
+		boost::mpl::pair< float_vertex, float_line>, 
+		boost::mpl::pair< double_vertex, double_line> 
+	> tested_line_vertex;
 
 BOOST_AUTO_TEST_CASE_TEMPLATE( test_distance, V, tested_vertices)
 {
 	typedef V vertex;
 	typedef typename vertex::unit_type unit_type;
+	typedef typename vertex::unit_traits_type unit_traits_type;
 	typedef typename vertex::coord_system::length_type length_type;
 
 	vertex v1( 10, 20, 30, 10), v2( -1, -2, -3);
 	length_type expected_distance = std::sqrt( unit_type(4+16+36));
 	ALGTEST_CHECK_EQUAL_UNIT( expected_distance, distance( v1, v2));
-	ALGTEST_CHECK_EQUAL_UNIT( unit_type(0), distance( v1, v1));
+	ALGTEST_CHECK_EQUAL_UNIT( unit_traits_type::zero(), distance( v1, v1));
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -45,5 +57,37 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_distance_as_predicate, V, tested_vertices)
 	std::vector< unit_type> distances( lv.size());
 	std::transform( lv.begin(), lv.end(), distances.begin(), bind( distance<vertex>, _1, v1));
 }
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_distance_vertex_line, P, tested_line_vertex)
+{
+	typedef typename P::first vertex;
+	typedef typename P::second line;
+	typedef typename vertex::unit_type unit_type;
+	typedef typename vertex::coord_system::length_type length_type;
+	typedef direction< typename vertex::coord_system> direction;
+
+	line lx( vertex( 0,0,0), direction( 1, 0, 0));
+	line ly( vertex( 0,0,0), direction( 0, 1, 0));
+	line lz( vertex( 0,0,0), direction( 0, 0, 1));
+
+	ALGTEST_CHECK_EQUAL_UNIT( 1, distance( vertex( 0, 10, 0, 10), lx));
+	ALGTEST_CHECK_EQUAL_UNIT( 2, distance( vertex( 0, 0, 20, 10), ly));
+	ALGTEST_CHECK_EQUAL_UNIT( 3, distance( vertex( 30, 0, 0, 10), lz));
+
+	ALGTEST_CHECK_EQUAL_UNIT( 1, distance( vertex( 30, 10, 0, 10), lx));
+	ALGTEST_CHECK_EQUAL_UNIT( 2, distance( vertex( 0, 40, 20, 10), ly));
+	ALGTEST_CHECK_EQUAL_UNIT( 3, distance( vertex( 30, 0, 50, 10), lz));
+
+	ALGTEST_CHECK_EQUAL_UNIT( 0, distance( vertex( 10, 0, 0,10), lx));
+	ALGTEST_CHECK_EQUAL_UNIT( 0, distance( vertex( 0, 10, 0,10), ly));
+	ALGTEST_CHECK_EQUAL_UNIT( 0, distance( vertex( 0, 0, 10,10), lz));
+
+	ALGTEST_CHECK_EQUAL_UNIT( 0, distance( vertex( 0, 0, 0), lx));
+	ALGTEST_CHECK_EQUAL_UNIT( 0, distance( vertex( 0, 0, 0), ly));
+	ALGTEST_CHECK_EQUAL_UNIT( 0, distance( vertex( 0, 0, 0), lz));
+}
+
 
 } // namespace
