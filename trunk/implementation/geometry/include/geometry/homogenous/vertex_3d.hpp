@@ -26,22 +26,22 @@ public:
 	vertex()
 		: position_( 0, 0, 0, 1) { }
 
-	const unit_type& x() const 
+	unit_type x() const 
 	{ 
-		return position_.at<0>(); 
+		return position_.at<0>() / this->w(); 
 	}
 
-	const unit_type& y() const 
+	unit_type y() const 
 	{ 
-		return position_.at<1>(); 
+		return position_.at<1>() / this->w(); 
 	}
 
-	const unit_type& z() const 
+	unit_type z() const 
 	{
-		return position_.at<2>(); 
+		return position_.at<2>() / this->w(); 
 	}
 
-	const unit_type& w() const 
+	unit_type w() const 
 	{ 
 		return position_.at<3>(); 
 	}
