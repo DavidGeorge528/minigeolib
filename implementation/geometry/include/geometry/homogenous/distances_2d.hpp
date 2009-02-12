@@ -17,8 +17,8 @@ typename impl::enabled_for< typename V::coord_system, 2, hcoord_system_tag, type
 	BOOST_CONCEPT_ASSERT( (coord_system_concept<typename V::coord_system>));
 	BOOST_CONCEPT_ASSERT( (HomogenousVertex2D<V>));
 	typename V::unit_type 
-		dx = vertex2.x() / vertex2.w() - vertex1.x() / vertex1.w(),
-		dy = vertex2.y() / vertex2.w() - vertex1.y() / vertex1.w();
+		dx = vertex2.x() - vertex1.x(),
+		dy = vertex2.y() - vertex1.y();
 	return std::sqrt( dx*dx + dy*dy);
 }
 

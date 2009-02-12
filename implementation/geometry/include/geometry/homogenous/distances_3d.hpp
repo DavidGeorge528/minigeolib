@@ -18,9 +18,9 @@ typename impl::enabled_for< typename V::coord_system, 3, hcoord_system_tag, type
 	BOOST_CONCEPT_ASSERT( (coord_system_concept<typename V::coord_system>));
 	BOOST_CONCEPT_ASSERT( (HomogenousVertex3D<V>));
 	typename V::unit_type 
-		dx = vertex2.x() / vertex2.w() - vertex1.x() / vertex1.w(),
-		dy = vertex2.y() / vertex2.w() - vertex1.y() / vertex1.w(),
-		dz = vertex2.z() / vertex2.w() - vertex1.z() / vertex1.w();
+		dx = vertex2.x() - vertex1.x(),
+		dy = vertex2.y() - vertex1.y(),
+		dz = vertex2.z() - vertex1.z();
 	return std::sqrt( dx*dx + dy*dy + dz*dz);
 }
 
@@ -60,9 +60,9 @@ typename impl::enabled_for< typename V::coord_system, 3, hcoord_system_tag, type
 	
 	// Calculate vector components for [v, l.base)
 	typename V::unit_type 
-		dbx = line_base.x()/line_base.w() - v.x() / v.w(),
-		dby = line_base.y()/line_base.w() - v.y() / v.w(),
-		dbz = line_base.z()/line_base.w() - v.z() / v.w();
+		dbx = line_base.x() - v.x(),
+		dby = line_base.y() - v.y(),
+		dbz = line_base.z() - v.z();
 	// Calculate distance as cross product between the previously calculated vector [v, l.base) and the unity vector 
 	// determining the line direction (l.dir)
 	typename V::unit_type
