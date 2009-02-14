@@ -163,6 +163,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\geometry\plane.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\geometry\plane_concept.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\include\geometry\transformation.hpp"
 				>
 			</File>
