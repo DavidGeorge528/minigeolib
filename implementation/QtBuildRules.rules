@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="QtBuildRules"
+	Version="8.00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="Qt MetaObject Compilation"
+			DisplayName="Qt MetaObject Compilation"
+			CommandLine="&quot;$(QtDir)/bin/moc&quot; -o&quot;$(InputDir)$(InputName).moh&quot; -i &quot;$(InputPath)&quot;"
+			Outputs="&quot;$(InputDir)$(InputName).moh&quot;"
+			FileExtensions="*.qth"
+			ExecutionDescription="&quot;$(InputFileName)&quot; - Moc&apos;ing"
+			>
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+		<CustomBuildRule
+			Name="Qt Resource Compilation"
+			DisplayName="Qt Resource Compilation"
+			CommandLine="&quot;$(QtDir)\bin\rcc&quot; -o &quot;$(InputDir)$(InputName)_res.cpp&quot; &quot;$(InputPath)&quot;"
+			Outputs="&quot;$(InputDir)$(InputName)_res.cpp&quot;"
+			FileExtensions="*.qrc"
+			ExecutionDescription="&quot;$(InputFileName)&quot; - Compiling Qt Resources"
+			>
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>

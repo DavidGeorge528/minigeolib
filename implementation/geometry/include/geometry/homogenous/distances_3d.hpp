@@ -6,13 +6,14 @@
 #include "geometry/impl/enablers.hpp"
 #include "geometry/vertex_concept.hpp"
 #include "geometry/line_concept.hpp"
+#include "geometry/plane_concept.hpp"
 #include <boost/concept/assert.hpp>
 
 namespace geometry
 {
 
 template< typename V>
-typename impl::enabled_for< typename V::coord_system, 3, hcoord_system_tag, typename V::coord_system::length_type>::type  
+typename boost::enable_if_c< impl::is_vertex< V, 3>::value, typename V::coord_system::length_type>::type  
 	distance( const V& vertex1, const V& vertex2)
 {
 	BOOST_CONCEPT_ASSERT( (coord_system_concept<typename V::coord_system>));
@@ -48,8 +49,9 @@ typename impl::enabled_for< typename V::coord_system, 3, hcoord_system_tag, type
 /// 
 /// Thus the distance we are looking for is a/AB.
 template< typename V, typename L>
-typename impl::enabled_for< typename V::coord_system, 3, hcoord_system_tag, typename V::coord_system::length_type>::type
-	distance( const V& v, const L& l)
+typename boost::enable_if_c< impl::is_vertex< V, 3>::value && impl::is_line< L, 3>::value, 
+			typename V::coord_system::length_type>::type
+distance( const V& v, const L& l)
 {
 	BOOST_CONCEPT_ASSERT( (HomogenousVertex3D<V>));
 	BOOST_CONCEPT_ASSERT( (Line<L>));
@@ -72,7 +74,21 @@ typename impl::enabled_for< typename V::coord_system, 3, hcoord_system_tag, type
 	typename V::unit_type
 		result = std::sqrt( x*x + y*y + z*z);
 	return result;
+}
 
+
+/// \brief It calculates the distance between a vertex and a plane.
+template< typename V, typename P>
+typename boost::enable_if_c< impl::is_plane< P, 3>::value && impl::is_vertex< V, 3>::value, 
+		typename V::coord_system::length_type>::type
+	distance( const V& vertex, const P& plane)
+{
+	// For the plane Ax + By + Cz + D and vertex (x0, y0, z0) ...
+	typename V::unit_type x = vertex.x(), y = vertex.y(), z = vertex.z(), 
+		a = plane.a(), b = plane.b(), c = plane.c(), d = plane.d();
+
+	// ... the distance is as in the formula below.
+	return (a*x + b*y + c*z + d)/std::sqrt( a*a + b*b + c*c);
 }
 
 } // geometry
