@@ -2,6 +2,7 @@
 #define GEOMETRY_VERTEX_CONCEPT_HPP
 
 #include "geometry/geometric_object_concept.hpp"
+#include "geometry/impl/enablers.hpp"
 #include <boost/concept/usage.hpp>
 
 namespace geometry
@@ -71,6 +72,20 @@ public:
 private:
 	V v_;
 };
+
+namespace impl
+{
+
+template< typename V, unsigned D>
+struct is_vertex
+{
+	BOOST_STATIC_CONSTANT( bool, value = 
+		(is_a< V, vertex_tag>::value 
+		&& has_dimensions< typename V::coord_system, D>::value));
+};
+
+
+} // namespace impl
 
 } // geometry
 

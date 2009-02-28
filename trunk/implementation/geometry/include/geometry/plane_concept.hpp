@@ -2,6 +2,7 @@
 #define GEOMETRY_PLANE_CONCEPT_HPP
 
 #include "geometry/geometric_object_concept.hpp"
+#include "geometry/impl/enablers.hpp"
 #include <boost/concept/assert.hpp>
 #include <boost/concept/usage.hpp>
 
@@ -25,6 +26,20 @@ public:
 private:
 	P plane_;
 };
+
+
+namespace impl
+{
+
+template< typename P, unsigned D>
+struct is_plane
+{
+	BOOST_STATIC_CONSTANT( bool, value 
+		= (is_a< P, plane_tag>::value 
+		&& has_dimensions< typename P::coord_system, 3>::value));
+};
+
+} // namespace impl
 
 } // geometry
 

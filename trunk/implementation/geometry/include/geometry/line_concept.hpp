@@ -4,6 +4,7 @@
 #include "geometry/geometric_object_concept.hpp"
 #include "geometry/vertex_concept.hpp"
 #include "geometry/direction_concept.hpp"
+#include "geometry/impl/enablers.hpp"
 #include <boost/concept/assert.hpp>
 #include <boost/concept/usage.hpp>
 
@@ -31,6 +32,19 @@ public:
 private:
 	L line_;
 };
+
+namespace impl
+{
+
+template< typename L, unsigned D>
+struct is_line
+{
+	BOOST_STATIC_CONSTANT( bool, value =
+		(is_a< L, line_tag>::value
+		&& has_dimensions< typename L::coord_system, D>::value));
+};
+
+} // namespace impl
 
 } // geometry
 

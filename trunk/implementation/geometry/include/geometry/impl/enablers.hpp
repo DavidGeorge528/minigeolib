@@ -30,6 +30,12 @@ struct has_dimensions
 	BOOST_STATIC_CONSTANT( bool, value = (CS::DIMENSIONS == D));
 };
 
+template< typename E, typename Tag>
+struct is_a
+{
+	BOOST_STATIC_CONSTANT( bool, value = (boost::is_same< Tag, typename E::tag>::value));
+};
+
 template< typename CS, unsigned D, typename CSType, typename OutType = void>
 struct enabled_for: public boost::enable_if_c< has_dimensions<CS,D>::value && is_system_type< CS, CSType>::value, OutType>
 {};
