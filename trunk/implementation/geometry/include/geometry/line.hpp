@@ -28,6 +28,19 @@ private:
 	direction_type direction_;
 };
 
+
+namespace impl
+{
+
+/// \see is_line< typename L, unsigned D>
+template< typename CS, unsigned D>
+struct is_line< line< CS>, D>
+{
+	BOOST_STATIC_CONSTANT( bool, value = (D == CS::DIMENSIONS));
+};
+
+} // namespace impl
+
 } // geometry
 
 #endif // GEOMETRY_LINE_HPP

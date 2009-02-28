@@ -101,13 +101,46 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_vertex_normal_init, P, tested_types)
 	unit_type d1 = distance( pos, plane),
 		d2 = distance( outside_vertex_1, plane),
 		d3 = distance( outside_vertex_2, plane);
-	BOOST_CHECK_SMALL( d1, test_traits<unit_type>::check_tolerance());
+	ALGTEST_CHECK_SMALL( d1);
 	// Positive distance check
 	ALGTEST_CHECK_EQUAL_UNIT( expected_distance_1, d2);
 	// Negative distance (vertex on the oposite side of the plane) check.
 	ALGTEST_CHECK_EQUAL_UNIT( expected_distance_2, d3);
 
 	// TODO: Implement cross check with projection calculation
+}
+
+// --------------------------------------------------------------------------------------------------------------------
+
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_three_point_init, P, tested_types)
+{
+	BOOST_CONCEPT_ASSERT( (Plane<P>));
+	typedef P plane_type;
+	typedef typename plane_type::unit_type unit_type;
+	typedef vertex< typename plane_type::coord_system> vertex_type;
+	typedef direction< typename plane_type::coord_system> dir_type;
+
+	plane_type xy_plane( vertex_type( 0,0,0), vertex_type( 1, 0, 0), vertex_type( 0,1,0));
+	plane_type yz_plane( vertex_type( 0,0,0), vertex_type( 0, 1, 0), vertex_type( 0,0,1));
+	plane_type zx_plane( vertex_type( 0,0,0), vertex_type( 1, 0, 0), vertex_type( 0,0,1));
+
+	ALGTEST_CHECK_SMALL( distance( vertex_type( 0,0,0), xy_plane));
+	ALGTEST_CHECK_SMALL( distance( vertex_type( 1,0,0), xy_plane));
+	ALGTEST_CHECK_SMALL( distance( vertex_type( 0,1,0), xy_plane));
+	ALGTEST_CHECK_SMALL( distance( vertex_type( 0,2,0), xy_plane));
+	ALGTEST_CHECK_EQUAL_UNIT( 1, distance( vertex_type( 1,1,1), xy_plane));
+
+	ALGTEST_CHECK_SMALL( distance( vertex_type( 0,0,0), yz_plane));
+	ALGTEST_CHECK_SMALL( distance( vertex_type( 0,1,0), yz_plane));
+	ALGTEST_CHECK_SMALL( distance( vertex_type( 0,0,1), yz_plane));
+	ALGTEST_CHECK_SMALL( distance( vertex_type( 0,0,2), yz_plane));
+	ALGTEST_CHECK_EQUAL_UNIT( 1, distance( vertex_type( 1,1,1), yz_plane));
+
+	ALGTEST_CHECK_SMALL( distance( vertex_type( 0,0,0), zx_plane));
+	ALGTEST_CHECK_SMALL( distance( vertex_type( 1,0,0), zx_plane));
+	ALGTEST_CHECK_SMALL( distance( vertex_type( 0,0,1), zx_plane));
+	ALGTEST_CHECK_SMALL( distance( vertex_type( 0,0,2), zx_plane));
+	ALGTEST_CHECK_EQUAL_UNIT( -1, distance( vertex_type( 1,1,1), zx_plane));
 }
 
 } // namespace

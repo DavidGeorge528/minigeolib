@@ -36,12 +36,17 @@ private:
 namespace impl
 {
 
+/// \brief It checks that the given type is a line in a coordinate system with the specified number of dimensions.
+/// \tparam L the type to be checked.
+/// \tparam D the expected number of dimensions of the coordinate system.
+/// \details
+///		The default implementation assumes that the given type is not a line type. The line checking relies on the
+///		mechanism of partial template specialization, so in case a new line type is implemented, a specialization of
+///		this class should be defined for that type of line.
 template< typename L, unsigned D>
 struct is_line
 {
-	BOOST_STATIC_CONSTANT( bool, value =
-		(is_a< L, line_tag>::value
-		&& has_dimensions< typename L::coord_system, D>::value));
+	BOOST_STATIC_CONSTANT( bool, value = false);
 };
 
 } // namespace impl

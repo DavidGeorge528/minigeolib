@@ -2,6 +2,7 @@
 #define GEOMETRY_DIRECTION_CONCEPT_HPP
 
 #include "geometry/geometric_object_concept.hpp"
+#include "geometry/impl/enablers.hpp"
 #include <boost/concept/usage.hpp>
 
 namespace geometry
@@ -48,6 +49,20 @@ public:
 private:
 	D d_;
 };
+
+namespace impl
+{
+
+template< typename Dir, unsigned D>
+struct is_direction
+{
+	BOOST_STATIC_CONSTANT( bool, value = 
+		(is_a< Dir, direction_tag>::value 
+		&& has_dimensions< typename Dir::coord_system, D>::value));
+};
+
+
+} // namespace impl
 
 } // geometry
 

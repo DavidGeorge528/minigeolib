@@ -31,12 +31,17 @@ private:
 namespace impl
 {
 
+/// \brief It checks that the given type is a plane in a coordinate system with the specified number of dimensions.
+/// \tparam P the type to be checked.
+/// \tparam D the expected number of dimensions of the coordinate system.
+/// \details
+///		The default implementation assumes that the given type is not a plane type. The plane checking relies on the
+///		mechanism of partial template specialization, so in case a new plane type is implemented, a specialization of
+///		this class should be defined for that type of plane.
 template< typename P, unsigned D>
 struct is_plane
 {
-	BOOST_STATIC_CONSTANT( bool, value 
-		= (is_a< P, plane_tag>::value 
-		&& has_dimensions< typename P::coord_system, 3>::value));
+	BOOST_STATIC_CONSTANT( bool, value = false);
 };
 
 } // namespace impl
