@@ -76,12 +76,17 @@ private:
 namespace impl
 {
 
+/// \brief It checks that the given type is a vertex.
+/// \tparam V the type to be checked.
+/// \tparam D the expected number of dimensions of the coordinate system.
+/// \details
+///		The default implementation assumes that the given type is not a vertex type. The vertex checking relies on the
+///		mechanism of partial template specialization, so in case a new vertex type is implemented, a specialization of
+///		this class should be defined for that type of vertex.
 template< typename V, unsigned D>
 struct is_vertex
 {
-	BOOST_STATIC_CONSTANT( bool, value = 
-		(is_a< V, vertex_tag>::value 
-		&& has_dimensions< typename V::coord_system, D>::value));
+	BOOST_STATIC_CONSTANT( bool, value = false);
 };
 
 

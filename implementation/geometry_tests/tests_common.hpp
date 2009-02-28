@@ -19,5 +19,8 @@ typedef boost::mpl::list< float, double> algebraic_types;
 #define ALGTEST_CHECK_EQUAL_UNIT( E, O) \
 	BOOST_CHECK_CLOSE( static_cast< unit_type>(E), O, test_traits< unit_type>::check_tolerance())
 
+/// \brief It checks that the specified value is close to 0, using the tolerance specified by the test traits.
+#define ALGTEST_CHECK_SMALL( O) \
+	BOOST_CHECK_SMALL( O, test_traits<unit_type>::check_tolerance())
 
 #endif // TESTS_COMMON_HPP

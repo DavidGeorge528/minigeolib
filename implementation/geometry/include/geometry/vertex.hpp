@@ -17,6 +17,19 @@ class vertex
 	BOOST_STATIC_ASSERT( !(boost::is_same< typename CS::system_type, hcoord_system_tag>::value && CS::DIMENSIONS == 2));
 };
 
+namespace impl
+{
+
+/// \brief It specializes the vertex type checking for vertex class.
+/// \sa is_vertex< typename V, unsigned D>
+template< typename CS, unsigned D>
+struct is_vertex< vertex< CS>, D >
+{
+	BOOST_STATIC_CONSTANT( bool, value = (CS::DIMENSIONS == D));
+};
+
+} // namespace impl
+
 } // geometry
 
 #endif // GEOMETRY_VERTEX_HPP
