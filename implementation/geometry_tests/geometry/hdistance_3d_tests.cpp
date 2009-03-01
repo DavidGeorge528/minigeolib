@@ -27,6 +27,8 @@ typedef boost::mpl::list<
 		boost::mpl::pair< double_vertex, double_line> 
 	> tested_line_vertex;
 
+typedef boost::mpl::list< float_line, double_line> tested_line_to_line;
+
 BOOST_AUTO_TEST_CASE_TEMPLATE( test_distance, V, tested_vertices)
 {
 	typedef V vertex;
@@ -89,5 +91,34 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_distance_vertex_line, P, tested_line_vertex)
 	ALGTEST_CHECK_EQUAL_UNIT( 0, distance( vertex( 0, 0, 0), lz));
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_line_to_line_distance, L, tested_line_to_line)
+{
+	typedef L line;
+	typedef typename line::unit_type unit_type;
+	typedef vertex< typename line::coord_system> vertex;
+	typedef direction< typename line::coord_system> direction;
+
+	// Test non-intersecting line
+	line l1( vertex( 0,0,0), direction( 1,0,0));
+	line l2( vertex( 0,0,1), direction( 0,1,0));
+	ALGTEST_CHECK_EQUAL_UNIT( 1, distance( l1, l2));
+
+	// Test parallel lines
+	line l3( vertex( 0,0,1), l1.dir());
+	ALGTEST_CHECK_EQUAL_UNIT( 1, distance( l1, l3));
+
+	// Test intersecting lines
+	line l4( l1.base(), direction( 0,0,1));
+	ALGTEST_CHECK_SMALL( distance( l1, l4));
+
+	// Test same line
+	ALGTEST_CHECK_SMALL( distance( l1, l1));
+
+	// Test coincidence
+	line l5( l1.base(), l1.dir());
+	ALGTEST_CHECK_SMALL( distance(l1,l5));
+}
 
 } // namespace
