@@ -1,6 +1,8 @@
 #ifndef ALG_UNIT_TRAITS_HPP
 #define ALG_UNIT_TRAITS_HPP
 
+#include <limits>
+
 namespace algebra
 {
 
@@ -17,6 +19,13 @@ struct unit_traits
 
 	/// \brief It gets the value one (neutral to multiplication).
 	static U one() { return 1; }
+
+	// TODO: Test
+	static bool is_zero( const unit_type& value)
+	{
+		return -std::numeric_limits< unit_type>::min() < value 
+			&& value < std::numeric_limits< unit_type>::min();
+	}
 };
 
 } // namespace algebra

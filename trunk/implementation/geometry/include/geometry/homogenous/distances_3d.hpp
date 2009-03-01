@@ -91,6 +91,42 @@ typename boost::enable_if_c< impl::is_plane< P, 3>::value && impl::is_vertex< V,
 	return (a*x + b*y + c*z + d)/std::sqrt( a*a + b*b + c*c);
 }
 
+
+/// \brief It calculates the minimum distance between two lines
+template< typename L>
+typename boost::enable_if< impl::is_line< L, 3>, typename L::coord_system::length_type>::type
+	distance( const L& line1, const L& line2)
+{
+	// We need one point from each line - P1(x1,y1,z1), P2(x2,y2,z2)
+	typename L::unit_type x1 = line1.base().x(), y1 = line1.base().y(), z1 = line1.base().z();
+	typename L::unit_type x2 = line2.base().x(), y2 = line2.base().y(), z2 = line2.base().z();
+
+	typename L::unit_type dx1 = line1.dir().dx(), dy1 = line1.dir().dy(), dz1 = line1.dir().dz();
+	typename L::unit_type dx2 = line2.dir().dx(), dy2 = line2.dir().dy(), dz2 = line2.dir().dz();
+
+	typename L::unit_type dx=x2-x1, dy=y2-y1, dz=z2-z1;
+
+	// Now, calculate the cross product n = v1 x v2, where v1 and v2 are directions for line 1 and line 2.
+	typename L::unit_type nx = dy1*dz2 - dz1*dy2, ny = dz1*dx2 - dx1*dz2, nz = dx1*dy2 - dy1*dx2;
+	typename L::unit_type norm = std::sqrt( nx*nx + ny*ny + nz*nz);
+	if( typename L::unit_traits_type::is_zero( norm))
+	{
+		// We are in the case of parallel line
+		// The distance D is P1P2 x dir1 / norm of dir1
+		// Since direction of the line is always of norm 1, we don't need to bother to consider that in calculation.
+		nx = dy*dz1 - dz*dy1, ny = dz*dx1 - dx*dz1, nz = dx*dy1 - dy*dx1;
+		typename L::unit_type dist = std::sqrt( nx*nx + ny*ny + nz*nz);
+		return dist;
+	}
+	else 
+	{
+		// We are in the case of skewing line
+		// The distance D is P1P2 dot n / norm of n
+		typename L::unit_type dist = (dx*nx + dy*ny + dz*nz)/norm;
+		return dist;
+	}
+}
+
 } // geometry
 
 #endif // GEOMETRY_HOMOGENOUS_DISTANCES_3D_HPP
