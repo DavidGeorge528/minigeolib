@@ -2,6 +2,7 @@
 #include "geometry/homogenous/hcoord_system.hpp"
 #include "geometry/homogenous/direction_3d.hpp"
 #include "geometry/homogenous/vertex_3d.hpp"
+#include "geometry/plane.hpp"
 #include "geometry/line.hpp"
 #include "../tests_common.hpp"
 #include "../test_traits.hpp"
@@ -21,6 +22,11 @@ typedef boost::mpl::list<
 typedef boost::mpl::list<
 	boost::mpl::list< line< hcoord_system_float>, vertex< hcoord_system_float>, direction< hcoord_system_float> >,
 	boost::mpl::list< line< hcoord_system_double>, vertex< hcoord_system_double>, direction< hcoord_system_double> > > tested_lines;
+
+typedef boost::mpl::list<
+	boost::mpl::list< plane< hcoord_system_float>, vertex< hcoord_system_float>, direction< hcoord_system_float> >,
+	boost::mpl::list< plane< hcoord_system_double>, vertex< hcoord_system_double>, direction< hcoord_system_double> > > tested_planes;
+
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -65,6 +71,33 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_parallel_lines, T, tested_lines)
 	BOOST_CHECK( !are_parallel( l3, l4, tolerance));
 	BOOST_CHECK( are_parallel( l1, l1, tolerance));
 	BOOST_CHECK( are_parallel( l4, l4, tolerance));
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_parallel_planes, T, tested_planes)
+{
+	using namespace boost::mpl;
+
+	typedef typename at<T,int_<0> >::type plane_type;
+	typedef typename plane_type::unit_type unit_type;
+	typedef typename at<T,int_<1> >::type vertex_type;
+	typedef typename at<T,int_<2> >::type direction_type;
+
+	vertex_type base1( 1, 2, 3), base2( 5, 6, 7), base3( 10, 9, 8), base4( 20, 30, 10);
+	direction_type d1( 10, 20, 30), d2( 1, 2, 3), d3( -1, -2, -3), d4( 11, 12, 13);
+	plane_type p1( base1, d1), p2( base2, d2), p3( base3, d3), p4( base4, d4);
+
+	algebra::epsilon_tolerance< unit_type> tolerance( 1e-6);
+	BOOST_CHECK( are_parallel( p1, p2, tolerance));
+	BOOST_CHECK( are_parallel( p1, p3, tolerance));
+	BOOST_CHECK( are_parallel( p2, p3, tolerance));
+	BOOST_CHECK( !are_parallel( p1, p4, tolerance));
+	BOOST_CHECK( !are_parallel( p2, p4, tolerance));
+	BOOST_CHECK( !are_parallel( p3, p4, tolerance));
+	BOOST_CHECK( are_parallel( p1, p1, tolerance));
+	BOOST_CHECK( are_parallel( p4, p4, tolerance));
 }
 
 } // namespace
