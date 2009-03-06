@@ -215,6 +215,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\geometry\homogenous\parallelism_3d.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\include\geometry\plane.hpp"
 				>
 			</File>
