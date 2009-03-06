@@ -330,6 +330,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\algebra\epsilon_tolerance_tests.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\geometry\hdirection_2d_tests.cpp"
 				>
 			</File>
