@@ -163,6 +163,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\algebra\epsilon_tolerance.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\include\geometry\impl\geometric_object.hpp"
 				>
 			</File>
@@ -216,6 +220,10 @@
 			</File>
 			<File
 				RelativePath=".\include\geometry\plane_concept.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\include\algebra\tolerance_policy_concept.hpp"
 				>
 			</File>
 			<File
