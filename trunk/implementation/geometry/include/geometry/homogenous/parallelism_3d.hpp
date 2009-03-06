@@ -3,6 +3,8 @@
 
 #include "geometry/direction_concept.hpp"
 #include "geometry/line_concept.hpp"
+#include "geometry/plane_concept.hpp"
+#include "geometry/homogenous/direction_3d.hpp"
 #include "algebra/tolerance_policy_concept.hpp"
 #include "algebra/epsilon_tolerance.hpp"
 #include <boost/concept/assert.hpp>
@@ -37,8 +39,8 @@ typename boost::enable_if< impl::is_direction< Dir, 3>, bool>::type
 /// \brief It checks whether two given lines are parallel or not.
 /// \tparam L the line type, implementing the 3D line concept.
 /// \tparam TP the tolerance policy to be used for comparing the calculation results with the expected results.
-/// \param d1 the first line to be compared.
-/// \param d2 the second line to be compared.
+/// \param l1 the first line to be compared.
+/// \param l2 the second line to be compared.
 /// \param tolerance the tolerance to be used for comparing the calculation results with the expected results.
 /// \details
 ///		It uses the direction parallelism checking function, providing the directions of the two involved lines.
@@ -46,7 +48,26 @@ template< typename L, typename TP>
 typename boost::enable_if< impl::is_line< L, 3>, bool>::type
 	are_parallel( const L& l1, const L& l2, const TP& tolerance)
 {
+	BOOST_CONCEPT_ASSERT( (Line3D<L>));
 	return are_parallel( l1.dir(), l2.dir(), tolerance);
+}
+
+
+/// \brief It checks whether two given planes are parallel or not.
+/// \tparam P the plane type, implementing the 3D plane concept.
+/// \tparam TP the tolerance policy to be used for comparing the calculation results with the expected results.
+/// \param p1 the first plane to be compared.
+/// \param p2 the second line to be compared.
+/// \param tolerance the tolerance to be used for comparing the calculation results with the expected results.
+/// \details
+///		It uses the direction parallelism checking function, providing the normal directions of the two involved planes.
+template< typename P, typename TP>
+typename boost::enable_if< impl::is_plane< P, 3>, bool>::type
+	are_parallel( const P& p1, const P& p2, const TP& tolerance)
+{
+	BOOST_CONCEPT_ASSERT( (Plane<P>));
+	typedef direction< typename P::coord_system> direction_type;
+	return are_parallel( p1.normal<direction_type>(), p2.normal<direction_type>(), tolerance);
 }
 
 } // namespace geometry

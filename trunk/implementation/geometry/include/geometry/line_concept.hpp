@@ -33,6 +33,14 @@ private:
 	L line_;
 };
 
+template< typename L>
+class Line3D: public Line< L>
+{
+public:
+	BOOST_CONCEPT_ASSERT( (Vertex3D< vertex_type>));
+	BOOST_CONCEPT_ASSERT( (Direction3D< direction_type>));
+};
+
 namespace impl
 {
 
