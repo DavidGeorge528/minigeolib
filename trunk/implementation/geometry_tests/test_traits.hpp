@@ -13,7 +13,7 @@ struct test_traits
 template<>
 struct test_traits< float>
 {
-	static float check_tolerance() { return 1e-4; }
+	static float check_tolerance() { return 1e-4f; }
 };
 
 
