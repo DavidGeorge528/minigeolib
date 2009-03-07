@@ -2,6 +2,7 @@
 #include "geometry/homogenous/distances_2d.hpp" // keep this include to check on SFINAE
 #include "geometry/homogenous/hcoord_system.hpp"
 #include "geometry/homogenous/vertex_3d.hpp"
+#include "geometry/plane.hpp"
 #include "geometry/line.hpp"
 #include "geometry/homogenous/direction_3d.hpp"
 #include "algebra/epsilon_tolerance.hpp"
@@ -20,6 +21,8 @@ typedef vertex< float_hcoord_system> float_vertex;
 typedef vertex< double_hcoord_system> double_vertex;
 typedef line< float_hcoord_system> float_line;
 typedef line< double_hcoord_system> double_line;
+typedef plane< float_hcoord_system> float_plane;
+typedef plane< double_hcoord_system> double_plane;
 
 typedef boost::mpl::list< float_vertex, double_vertex> tested_vertices;
 
@@ -29,6 +32,7 @@ typedef boost::mpl::list<
 	> tested_line_vertex;
 
 typedef boost::mpl::list< float_line, double_line> tested_line_to_line;
+typedef boost::mpl::list< float_plane, double_plane> tested_plane_to_plane;
 
 BOOST_AUTO_TEST_CASE_TEMPLATE( test_distance, V, tested_vertices)
 {
@@ -120,6 +124,29 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_line_to_line_distance, L, tested_line_to_lin
 	// Test coincidence
 	line l5( l1.base(), l1.dir());
 	ALGTEST_CHECK_SMALL( distance(l1,l5));
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_plane_to_plane_distance, P, tested_plane_to_plane)
+{
+	typedef P plane_type;
+	typedef typename plane_type::unit_type unit_type;
+	typedef typename plane_type::coord_system coord_system;
+	typedef direction< coord_system> direction_type;
+	typedef vertex< coord_system> vertex_type;
+
+	vertex_type v1( 1, 1, 1), v2( 2, 2, 2);
+	direction_type d( 1, 0, 0);
+	plane_type p1( v1, d), p2( v2, d);
+	plane_type p3( v2, direction_type( 1, 1, 1));
+
+	ALGTEST_CHECK_EQUAL_UNIT( unit_type( -1.0), distance( p1, p2));
+	ALGTEST_CHECK_EQUAL_UNIT( unit_type( 1.0), distance( p2, p1));
+	ALGTEST_CHECK_SMALL( distance( p3, p1));
+	ALGTEST_CHECK_SMALL( distance( p1, p3));
+	ALGTEST_CHECK_SMALL( distance( p1, p1));
+	ALGTEST_CHECK_SMALL( distance( p3, p3));
 }
 
 } // namespace

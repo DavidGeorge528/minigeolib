@@ -7,7 +7,9 @@
 #include "geometry/vertex_concept.hpp"
 #include "geometry/line_concept.hpp"
 #include "geometry/plane_concept.hpp"
+#include "geometry/impl/vector_utils.hpp"
 #include <boost/concept/assert.hpp>
+#include <cassert>
 
 namespace geometry
 {
@@ -129,6 +131,42 @@ typename boost::enable_if< impl::is_line< L, 3>, typename L::coord_system::lengt
 	}
 }
 
+/// \brief It calculates the distance between two planes.
+/// \tparam P the plane type, implementing Plane concept.
+template< typename P>
+typename boost::enable_if< impl::is_plane<P,3>, typename P::unit_type>::type
+	distance( const P& p1, const P& p2)
+{
+	BOOST_CONCEPT_ASSERT( (Plane<P>));
+
+	typedef P plane;
+	typedef typename plane::unit_type unit_type;
+	typedef typename plane::unit_traits_type unit_traits_type;
+
+	unit_type a1 = p1.a(), b1 = p1.b(), c1 = p1.c(), d1 = p1.d();
+	unit_type a2 = p2.a(), b2 = p2.b(), c2 = p2.c(), d2 = p2.d();
+
+	// First, check whether the planes are parallel:
+	unit_type norm1 = impl::norm( a1, b1, c1);
+	unit_type norm2 = impl::norm( a2, b2, c2);
+	// Cosinus of the dihedral angle.
+	unit_type cos_angle = impl::dot_product( a1, b1, c1, a2, b2, c2) / (norm1*norm2);
+	if( unit_traits_type::is_zero( unit_type(1.0) - std::abs(cos_angle)))
+	{
+		// parallel planes. Sanity checks first: both planes can be reduced to the same values for a, b and c.
+		assert( unit_traits_type::is_zero( std::abs( a1/norm1) - std::abs( a2/norm2)));
+		assert( unit_traits_type::is_zero( std::abs( b1/norm1) - std::abs( b2/norm2)));
+		assert( unit_traits_type::is_zero( std::abs( c1/norm1) - std::abs( c2/norm2)));
+
+		unit_type a = a1/norm1, b = b1/norm1, c = c1/norm1;
+		unit_type dist = (d2/norm2 - d1/norm1);
+		return dist;
+	}
+	else
+	{
+		return 0;
+	}
+}
 
 } // geometry
 

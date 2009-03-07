@@ -283,6 +283,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\geometry\impl\vector_utils.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\include\geometry\vertex.hpp"
 				>
 			</File>
