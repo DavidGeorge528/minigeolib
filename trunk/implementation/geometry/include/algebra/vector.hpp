@@ -8,22 +8,35 @@
 namespace algebra
 {
 
+/// \ingroup algebra
+/// \brief It implements a vector of values and the operators specific to vectors.
+/// \tparam D the number of elements in the vector.
+/// \tparam U the type of the element. It should be an arithmetic type.
+/// \tparam UT the traits type corresponding to the type of the elements.
+/// \sa unit_traits
 template< unsigned D, typename U, typename UT = unit_traits< U> >
 class vector: public details::vector_base< D, U, UT>
 {
 	typedef vector< D, U, UT> my_type_;
 public:
+	/// \brief It creates a vector with zeros as elements.
 	vector()
 	{
 		std::fill_n( &v_[0], D, unit_traits_type::zero());
 	}
 
+	/// \brief It creates a vector using the elements from the provided sequence.
+	/// \tparam It the type of iterator providing access to the sequence of elements.
+	/// \pre The provided sequence has the size of the vector.
 	template< typename It> vector( It begin, It end)
 	{
 		assert( std::distance( begin, end) == DIMENSIONS);
 		std::copy( begin, end, &v_[0]);
 	}
 
+	/// \brief It creates a vector using the elements from the provided sequence.
+	/// \tparam It the type of iterator providing access to the sequence of elements.
+	/// \pre The provided sequence has the size of the vector.
 	template< typename It> vector( It begin)
 	{
 		for( unsigned n = 0; n < DIMENSIONS; ++n, ++begin)
@@ -32,6 +45,8 @@ public:
 		}
 	}
 
+	/// \details
+	///		In case of self assignment, it does nothing.
 	my_type_& operator=( const my_type_& op)
 	{
 		if( this != &op)
@@ -41,6 +56,7 @@ public:
 		return *this;
 	}
 
+	/// \brief Vector addition
 	friend my_type_ operator+( const my_type_& op1, const my_type_& op2)
 	{
 		my_type_ result;
@@ -48,12 +64,14 @@ public:
 		return result;
 	}
 
+	/// \brief Vector addition
 	my_type_& operator+=( const my_type_& op)
 	{
 		std::transform( &v_[0], &v_[0] + DIMENSIONS, &op.v_[0], &v_[0], &unit_traits_type::add);
 		return *this;
 	}
 
+	/// \brief Vector subtraction.
 	friend my_type_ operator-( const my_type_& op1, const my_type_& op2)
 	{
 		my_type_ result;
@@ -61,12 +79,14 @@ public:
 		return result;
 	}
 
+	/// \brief Vector subtraction.
 	my_type_& operator-=( const my_type_& op)
 	{
 		std::transform( &v_[0], &v_[0] + DIMENSIONS, &op.v_[0], &v_[0], &unit_traits_type::subtract);
 		return *this;
 	}
 
+	/// \brief Scalar multiplication
 	friend my_type_ operator*( const unit_type& s, const my_type_& v)
 	{
 		my_type_ result;
@@ -74,6 +94,7 @@ public:
 		return result;
 	}
 
+	/// \brief Scalar multiplication
 	friend my_type_ operator*( const my_type_& v, const unit_type& s)
 	{
 		my_type_ result;
@@ -81,13 +102,14 @@ public:
 		return result;
 	}
 
+	/// \brief Scalar multiplication
 	my_type_& operator*=( const unit_type& s)
 	{
 		std::transform( &v_[0], &v_[0] + DIMENSIONS, &v_[0], boost::bind( &my_type_::multiply, _1, s));
 		return *this;
 	}
 
-
+	/// \brief Division by a scalar
 	friend my_type_ operator/( const my_type_& v, const unit_type& s)
 	{
 		my_type_ result;
@@ -95,7 +117,7 @@ public:
 		return result;
 	}
 
-
+	/// \brief Division by a scalar
 	my_type_& operator/=( const unit_type& s)
 	{
 		std::transform( &v_[0], &v_[0] + DIMENSIONS, &v_[0], boost::bind( &my_type_::divide, _1, s));
@@ -103,6 +125,8 @@ public:
 	}
 
 private:
+	/// \brief Predicates for basic operations, bound by the arithmetic operators implementations.
+	/// \{
 	static unit_type subtract( const unit_type& op1, const unit_type& op2)
 	{
 		return op1 - op2;
@@ -122,6 +146,7 @@ private:
 	{
 		return op1 / op2;
 	}
+	/// \}
 };
 
 } // namespace algebra

@@ -4,6 +4,7 @@
 #include "geometry/homogenous/vertex_3d.hpp"
 #include "geometry/line.hpp"
 #include "geometry/homogenous/direction_3d.hpp"
+#include "algebra/epsilon_tolerance.hpp"
 #include "../tests_common.hpp"
 #include "../test_traits.hpp"
 #include <boost/mpl/list.hpp>

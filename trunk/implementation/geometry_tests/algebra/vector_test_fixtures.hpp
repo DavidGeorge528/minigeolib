@@ -31,7 +31,6 @@ namespace details
 template< unsigned D, typename FP, typename UT>
 struct fp_test_fixture
 {
-	// TODO: BOOST_CHECK( is_floating_point);
 	typedef FP unit_type;
 	typedef UT unit_traits_type;
 	enum { DIMS = D };

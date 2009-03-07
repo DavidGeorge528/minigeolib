@@ -10,12 +10,18 @@ template< typename U, typename UT>
 class matrix< 3, 3, U, UT>: public details::matrix_base< 3, 3, U, UT>
 {
 public:
+	/// \brief It initializes a zero matrix.
 	matrix()
 	{
 		a11_ = a12_ = a13_ = a21_ = a22_ = a23_ = a31_ = a32_ = a33_
 			= unit_traits_type::zero();
 	}
 
+	/// \brief It initializes a matrix using the sequence of elements pointed by the provided iterators.
+	/// \pre The provided sequence is of the size of matrix.
+	/// \tparam It the type of iterator providing access to the sequence of elements.
+	/// \details
+	///		The order of the elements to be used for the initialization should be from left to right, top to bottom.
 	template< typename It>
 	matrix( It begin, It end)
 	{
@@ -29,6 +35,11 @@ public:
 		}
 	}
 
+	/// \brief It initializes a matrix using a sequence of the elements pointed by the provided iterator.
+	/// \pre The provided sequence is at least of the size of matrix.
+	/// \tparam It the type of iterator providing access to the sequence of elements.
+	/// \details
+	///		The order of the elements to be used for the initialization should be from left to right, top to bottom.
 	template< typename It>
 	matrix( It begin)
 	{
@@ -42,7 +53,7 @@ public:
 	}
 
 
-	/// \brief It initializes the matrix with its elements.
+	/// \brief It initializes the matrix with the provided content.
 	matrix(
 		const unit_type& a11, const unit_type& a12, const unit_type& a13,
 		const unit_type& a21, const unit_type& a22, const unit_type& a23,
@@ -53,6 +64,8 @@ public:
 	{
 	}
 
+	/// \details
+	///		In case of self assigning, it does nothing.
 	matrix& operator=( const matrix& op)
 	{
 		if( this != &op)
@@ -64,16 +77,26 @@ public:
 		return *this;
 	}
 
+	/// \brief It provides index based access to matrix elements.
+	/// \param r the row number of the element (zero based index).
+	/// \param c the column number of the element (zero based index).
 	unit_type& operator()( unsigned r, unsigned c)
 	{
 		return m_[r][c];
 	}
 
+	/// \copydoc operator()( unsigned, unsigned)
 	const unit_type& operator()( unsigned r, unsigned c) const
 	{
 		return m_[r][c];
 	}
 
+	/// \brief It creates an identity matrix.
+	/// \details
+	///		The identity matrix is created only when called for the first time.
+	/// \warning
+	///		This method is not thread safe. If two threads call this method at the same time for the first time, there 
+	///		will be a racing condition and undefined behavior may occur.
 	static const matrix& IDENTITY()
 	{
 		static matrix I( 
@@ -130,7 +153,7 @@ public:
 		return *this;
 	}
 
-
+	/// \brief Multiplication of two matrices.
 	friend matrix operator*( const matrix& left_op, const matrix& right_op)
 	{
 #define E( i, j) a##i##j
@@ -148,6 +171,7 @@ public:
 #undef E
 	}
 
+	/// \brief Multiplication of two matrices.
 	matrix& operator*=( const matrix& right_op)
 	{
 		matrix r( operator*( *this, right_op));
@@ -155,6 +179,7 @@ public:
 		return *this;
 	}
 
+	/// \brief Multiplication with a scalar.
 	friend matrix operator*( const unit_type& s, const matrix& right_op)
 	{
 		return matrix( 
@@ -163,11 +188,13 @@ public:
 			s * right_op.a31_, s * right_op.a32_, s * right_op.a33_);
 	}
 
+	/// \brief Multiplication with a scalar.
 	friend matrix operator*( const matrix& left_op, const unit_type& s)
 	{
 		return s * left_op;
 	}
 
+	/// \brief Multiplication with a scalar.
 	matrix& operator*=( const unit_type& s)
 	{
 		a11_ *= s; a12_ *= s; a13_ *= s;
@@ -176,7 +203,7 @@ public:
 		return *this;
 	}
 
-
+	/// \brief Division by a scalar.
 	friend matrix operator/( const matrix& left_op, const unit_type& s)
 	{
 		return matrix( 
@@ -185,6 +212,7 @@ public:
 			left_op.a31_ / s, left_op.a32_ / s, left_op.a33_ / s);
 	}
 
+	/// \brief Division by a scalar.
 	matrix& operator/=( const unit_type& s)
 	{
 		a11_ /= s; a12_ /= s; a13_ /= s;
@@ -193,6 +221,8 @@ public:
 		return *this;
 	}
 
+	/// \brief Matrix transpozition.
+	/// \return the transposition result, as a new matrix. The original one remains untouched.
 	friend matrix transposed( const matrix& m)
 	{
 		return matrix(
@@ -201,6 +231,8 @@ public:
 			m.a13_, m.a23_, m.a33_);
 	}
 
+	/// \brief Transposes this matrix.
+	/// \return this matrix, transposed.
 	matrix& transpose()
 	{
 		unit_type t;
@@ -217,11 +249,13 @@ public:
 		return *this;
 	}
 
+	/// \brief It calculates the determinant of the given matrix.
 	friend unit_type det( const matrix& m)
 	{
 		return m.det();
 	}
 
+	/// \brief It calculates the determinant of this matrix.
 	unit_type det() const
 	{
 		return a11_*( a22_*a33_ - a32_*a23_) - a21_*(a12_*a33_ - a32_*a13_) + a31_*(a12_*a23_ - a22_*a13_);
