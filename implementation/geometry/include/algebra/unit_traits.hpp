@@ -20,7 +20,7 @@ struct unit_traits
 	/// \brief It gets the value one (neutral to multiplication).
 	static U one() { return 1; }
 
-	// TODO: Test
+	/// \brief It checks whether the given value is zero or close to zero.
 	static bool is_zero( const unit_type& value)
 	{
 		return -std::numeric_limits< unit_type>::min() < value 

@@ -8,10 +8,12 @@
 namespace algebra
 {
 
+/// \ingroup algebra
 /// \brief 
 ///		It implements a tolerance policy that compares two values using an absolute tolerance value. For a given 
 ///		value \tt v1, the value \tt v2 is considered to be equal to \tt v1 if it is in the range <c>[v1 - epsilon, 
 ///		v1 + epsilon]</c>.
+/// \concept TolerancePolicy
 /// \tparam U the type of the values to be compared.
 template< typename U>
 class epsilon_tolerance

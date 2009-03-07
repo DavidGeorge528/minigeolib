@@ -13,7 +13,7 @@ template< typename CS, typename Tag>
 class geometric_object
 {
 public:
-	BOOST_CONCEPT_ASSERT( (coord_system_concept<CS>));
+	BOOST_CONCEPT_ASSERT( (CoordSystem<CS>));
 
 	typedef CS coord_system;
 	typedef typename coord_system::unit_type unit_type;

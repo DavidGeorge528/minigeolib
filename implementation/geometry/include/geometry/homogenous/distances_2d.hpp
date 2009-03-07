@@ -14,7 +14,7 @@ template< typename V>
 typename impl::enabled_for< typename V::coord_system, 2, hcoord_system_tag, typename V::coord_system::length_type>::type  
 	distance( const V& vertex1, const V& vertex2)
 {
-	BOOST_CONCEPT_ASSERT( (coord_system_concept<typename V::coord_system>));
+	BOOST_CONCEPT_ASSERT( (CoordSystem<typename V::coord_system>));
 	BOOST_CONCEPT_ASSERT( (HomogenousVertex2D<V>));
 	typename V::unit_type 
 		dx = vertex2.x() - vertex1.x(),

@@ -6,6 +6,7 @@
 namespace algebra
 {
 
+/// \ingroup algebra
 /// \brief The definition of the tolerance policy concept.
 /// \details
 /// The tolerance should provide a way to compare two values for equality. A concept implementation should provide 

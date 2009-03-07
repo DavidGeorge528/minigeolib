@@ -8,7 +8,7 @@
 namespace algebra
 {
 
-	template< unsigned D, typename U, typename UT> class vector;
+template< unsigned D, typename U, typename UT> class vector;
 
 
 /// \ingroup algebra

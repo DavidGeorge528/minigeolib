@@ -16,7 +16,6 @@ template< typename V>
 typename boost::enable_if_c< impl::is_vertex< V, 3>::value, typename V::coord_system::length_type>::type  
 	distance( const V& vertex1, const V& vertex2)
 {
-	BOOST_CONCEPT_ASSERT( (coord_system_concept<typename V::coord_system>));
 	BOOST_CONCEPT_ASSERT( (HomogenousVertex3D<V>));
 	typename V::unit_type 
 		dx = vertex2.x() - vertex1.x(),
@@ -55,7 +54,6 @@ distance( const V& v, const L& l)
 {
 	BOOST_CONCEPT_ASSERT( (HomogenousVertex3D<V>));
 	BOOST_CONCEPT_ASSERT( (Line<L>));
-	BOOST_CONCEPT_ASSERT( (coord_system_concept< typename V::coord_system>));
 
 	const typename L::vertex_type& line_base = l.base();
 	const typename L::direction_type& line_dir = l.dir();
@@ -97,6 +95,10 @@ template< typename L>
 typename boost::enable_if< impl::is_line< L, 3>, typename L::coord_system::length_type>::type
 	distance( const L& line1, const L& line2)
 {
+	BOOST_CONCEPT_ASSERT( (Line3D<L>));
+
+	typedef typename L::unit_traits_type unit_traits_type;
+
 	// We need one point from each line - P1(x1,y1,z1), P2(x2,y2,z2)
 	typename L::unit_type x1 = line1.base().x(), y1 = line1.base().y(), z1 = line1.base().z();
 	typename L::unit_type x2 = line2.base().x(), y2 = line2.base().y(), z2 = line2.base().z();
@@ -109,7 +111,7 @@ typename boost::enable_if< impl::is_line< L, 3>, typename L::coord_system::lengt
 	// Now, calculate the cross product n = v1 x v2, where v1 and v2 are directions for line 1 and line 2.
 	typename L::unit_type nx = dy1*dz2 - dz1*dy2, ny = dz1*dx2 - dx1*dz2, nz = dx1*dy2 - dy1*dx2;
 	typename L::unit_type norm = std::sqrt( nx*nx + ny*ny + nz*nz);
-	if( typename L::unit_traits_type::is_zero( norm))
+	if( unit_traits_type::is_zero( norm))
 	{
 		// We are in the case of parallel line
 		// The distance D is P1P2 x dir1 / norm of dir1
@@ -126,6 +128,7 @@ typename boost::enable_if< impl::is_line< L, 3>, typename L::coord_system::lengt
 		return dist;
 	}
 }
+
 
 } // geometry
 

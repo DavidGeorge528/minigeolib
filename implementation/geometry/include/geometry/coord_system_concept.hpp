@@ -8,7 +8,7 @@ namespace geometry
 ///		The coordinate system provides basic setup and operations for algorithms. These basic operations depend on 
 ///		the coordinate system so this class helps establishing an abstraction layer to be used by algorithms.
 template< typename C>
-class coord_system_concept
+class CoordSystem
 {
 	typedef C concept;
 

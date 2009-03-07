@@ -390,6 +390,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\algebra\sanity_checks.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\algebra\unit_base_tests.cpp"
 				>
 			</File>
