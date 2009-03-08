@@ -153,6 +153,27 @@ public:
 			m.a21_*v.v_[0] + m.a22_*v.v_[1] + m.a23_*v.v_[2],
 			m.a31_*v.v_[0] + m.a32_*v.v_[1] + m.a33_*v.v_[2]);
 	}
+
+	/// \brief Cross product
+	friend my_type_ operator%( const my_type_& op1, const my_type_& op2)
+	{
+		return my_type_(
+			op1.v_[1]*op2.v_[2] - op1.v_[2]*op2.v_[1],
+			op1.v_[2]*op2.v_[0] - op1.v_[0]*op2.v_[2],
+			op1.v_[0]*op2.v_[1] - op1.v_[1]*op2.v_[0]);
+	}
+
+	/// \brief Cross product
+	my_type_& operator%=( const my_type_& op)
+	{
+		unit_type temp[] = 
+		{
+			this->v_[1]*op.v_[2] - this->v_[2]*op.v_[1],
+			this->v_[2]*op.v_[0] - this->v_[0]*op.v_[2],
+			this->v_[0]*op.v_[1] - this->v_[1]*op.v_[0]
+		}
+		v_[0] = temp[0]; v_[1] = temp[1]; v_[2] = temp[2];
+	}
 };
 
 } // namespace algebra
