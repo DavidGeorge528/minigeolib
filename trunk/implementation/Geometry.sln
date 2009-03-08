@@ -12,6 +12,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "geom_viewer", "geom_viewer\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ogl_render", "ogl_render\ogl_render.vcproj", "{9EA45544-3C71-46DA-BAAD-EFFA8366E448}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DCFD23E0-CCF4-45AF-AC18-668861DB802C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "docs", "docs\docs.vcproj", "{EC46AE3C-3775-445D-849C-460E5B0B1C69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -34,6 +38,10 @@ Global
 		{9EA45544-3C71-46DA-BAAD-EFFA8366E448}.Debug|Win32.Build.0 = Debug|Win32
 		{9EA45544-3C71-46DA-BAAD-EFFA8366E448}.Release|Win32.ActiveCfg = Release|Win32
 		{9EA45544-3C71-46DA-BAAD-EFFA8366E448}.Release|Win32.Build.0 = Release|Win32
+		{EC46AE3C-3775-445D-849C-460E5B0B1C69}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EC46AE3C-3775-445D-849C-460E5B0B1C69}.Debug|Win32.Build.0 = Debug|Win32
+		{EC46AE3C-3775-445D-849C-460E5B0B1C69}.Release|Win32.ActiveCfg = Release|Win32
+		{EC46AE3C-3775-445D-849C-460E5B0B1C69}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
