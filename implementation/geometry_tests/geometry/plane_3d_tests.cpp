@@ -143,23 +143,4 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_three_point_init, P, tested_types)
 	ALGTEST_CHECK_EQUAL_UNIT( -1, distance( vertex_type( 1,1,1), zx_plane));
 }
 
-// --------------------------------------------------------------------------------------------------------------------
-
-BOOST_AUTO_TEST_CASE_TEMPLATE( test_normal, P, tested_types)
-{
-	BOOST_CONCEPT_ASSERT( (Plane<P>));
-	typedef P plane_type;
-	typedef typename plane_type::unit_type unit_type;
-	typedef vertex< typename plane_type::coord_system> vertex_type;
-	typedef direction< typename plane_type::coord_system> dir_type;
-
-	dir_type normal( 20, 30, 50);
-	vertex_type pos( 10, 20, 30);
-	plane_type plane( pos, normal);
-	dir_type expected_normal = plane.normal< dir_type>();
-	ALGTEST_CHECK_EQUAL_UNIT( normal.dx(), expected_normal.dx());
-	ALGTEST_CHECK_EQUAL_UNIT( normal.dy(), expected_normal.dy());
-	ALGTEST_CHECK_EQUAL_UNIT( normal.dz(), expected_normal.dz());
-}
-
 } // namespace

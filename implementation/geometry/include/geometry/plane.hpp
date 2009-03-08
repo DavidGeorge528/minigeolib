@@ -76,16 +76,6 @@ public:
 		coefs_.at<3>() = -(x1*(y2*z3 - y3*z2) + x2*(y3*z1 - y1*z3) + x3*(y1*z2 - y2*z1));
 	}
 
-	/// \brief It gets the normal direction of the plane
-	/// \tparam D the type of the direction to return. It should provide a constructor with three parameters (x, y and z 
-	///		axis components).
-	template< typename D>
-	D normal() const
-	{
-		BOOST_CONCEPT_ASSERT( (Direction<D>));
-		return D( this->a(), this->b(), this->c());
-	}
-
 	const unit_type& a() const { return coefs_.at<0>(); }
 	const unit_type& b() const { return coefs_.at<1>(); }
 	const unit_type& c() const { return coefs_.at<2>(); }
