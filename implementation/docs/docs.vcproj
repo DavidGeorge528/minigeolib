@@ -135,8 +135,19 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
+					Description="Generating Doxygen documentation..."
 					CommandLine="cd &quot;$(SolutionDir)\..&quot;&#x0D;&#x0A;&quot;c:\Program Files (x86)\doxygen\bin\doxygen&quot; &quot;$(InputPath)&quot;"
-					Outputs="$(SolutionDir)\..\doc\*.*"
+					Outputs="$(SolutionDir)\..\doc\html"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+					Description="Generating Doxygen documentation..."
+					CommandLine="cd &quot;$(SolutionDir)\..&quot;&#x0D;&#x0A;&quot;c:\Program Files (x86)\doxygen\bin\doxygen&quot; &quot;$(InputPath)&quot;"
+					Outputs="$(SolutionDir)\..\doc\html"
 				/>
 			</FileConfiguration>
 		</File>
