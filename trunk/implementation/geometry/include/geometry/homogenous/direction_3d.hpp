@@ -3,6 +3,9 @@
 
 #include "geometry/direction.hpp"
 #include "algebra/vector.hpp"
+#include "geometry/impl/enablers.hpp"
+#include "geometry/plane_concept.hpp"
+#include <boost/concept/assert.hpp>
 
 namespace geometry
 {
@@ -17,6 +20,14 @@ public:
 	direction( const unit_type& dx, const unit_type& dy, const unit_type& dz)
 		: components_( dx, dy, dz) 
 	{
+		this->normalize();
+	}
+
+	template< typename P>
+	direction( const P& plane, typename boost::enable_if< impl::is_plane<P,3> >::type* = NULL)
+		: components_( plane.a(), plane.b(), plane.c())
+	{
+		BOOST_CONCEPT_ASSERT( (Plane<P>));
 		this->normalize();
 	}
 

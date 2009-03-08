@@ -20,13 +20,27 @@ typedef boost::mpl::list<
 	direction< hcoord_system_double> > tested_directions;
 
 typedef boost::mpl::list<
-	boost::mpl::list< line< hcoord_system_float>, vertex< hcoord_system_float>, direction< hcoord_system_float> >,
-	boost::mpl::list< line< hcoord_system_double>, vertex< hcoord_system_double>, direction< hcoord_system_double> > > tested_lines;
+		boost::mpl::list< 
+			line< hcoord_system_float>, vertex< hcoord_system_float>, direction< hcoord_system_float> >,
+		boost::mpl::list< 
+			line< hcoord_system_double>, vertex< hcoord_system_double>, direction< hcoord_system_double> > 
+	> tested_lines;
 
 typedef boost::mpl::list<
-	boost::mpl::list< plane< hcoord_system_float>, vertex< hcoord_system_float>, direction< hcoord_system_float> >,
-	boost::mpl::list< plane< hcoord_system_double>, vertex< hcoord_system_double>, direction< hcoord_system_double> > > tested_planes;
+		boost::mpl::list< 
+			plane< hcoord_system_float>, vertex< hcoord_system_float>, direction< hcoord_system_float> >,
+		boost::mpl::list< 
+			plane< hcoord_system_double>, vertex< hcoord_system_double>, direction< hcoord_system_double> > 
+	> tested_planes;
 
+typedef boost::mpl::list<
+	boost::mpl::list< 
+		plane< hcoord_system_float>, line< hcoord_system_float>, 
+		vertex< hcoord_system_float>, direction< hcoord_system_float> >,
+	boost::mpl::list< 
+		plane< hcoord_system_double>, line< hcoord_system_double>, 
+		vertex< hcoord_system_double>, direction< hcoord_system_double> >
+	> tested_planes_to_lines;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -98,6 +112,41 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_parallel_planes, T, tested_planes)
 	BOOST_CHECK( !are_parallel( p3, p4, tolerance));
 	BOOST_CHECK( are_parallel( p1, p1, tolerance));
 	BOOST_CHECK( are_parallel( p4, p4, tolerance));
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_parallel_plane_to_line, T, tested_planes_to_lines)
+{
+	using namespace boost::mpl;
+
+	typedef typename at<T,int_<0> >::type plane_type;
+	typedef typename at<T,int_<1> >::type line_type;
+	typedef typename at<T,int_<2> >::type vertex_type;
+	typedef typename at<T,int_<3> >::type direction_type;
+	typedef typename plane_type::unit_type unit_type;
+
+	vertex_type base( 1, 2, 3);
+	direction_type norm( 1, 0, 0);
+	plane_type plane( base, norm);
+
+	vertex_type lbase( 10, 20, 50);
+	direction_type d1( 0, 1, 0);
+	direction_type d2( 0, 0, 1);
+	direction_type d3( 0, 1, 1);
+	direction_type d4( 1, 2, 3);
+
+	algebra::epsilon_tolerance< unit_type> tolerance( 1e-6);
+
+	line_type l1( lbase, d1), l2( lbase, d2), l3( lbase, d3), l4( lbase, d4);
+	BOOST_CHECK( are_parallel( plane, l1, tolerance));
+	BOOST_CHECK( are_parallel( l1, plane, tolerance));
+	BOOST_CHECK( are_parallel( plane, l2, tolerance));
+	BOOST_CHECK( are_parallel( l2, plane, tolerance));
+	BOOST_CHECK( are_parallel( plane, l3, tolerance));
+	BOOST_CHECK( are_parallel( l3, plane, tolerance));
+	BOOST_CHECK( !are_parallel( plane, l4, tolerance));
+	BOOST_CHECK( !are_parallel( l4, plane, tolerance));
 }
 
 } // namespace

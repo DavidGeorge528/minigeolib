@@ -5,6 +5,7 @@
 #include "geometry/line_concept.hpp"
 #include "geometry/plane_concept.hpp"
 #include "geometry/homogenous/direction_3d.hpp"
+#include "geometry/impl/vector_utils.hpp"
 #include "algebra/tolerance_policy_concept.hpp"
 #include "algebra/epsilon_tolerance.hpp"
 #include <boost/concept/assert.hpp>
@@ -49,6 +50,7 @@ typename boost::enable_if< impl::is_line< L, 3>, bool>::type
 	are_parallel( const L& l1, const L& l2, const TP& tolerance)
 {
 	BOOST_CONCEPT_ASSERT( (Line3D<L>));
+	BOOST_CONCEPT_ASSERT( (algebra::TolerancePolicy<TP>));
 	return are_parallel( l1.dir(), l2.dir(), tolerance);
 }
 
@@ -66,8 +68,46 @@ typename boost::enable_if< impl::is_plane< P, 3>, bool>::type
 	are_parallel( const P& p1, const P& p2, const TP& tolerance)
 {
 	BOOST_CONCEPT_ASSERT( (Plane<P>));
+	BOOST_CONCEPT_ASSERT( (algebra::TolerancePolicy<TP>));
 	typedef direction< typename P::coord_system> direction_type;
-	return are_parallel( p1.normal<direction_type>(), p2.normal<direction_type>(), tolerance);
+	return are_parallel( direction_type( p1), direction_type( p2), tolerance);
+}
+
+/// \brief It checks whether a given line is parallel with a given plane.
+/// \tparam P the type of the plane, implementing the 3D plane concept.
+/// \tparam L the type of the line, implementing the 3D line concept.
+/// \tparam TP the tolerance policy to be used for comparing the calculation results with the expected results.
+/// \param plane the plane to check.
+/// \param line the line to check.
+/// \param tolerance the tolerance to be used for comparing the calculation results with the expected results.
+/// \details
+///		It uses the direction parallelism checking function, providing the normal direction of the involved plane and 
+///		the direction of the line.
+template< typename P, typename L, typename TP>
+typename boost::enable_if_c< impl::is_plane< P, 3>::value && impl::is_line< L, 3>::value, bool>::type
+	are_parallel( const P& plane, const L& line, const TP& tolerance)
+{
+	BOOST_CONCEPT_ASSERT( (Plane<P>));
+	BOOST_CONCEPT_ASSERT( (Line3D<L>));
+	BOOST_CONCEPT_ASSERT( (algebra::TolerancePolicy<TP>));
+	
+	typedef typename L::direction_type direction_type;
+	typedef typename L::unit_type unit_type;
+
+	direction_type plane_normal( plane);
+	direction_type line_dir = line.dir();
+	unit_type cos_angle = impl::dot_product( 
+		plane_normal.dx(), plane_normal.dy(), plane_normal.dz(),
+		line_dir.dx(), line_dir.dy(), line_dir.dz());
+	return tolerance.equals( 0, cos_angle);
+}
+
+/// \copydoc template< typename P, typename L, typename TP> typename boost::enable_if_c< impl::is_plane< P, 3>::value && impl::is_line< L, 3>::value, bool>::type are_parallel( const P& , const L& , const TP& )
+template< typename P, typename L, typename TP>
+inline typename boost::enable_if_c< impl::is_plane< P, 3>::value && impl::is_line< L, 3>::value, bool>::type
+	are_parallel( const L& line, const P& plane, const TP& tolerance)
+{
+	return are_parallel( plane, line, tolerance);
 }
 
 } // namespace geometry
