@@ -15,7 +15,7 @@ template< typename V>
 class Vertex: public GeometricObject< V, vertex_tag>
 {
 public:
-	typedef typename V::position_type position_type;
+	typedef typename V::coord_rep coord_rep;
 };
 
 template< typename V>

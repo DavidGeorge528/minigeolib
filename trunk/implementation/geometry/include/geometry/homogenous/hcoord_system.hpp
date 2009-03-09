@@ -19,7 +19,9 @@ namespace impl
 		typedef UT unit_traits_type;
 		typedef typename unit_traits_type::unit_type unit_type;
 		typedef hcoord_system_tag system_type;
-		typedef algebra::vector< D+1, U, UT> position_type;
+		typedef algebra::vector< DIMENSIONS + 1, unit_type, unit_traits_type> coord_rep;
+		typedef algebra::vector< DIMENSIONS, unit_type, unit_traits_type> pos_rep;
+		typedef algebra::vector< DIMENSIONS, unit_type, unit_traits_type> dir_rep;
 		typedef unit_type length_type;
 
 		BOOST_STATIC_ASSERT( (boost::is_same< U, unit_type>::value));
@@ -31,11 +33,7 @@ template< unsigned D, typename U, typename UT = algebra::unit_traits< U> >
 class hcoord_system: public impl::hcoord_base< D, U, UT>
 {
 public:
-	// TEST:
-	static length_type distance( const position_type& p1, const position_type& p2)
-	{
-		return 0;
-	}
+	
 };
 
 
@@ -43,14 +41,21 @@ template< typename U, typename UT >
 class hcoord_system< 3, U, UT>: public impl::hcoord_base< 3, U, UT>
 {
 public:
-	// TEST:
-	static length_type distance( const position_type& p1, const position_type& p2)
+	// TODO: Concept checking
+	static pos_rep normalize_coords( const coord_rep& coords)
 	{
-		unit_type 
-			dx = (p2.x()/p2.w() - p1.x()/p1.w()),
-			dy = (p2.y()/p2.w() - p1.y()/p1.w()),
-			dz = (p2.z()/p2.w() - p1.z()/p1.w());
-		return std::sqrt( dx*dx + dy*dy + dz*dz);
+		return pos_rep( 
+			coords.at<0>()/coords.at<3>(), 
+			coords.at<1>()/coords.at<3>(),
+			coords.at<2>()/coords.at<3>());
+	}
+
+	// TODO: Concept checking
+	static void normalize_coords( const coord_rep& coords, pos_rep& pos)
+	{
+		pos.at<0>() = coords.at<0>() / coords.at<3>();
+		pos.at<1>() = coords.at<1>() / coords.at<3>();
+		pos.at<2>() = coords.at<2>() / coords.at<3>();
 	}
 };
 
@@ -58,14 +63,22 @@ template< typename U, typename UT >
 class hcoord_system< 2, U, UT>: public impl::hcoord_base< 2, U, UT>
 {
 public:
-	// TEST:
-	static length_type distance( const position_type& p1, const position_type& p2)
+	// TODO: Concept checking
+	static pos_rep normalize_coords( const coord_rep& coords)
 	{
-		unit_type 
-			dx = (p2.x()/p2.w() - p1.x()/p1.w()),
-			dy = (p2.y()/p2.w() - p1.y()/p1.w());
-		return std::sqrt( dx*dx + dy*dy);
+		return pos_rep( 
+			coords.at<0>()/coords.at<3>(), 
+			coords.at<1>()/coords.at<3>());
 	}
+
+	// TODO: Concept checking
+	static void normalize_coords( const coord_rep& coords, pos_rep& pos)
+	{
+		pos.at<0>() = coords.at<0>() / coords.at<3>();
+		pos.at<1>() = coords.at<1>() / coords.at<3>();
+		pos.at<2>() = coords.at<2>() / coords.at<3>();
+	}
+
 };
 
 } // namespace geometry

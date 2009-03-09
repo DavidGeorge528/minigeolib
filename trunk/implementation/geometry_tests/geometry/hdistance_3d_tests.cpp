@@ -1,7 +1,7 @@
 #include "geometry/homogenous/distances_3d.hpp"
 #include "geometry/homogenous/distances_2d.hpp" // keep this include to check on SFINAE
 #include "geometry/homogenous/hcoord_system.hpp"
-#include "geometry/homogenous/vertex_3d.hpp"
+#include "geometry/homogenous/vertex.hpp"
 #include "geometry/plane.hpp"
 #include "geometry/line.hpp"
 #include "geometry/homogenous/direction_3d.hpp"

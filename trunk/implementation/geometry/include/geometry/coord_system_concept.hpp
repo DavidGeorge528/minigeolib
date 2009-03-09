@@ -15,7 +15,7 @@ class CoordSystem
 	/// Require definition of number of spatial dimensions
 	enum { CHECKED_DIMENSIONS = concept::DIMENSIONS};
 	/// Require position type definition.
-	typedef typename concept::position_type position_type;
+	typedef typename concept::coord_rep coord_rep;
 
 	/// Require distance type definition
 	typedef typename concept::length_type length_type;

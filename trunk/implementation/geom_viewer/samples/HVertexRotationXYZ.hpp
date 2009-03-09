@@ -2,7 +2,7 @@
 #define HVERTEX_ROTATION_XYZ_HPP
 
 #include "geometry/homogenous/hcoord_system.hpp"
-#include "geometry/homogenous/vertex_3d.hpp"
+#include "geometry/homogenous/vertex.hpp"
 #include "geometry/homogenous/transformation_3d.hpp"
 #include "geometry/homogenous/direction_3d.hpp"
 #include "geometry/line.hpp"
