@@ -13,7 +13,7 @@ public:
 	typedef CS coord_system;
 	typedef typename coord_system::unit_type unit_type;
 	typedef typename coord_system::unit_traits_type unit_traits_type;
-	typedef typename coord_system::position_type position_type;
+	typedef typename coord_system::coord_rep coord_rep;
 };
 
 } // impl

@@ -172,12 +172,12 @@ public:
 	}
 
 
-	position_type transformed( const position_type& pos) const
+	coord_rep transformed( const coord_rep& pos) const
 	{
 		return tr_ * pos;
 	}
 
-	void transform( position_type& pos) const
+	void transform( coord_rep& pos) const
 	{
 		pos = tr_ * pos;
 	}
