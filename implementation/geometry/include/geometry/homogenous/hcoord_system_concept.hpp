@@ -22,10 +22,19 @@ public:
 		// TODO: Check pos_rep
 		// TODO: Check dir_rep
 		// TODO: Check transform matrix
+
+		// Require squared_norm static method.
+		unit_ = C::squared_norm( dir_);
+		// Require coordinate normalization static methods
+		pos_ = C::normalize_coords( coords_);
+		C::normalize_coords( coord_, pos_);
 	}
 
 private:
-
+	unit_type unit_;
+	coord_vector coords_;
+	pos_rep pos_;
+	dir_rep dir_;
 };
 
 } // namespace geometry
