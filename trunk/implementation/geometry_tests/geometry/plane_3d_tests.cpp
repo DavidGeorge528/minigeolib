@@ -2,7 +2,7 @@
 #include "geometry/homogenous/vertex.hpp"
 #include "geometry/homogenous/hcoord_system.hpp"
 #include "geometry/plane_concept.hpp"
-#include "geometry/homogenous/direction_3d.hpp"
+#include "geometry/homogenous/direction.hpp"
 #include "geometry/homogenous/distances_3d.hpp"
 #include "../tests_common.hpp"
 #include "../test_traits.hpp"

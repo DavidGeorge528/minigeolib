@@ -4,7 +4,7 @@
 #include "geometry/direction_concept.hpp"
 #include "geometry/line_concept.hpp"
 #include "geometry/plane_concept.hpp"
-#include "geometry/homogenous/direction_3d.hpp"
+#include "geometry/homogenous/direction.hpp"
 #include "geometry/impl/vector_utils.hpp"
 #include "algebra/tolerance_policy_concept.hpp"
 #include "algebra/epsilon_tolerance.hpp"
