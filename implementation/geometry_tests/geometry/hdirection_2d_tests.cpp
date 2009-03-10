@@ -1,4 +1,4 @@
-#include "geometry/homogenous/direction_2d.hpp"
+#include "geometry/homogenous/direction.hpp"
 #include "geometry/homogenous/hcoord_system.hpp"
 #include "../tests_common.hpp"
 #include "../test_traits.hpp"

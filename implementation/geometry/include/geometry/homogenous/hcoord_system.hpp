@@ -59,6 +59,12 @@ public:
 		pos.at<1>() = coords.at<1>() / coords.at<3>();
 		pos.at<2>() = coords.at<2>() / coords.at<3>();
 	}
+
+	// TODO: Concept checking
+	static unit_type squared_norm( const dir_rep& dir)
+	{
+		return dir.at<0>()*dir.at<0>() + dir.at<1>()*dir.at<1>() + dir.at<2>()*dir.at<2>();
+	}
 };
 
 template< typename U, typename UT >
@@ -81,6 +87,11 @@ public:
 		pos.at<2>() = coords.at<2>() / coords.at<3>();
 	}
 
+	// TODO: Concept checking
+	static unit_type squared_norm( const dir_rep& dir)
+	{
+		return dir.at<0>()*dir.at<0>() + dir.at<1>()*dir.at<1>();
+	}
 };
 
 } // namespace geometry

@@ -2,7 +2,7 @@
 #include "geometry/homogenous/hcoord_system.hpp"
 #include "geometry/homogenous/vertex.hpp"
 #include "geometry/line.hpp"
-#include "geometry/homogenous/direction_3d.hpp"
+#include "geometry/homogenous/direction.hpp"
 #include "../tests_common.hpp"
 #include "../test_traits.hpp"
 #include <boost/mpl/list.hpp>
