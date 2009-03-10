@@ -8,7 +8,7 @@ namespace geometry
 
 // DOC:
 template< typename C>
-class hcoord_system_concept: coord_system_concept< C>
+class HCoordSystem: CoordSystem< C>
 {
 public:
 	typedef typename C::coord_vector coord_vector;
@@ -16,7 +16,7 @@ public:
 	typedef typename C::dir_rep dir_rep;
 	typedef typename C::transform_matrix transform_matrix;
 
-	BOOST_CONCEPT_USAGE( hcoord_system_concept)
+	BOOST_CONCEPT_USAGE( HCoordSystem)
 	{
 		// TODO: Check coord vector
 		// TODO: Check pos_rep
