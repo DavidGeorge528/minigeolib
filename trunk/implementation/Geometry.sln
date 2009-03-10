@@ -15,6 +15,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DCFD23E0-CCF4-45AF-AC18-668861DB802C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "docs", "docs\docs.vcproj", "{EC46AE3C-3775-445D-849C-460E5B0B1C69}"
+	ProjectSection(ProjectDependencies) = postProject
+		{15E94B20-98C1-4597-BA1C-1776081FE57E} = {15E94B20-98C1-4597-BA1C-1776081FE57E}
+		{3D2C6A7D-4CC8-4DC3-84B1-DB860AB7F4D0} = {3D2C6A7D-4CC8-4DC3-84B1-DB860AB7F4D0}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

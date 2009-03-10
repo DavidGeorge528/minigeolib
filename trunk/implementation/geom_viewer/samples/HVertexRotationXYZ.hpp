@@ -3,7 +3,7 @@
 
 #include "geometry/homogenous/hcoord_system.hpp"
 #include "geometry/homogenous/vertex.hpp"
-#include "geometry/homogenous/transformation_3d.hpp"
+#include "geometry/homogenous/transformation.hpp"
 #include "geometry/homogenous/direction_3d.hpp"
 #include "geometry/line.hpp"
 #include "geometry/angle.hpp"
@@ -48,7 +48,7 @@ public:
 		pts << begin_points;
 		vertex v_x( 1, 1, 0);
 		pts << color( 1, 0, 0) << v_x << color( 1, 1, 1);
-		for( int i = 0; i < n_pts; ++i)
+		for( unsigned i = 0; i < n_pts; ++i)
 		{
 			v_x.transform( rot_x);
 			pts << v_x;	
@@ -59,7 +59,7 @@ public:
 		pts << begin_points;
 		vertex v_y( 0, 1, 1);
 		pts << color( 0, 1, 0) << v_y << color( 1, 1, 1);
-		for( int i = 0; i < n_pts; ++i)
+		for( unsigned i = 0; i < n_pts; ++i)
 		{
 			v_y.transform( rot_y);
 			pts << v_y;	
@@ -70,7 +70,7 @@ public:
 		pts << begin_points;
 		vertex v_z( 1, 0, 1);
 		pts << color( 0, 0, 1) << v_z << color( 1, 1, 1);
-		for( int i = 0; i < n_pts; ++i)
+		for( unsigned i = 0; i < n_pts; ++i)
 		{
 			v_z.transform( rot_z);
 			pts << v_z;	
@@ -89,7 +89,7 @@ public:
 		transformation rot_dir_tr = transformation::rotation( rot_dir, a);
 		pts << begin_points;
 		pts << color( 0, 1, 1) << v_rot << color( 1, 1, 1);
-		for( int i = 0; i < n_pts; ++i)
+		for( unsigned i = 0; i < n_pts; ++i)
 		{
 			v_rot.transform( rot_dir_tr);
 			pts << v_rot;
@@ -112,7 +112,7 @@ public:
 		transformation line_rot_tr = transformation::rotation( rot_line, a);
 		pts << begin_points;
 		pts << color( 0, 1, 1) << lvrot << color( 1, 1, 1);
-		for( int i = 0; i < n_pts; ++i)
+		for( unsigned i = 0; i < n_pts; ++i)
 		{
 			lvrot.transform( line_rot_tr);
 			pts << lvrot;

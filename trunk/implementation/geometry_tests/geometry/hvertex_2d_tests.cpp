@@ -1,6 +1,6 @@
 #include "geometry/homogenous/vertex.hpp"
 #include "geometry/homogenous/hcoord_system.hpp"
-#include "geometry/homogenous/transformation_2d.hpp"
+#include "geometry/homogenous/transformation.hpp"
 #include "../tests_common.hpp"
 #include "../test_traits.hpp"
 #include <boost/mpl/list.hpp>
