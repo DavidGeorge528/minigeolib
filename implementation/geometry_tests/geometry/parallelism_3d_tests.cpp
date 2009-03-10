@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_parallel_directions, D, tested_directions)
 	typedef typename direction_type::unit_type unit_type;
 
 	direction_type d1( 10, 20, 30), d2( 1, 2, 3), d3( -1, -2, -3), d4( 11, 12, 13);
-	algebra::epsilon_tolerance< unit_type> tolerance( 1e-6);
+	algebra::epsilon_tolerance< unit_type> tolerance( unit_type(1e-6));
 	BOOST_CHECK( are_parallel( d1, d2, tolerance));
 	BOOST_CHECK( are_parallel( d1, d3, tolerance));
 	BOOST_CHECK( are_parallel( d2, d3, tolerance));
@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_parallel_lines, T, tested_lines)
 	direction_type d1( 10, 20, 30), d2( 1, 2, 3), d3( -1, -2, -3), d4( 11, 12, 13);
 	line_type l1( base1, d1), l2( base2, d2), l3( base3, d3), l4( base4, d4);
 
-	algebra::epsilon_tolerance< unit_type> tolerance( 1e-6);
+	algebra::epsilon_tolerance< unit_type> tolerance( unit_type(1e-6));
 	BOOST_CHECK( are_parallel( l1, l2, tolerance));
 	BOOST_CHECK( are_parallel( l1, l3, tolerance));
 	BOOST_CHECK( are_parallel( l2, l3, tolerance));
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_parallel_planes, T, tested_planes)
 	direction_type d1( 10, 20, 30), d2( 1, 2, 3), d3( -1, -2, -3), d4( 11, 12, 13);
 	plane_type p1( base1, d1), p2( base2, d2), p3( base3, d3), p4( base4, d4);
 
-	algebra::epsilon_tolerance< unit_type> tolerance( 1e-6);
+	algebra::epsilon_tolerance< unit_type> tolerance( unit_type(1e-6));
 	BOOST_CHECK( are_parallel( p1, p2, tolerance));
 	BOOST_CHECK( are_parallel( p1, p3, tolerance));
 	BOOST_CHECK( are_parallel( p2, p3, tolerance));
@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_parallel_plane_to_line, T, tested_planes_to_
 	direction_type d3( 0, 1, 1);
 	direction_type d4( 1, 2, 3);
 
-	algebra::epsilon_tolerance< unit_type> tolerance( 1e-6);
+	algebra::epsilon_tolerance< unit_type> tolerance( unit_type(1e-6));
 
 	line_type l1( lbase, d1), l2( lbase, d2), l3( lbase, d3), l4( lbase, d4);
 	BOOST_CHECK( are_parallel( plane, l1, tolerance));

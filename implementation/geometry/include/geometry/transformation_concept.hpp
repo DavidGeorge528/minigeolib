@@ -13,17 +13,17 @@ public:
 	typedef typename T::coord_system coord_system;
 	typedef typename T::unit_type unit_type;
 	typedef typename T::unit_traits_type unit_traits_type;
-	typedef typename T::coord_rep coord_rep;
+	typedef typename T::coord_vector coord_vector;
 
 	BOOST_CONCEPT_USAGE( Transformation)
 	{
-		coord_rep p( tr_.transformed( pos_));
+		coord_vector p( tr_.transformed( pos_));
 		tr_.transform( pos_);
 	}
 
 private:
 	T tr_;
-	coord_rep pos_;
+	coord_vector pos_;
 };
 
 } // geometry

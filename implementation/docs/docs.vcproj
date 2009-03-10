@@ -136,8 +136,8 @@
 				<Tool
 					Name="VCCustomBuildTool"
 					Description="Generating Doxygen documentation..."
-					CommandLine="cd &quot;$(SolutionDir)\..&quot;&#x0D;&#x0A;&quot;c:\Program Files (x86)\doxygen\bin\doxygen&quot; &quot;$(InputPath)&quot;"
-					Outputs="$(SolutionDir)\..\doc\html"
+					CommandLine="cd &quot;$(SolutionDir)\..&quot;&#x0D;&#x0A;&quot;c:\Program Files (x86)\doxygen\bin\doxygen&quot; &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+					Outputs="$(SolutionDir)\..\doc\html\minigeolib.chm"
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -146,7 +146,7 @@
 				<Tool
 					Name="VCCustomBuildTool"
 					Description="Generating Doxygen documentation..."
-					CommandLine="cd &quot;$(SolutionDir)\..&quot;&#x0D;&#x0A;&quot;c:\Program Files (x86)\doxygen\bin\doxygen&quot; &quot;$(InputPath)&quot;"
+					CommandLine="cd &quot;$(SolutionDir)\..&quot;&#x0D;&#x0A;&quot;c:\Program Files (x86)\doxygen\bin\doxygen&quot; &quot;$(InputPath)&quot;&#x0D;&#x0A;"
 					Outputs="$(SolutionDir)\..\doc\html"
 				/>
 			</FileConfiguration>

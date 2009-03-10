@@ -102,7 +102,7 @@ typename boost::enable_if_c< impl::is_plane< P, 3>::value && impl::is_line< L, 3
 	return tolerance.equals( 0, cos_angle);
 }
 
-/// \copydoc template< typename P, typename L, typename TP> typename boost::enable_if_c< impl::is_plane< P, 3>::value && impl::is_line< L, 3>::value, bool>::type are_parallel( const P& , const L& , const TP& )
+/// \copydoc are_parallel<P,L,TP>( const P& , const L& , const TP& )
 template< typename P, typename L, typename TP>
 inline typename boost::enable_if_c< impl::is_plane< P, 3>::value && impl::is_line< L, 3>::value, bool>::type
 	are_parallel( const L& line, const P& plane, const TP& tolerance)

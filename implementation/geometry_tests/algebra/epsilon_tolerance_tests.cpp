@@ -35,12 +35,12 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_equal, U, tested_types)
 	unit_type 
 		v1 = 10, 
 		v2 = v1, 
-		v3 = v1 + eps/2.0, 
-		v4 = v1 - eps/2.0, 
+		v3 = v1 + eps/unit_type(2.0), 
+		v4 = v1 - eps/unit_type(2.0), 
 		v5 = v1 + eps, 
 		v6 = v1 - eps, 
-		v7 = v1 + eps + 1, 
-		v8 = v1 - eps - 1;
+		v7 = v1 + eps + unit_type(1.0), 
+		v8 = v1 - eps - unit_type(1.0);
 
 	BOOST_CHECK( t.equals( v1, v2));
 	BOOST_CHECK( t.equals( v1, v3));

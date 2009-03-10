@@ -235,15 +235,11 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\geometry\homogenous\transformation.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\include\geometry\transformation.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\include\geometry\homogenous\transformation_2d.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\include\geometry\homogenous\transformation_3d.hpp"
 				>
 			</File>
 			<File

@@ -49,8 +49,8 @@ public:
 		return Derived( tr.transformed( this->position()));
 	}
 private:
-	const coord_rep& position() const { return static_cast< const Derived*>( this)->position_; }
-	coord_rep& position() { return static_cast< Derived*>( this)->position_; }
+	const coord_vector& position() const { return static_cast< const Derived*>( this)->position_; }
+	coord_vector& position() { return static_cast< Derived*>( this)->position_; }
 };
 
 } // namespace impl
@@ -80,7 +80,7 @@ public:
 	}
 
 	/// \brief It sets the coordinates from coordinate specific internal representation.
-	vertex( const coord_rep& coords)
+	vertex( const coord_vector& coords)
 		: position_( coords) { }
 
 	/// \brief Coordinate accessors. It normalize the coordinate value before returning it.
@@ -102,7 +102,7 @@ public:
 	/// \}
 
 private:
-	coord_rep position_;
+	coord_vector position_;
 };
 
 
@@ -119,7 +119,7 @@ class vertex< CS, typename impl::enabled_for<CS,3,hcoord_system_tag>::type>
 	template< typename C, typename D> friend class impl::hvertex_base;
 public:
 	/// \brief It sets the coordinates from coordinate specific internal representation.
-	vertex( const coord_rep& pos)
+	vertex( const coord_vector& pos)
 		: position_( pos) { }
 
 	/// \brief It initializes the coordinates of the vertex.
@@ -156,7 +156,7 @@ public:
 	/// \}
 
 private:
-	coord_rep position_;
+	coord_vector position_;
 };
 
 } // namespace geometry

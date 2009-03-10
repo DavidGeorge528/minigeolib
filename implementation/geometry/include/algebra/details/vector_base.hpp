@@ -33,18 +33,19 @@ protected:
 
 public:
 	/// \brief It provides index based access to the elements of the vector.
+	/// \{
 	const unit_type& operator()( unsigned index) const 
 	{ 
 		assert( index < DIMENSIONS);
 		return v_[index];
 	}
 
-	/// \copydoc vector_base::operator()( unsigned index) const
 	unit_type& operator()( unsigned index)
 	{
 		assert( index < DIMENSIONS);
 		return v_[index];
 	}
+	/// \}
 
 
 	// TODO: Test

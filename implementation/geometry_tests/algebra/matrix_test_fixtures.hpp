@@ -54,7 +54,7 @@ struct fp_matrix_test_fixture
 
 		INIT_LOOP( r, c)
 		{
-			c_array_[r][c] = r + c;
+			c_array_[r][c] = unit_type(r + c);
 			stl_vector_.push_back( c_array_[r][c]);
 		}
 		END_INIT_LOOP
@@ -71,8 +71,8 @@ struct fp_matrix_test_fixture
 		INIT_LOOP( r, c)
 		{
 			unsigned index = r*COLUMNS + c;
-			op1_.push_back( (r*c)/(r+c+1));
-			op2_.push_back( (r+c)/(r*c+1));
+			op1_.push_back( unit_type(r*c)/unit_type(r+c+1));
+			op2_.push_back( unit_type(r+c)/unit_type(r*c+1));
 			added_.push_back( op1_[ index] + op2_[index]); 
 			subtracted_.push_back( op1_[index] - op2_[index]);
 			scmul_.push_back( op1_[ index] * scalar_);

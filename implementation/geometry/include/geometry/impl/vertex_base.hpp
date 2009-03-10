@@ -15,7 +15,7 @@ template< typename CS>
 class vertex_base: public geometric_object< CS, vertex_tag>
 {
 public:
-	typedef typename coord_system::coord_rep coord_rep;
+	typedef typename coord_system::coord_vector coord_vector;
 };
 
 

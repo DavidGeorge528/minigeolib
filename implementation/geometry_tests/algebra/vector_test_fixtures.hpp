@@ -39,7 +39,7 @@ struct fp_test_fixture
 	{
 		for( unsigned i = 0; i < DIMS; ++i)
 		{
-			c_array_[i] = i*0.5;
+			c_array_[i] = unit_type(i) * unit_type(0.5);
 		}
 
 		stl_array_.reserve( DIMS);
@@ -55,8 +55,8 @@ struct fp_test_fixture
 		scalar_ = 2;
 		for( unsigned i = 0; i < DIMS; ++i)
 		{
-			operand1_.push_back( i*0.3);
-			operand2_.push_back( i*0.25);
+			operand1_.push_back( i*unit_type(0.3));
+			operand2_.push_back( i*unit_type(0.25));
 			op1_add_op2_.push_back( operand1_[i] + operand2_[i]);
 			op1_sub_op2_.push_back( operand1_[i] - operand2_[i]);
 			smul_.push_back( operand1_[i]*scalar_);

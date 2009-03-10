@@ -5,7 +5,7 @@ namespace algebra
 {
 
 /// \ingroup algebra
-/// \copydoc template< unsigned R, unsigned C, typename U, typename UT> matrix< R, C, U, UT> 
+/// \copydoc matrix
 template< typename U, typename UT>
 class matrix< 2, 2, U, UT>: public details::matrix_base< 2, 2, U, UT>
 {
@@ -77,16 +77,17 @@ public:
 	/// \brief It provides index based access to matrix elements.
 	/// \param r the row number of the element (zero based index).
 	/// \param c the column number of the element (zero based index).
+	/// \{
 	unit_type& operator()( unsigned r, unsigned c)
 	{
 		return m_[r][c];
 	}
 
-	/// \copydoc operator()( unsigned, unsigned)
 	const unit_type& operator()( unsigned r, unsigned c) const
 	{
 		return m_[r][c];
 	}
+	/// \}
 
 	/// \brief It creates an identity matrix.
 	/// \details
