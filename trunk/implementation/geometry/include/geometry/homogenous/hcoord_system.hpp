@@ -43,7 +43,8 @@ template< typename U, typename UT >
 class hcoord_system< 3, U, UT>: public impl::hcoord_base< 3, U, UT>
 {
 public:
-	// TODO: Concept checking
+	/// \brief It converts homogenous coordinates to carthesian coordinates.
+	/// \{
 	static pos_rep normalize_coords( const coord_vector& coords)
 	{
 		return pos_rep( 
@@ -52,15 +53,15 @@ public:
 			coords.at<2>()/coords.at<3>());
 	}
 
-	// TODO: Concept checking
 	static void normalize_coords( const coord_vector& coords, pos_rep& pos)
 	{
 		pos.at<0>() = coords.at<0>() / coords.at<3>();
 		pos.at<1>() = coords.at<1>() / coords.at<3>();
 		pos.at<2>() = coords.at<2>() / coords.at<3>();
 	}
+	/// \}
 
-	// TODO: Concept checking
+	/// \brief It calculates the squared norm for the given direction representation.
 	static unit_type squared_norm( const dir_rep& dir)
 	{
 		return dir.at<0>()*dir.at<0>() + dir.at<1>()*dir.at<1>() + dir.at<2>()*dir.at<2>();
@@ -71,7 +72,7 @@ template< typename U, typename UT >
 class hcoord_system< 2, U, UT>: public impl::hcoord_base< 2, U, UT>
 {
 public:
-	// TODO: Concept checking
+	/// \copydoc hcoord_system<3,U,UT>::normalize_coords
 	static pos_rep normalize_coords( const coord_vector& coords)
 	{
 		return pos_rep( 
@@ -79,7 +80,7 @@ public:
 			coords.at<1>()/coords.at<3>());
 	}
 
-	// TODO: Concept checking
+	/// \copydoc hcoord_system<3,U,UT>::normalize_coords
 	static void normalize_coords( const coord_vector& coords, pos_rep& pos)
 	{
 		pos.at<0>() = coords.at<0>() / coords.at<3>();
@@ -87,7 +88,7 @@ public:
 		pos.at<2>() = coords.at<2>() / coords.at<3>();
 	}
 
-	// TODO: Concept checking
+	/// \copydoc hcoord_system<3,U,UT>::squared_norm
 	static unit_type squared_norm( const dir_rep& dir)
 	{
 		return dir.at<0>()*dir.at<0>() + dir.at<1>()*dir.at<1>();
