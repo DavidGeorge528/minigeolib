@@ -131,10 +131,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\geometry\coord_system_tags.hpp"
-				>
-			</File>
-			<File
 				RelativePath=".\include\geometry\direction.hpp"
 				>
 			</File>
@@ -151,11 +147,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\geometry\homogenous\distances_2d.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\include\geometry\homogenous\distances_3d.hpp"
+				RelativePath=".\include\geometry\homogenous\distances.hpp"
 				>
 			</File>
 			<File

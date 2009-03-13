@@ -32,11 +32,15 @@ private:
 namespace impl
 {
 
-/// \see is_line< typename L, unsigned D>
-template< typename CS, unsigned D>
-struct is_line< line< CS>, D>
+/// \see is_line< typename L, unsigned D, typename CSID>
+template< typename CS, unsigned D, typename CSID>
+struct is_line< line< CS>, D, CSID>
 {
-	BOOST_STATIC_CONSTANT( bool, value = (D == CS::DIMENSIONS));
+	BOOST_STATIC_CONSTANT( bool, 
+		value = 
+			(D == CS::DIMENSIONS || D == 0)
+		  &&
+		  (boost::is_same< CSID, void>::value || boost::is_same< typename CS::system_type, CSID>::value));
 };
 
 } // namespace impl

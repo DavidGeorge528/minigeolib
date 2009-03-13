@@ -2,8 +2,7 @@
 #define GEOMETRY_DIRECTION_HPP
 
 #include "geometry/impl/direction_base.hpp"
-#include "geometry/impl/enablers.hpp"
-#include "geometry/coord_system_tags.hpp"
+#include "geometry/homogenous/hcoord_system_concept.hpp"
 #include <boost/static_assert.hpp>
 #include <boost/type_traits/is_same.hpp>
 

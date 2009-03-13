@@ -38,7 +38,7 @@ namespace impl
 ///		The default implementation assumes that the given type is not a plane type. The plane checking relies on the
 ///		mechanism of partial template specialization, so in case a new plane type is implemented, a specialization of
 ///		this class should be defined for that type of plane.
-template< typename P, unsigned D>
+template< typename P, unsigned D, typename CSID = void>
 struct is_plane
 {
 	BOOST_STATIC_CONSTANT( bool, value = false);

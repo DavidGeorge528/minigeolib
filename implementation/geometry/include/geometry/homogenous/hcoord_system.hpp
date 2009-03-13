@@ -1,7 +1,7 @@
 #ifndef GEOMETRY_HOMOGENOUS_HCOORD_SYSTEM_HPP
 #define GEOMETRY_HOMOGENOUS_HCOORD_SYSTEM_HPP
 
-#include "geometry/coord_system_tags.hpp"
+#include "geometry/homogenous/hcoord_system_concept.hpp"
 #include "algebra/vector.hpp"
 #include "algebra/matrix.hpp"
 #include <boost/static_assert.hpp>
@@ -76,16 +76,15 @@ public:
 	static pos_rep normalize_coords( const coord_vector& coords)
 	{
 		return pos_rep( 
-			coords.at<0>()/coords.at<3>(), 
-			coords.at<1>()/coords.at<3>());
+			coords.at<0>()/coords.at<2>(), 
+			coords.at<1>()/coords.at<2>());
 	}
 
 	/// \copydoc hcoord_system<3,U,UT>::normalize_coords
 	static void normalize_coords( const coord_vector& coords, pos_rep& pos)
 	{
-		pos.at<0>() = coords.at<0>() / coords.at<3>();
-		pos.at<1>() = coords.at<1>() / coords.at<3>();
-		pos.at<2>() = coords.at<2>() / coords.at<3>();
+		pos.at<0>() = coords.at<0>() / coords.at<2>();
+		pos.at<1>() = coords.at<1>() / coords.at<2>();
 	}
 
 	/// \copydoc hcoord_system<3,U,UT>::squared_norm

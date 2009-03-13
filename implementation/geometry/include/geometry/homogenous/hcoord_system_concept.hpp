@@ -5,6 +5,8 @@
 
 namespace geometry
 {
+/// \brief It identifies a homogenous coordinate system.
+struct hcoord_system_tag { };
 
 // DOC:
 template< typename C>
@@ -27,7 +29,7 @@ public:
 		unit_ = C::squared_norm( dir_);
 		// Require coordinate normalization static methods
 		pos_ = C::normalize_coords( coords_);
-		C::normalize_coords( coord_, pos_);
+		C::normalize_coords( coords_, pos_);
 	}
 
 private:

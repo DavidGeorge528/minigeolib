@@ -5,6 +5,8 @@
 #include "geometry/direction_concept.hpp"
 #include "geometry/line_concept.hpp"
 #include "geometry/vertex_concept.hpp"
+#include "geometry/homogenous/hcoord_system_concept.hpp"
+#include <boost/concept/assert.hpp>
 #include <cmath>
 
 namespace geometry
@@ -29,6 +31,7 @@ namespace impl
 template< typename CS, typename Derived>
 class htransformation_base: public transformation_base< CS>
 {
+	BOOST_CONCEPT_ASSERT( (HCoordSystem<CS>));
 public:
 	/// \brief Alias for internal representation of the transformation matrix.
 	typedef typename coord_system::transform_matrix transform_matrix;

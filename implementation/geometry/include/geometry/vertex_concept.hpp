@@ -11,11 +11,18 @@ namespace geometry
 struct vertex_tag { };
 
 // TODO: Continue
+// TODO: Move HVertex Concept in different header file, under homogenous
 template< typename V>
 class Vertex: public GeometricObject< V, vertex_tag>
 {
 public:
 	typedef typename V::coord_vector coord_vector;
+};
+
+template< typename V>
+class HVertex: public Vertex<V>
+{
+public:
 };
 
 template< typename V>
@@ -79,16 +86,16 @@ namespace impl
 /// \brief It checks that the given type is a vertex.
 /// \tparam V the type to be checked.
 /// \tparam D the expected number of dimensions of the coordinate system.
+/// \tparam CSID the expected type identifier of the coordinate system. Should be void if not needed.
 /// \details
 ///		The default implementation assumes that the given type is not a vertex type. The vertex checking relies on the
 ///		mechanism of partial template specialization, so in case a new vertex type is implemented, a specialization of
 ///		this class should be defined for that type of vertex.
-template< typename V, unsigned D>
+template< typename V, unsigned D, typename CSID = void>
 struct is_vertex
 {
 	BOOST_STATIC_CONSTANT( bool, value = false);
 };
-
 
 } // namespace impl
 
