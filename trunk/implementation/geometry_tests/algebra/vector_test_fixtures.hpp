@@ -53,6 +53,7 @@ struct fp_test_fixture
 		op1_add_op2_.reserve( DIMS);
 		op1_sub_op2_.reserve( DIMS);
 		scalar_ = 2;
+		op1_dot_op2_ = unit_traits_type::zero();
 		for( unsigned i = 0; i < DIMS; ++i)
 		{
 			operand1_.push_back( i*unit_type(0.3));
@@ -61,6 +62,7 @@ struct fp_test_fixture
 			op1_sub_op2_.push_back( operand1_[i] - operand2_[i]);
 			smul_.push_back( operand1_[i]*scalar_);
 			sdiv_.push_back( operand1_[i]/scalar_);
+			op1_dot_op2_ += operand1_[i] * operand2_[i];
 		}
 	}
 
@@ -72,6 +74,7 @@ struct fp_test_fixture
 	std::vector< unit_type> operand2_;
 	std::vector< unit_type> op1_add_op2_;
 	std::vector< unit_type> op1_sub_op2_;
+	unit_type op1_dot_op2_;
 	unit_type scalar_;
 	std::vector< unit_type> smul_;
 	std::vector< unit_type> sdiv_;

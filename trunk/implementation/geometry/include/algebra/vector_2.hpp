@@ -145,6 +145,13 @@ public:
 			m.a11_*v.v_[0] + m.a12_*v.v_[1],
 			m.a21_*v.v_[0] + m.a22_*v.v_[1]);
 	}
+
+	/// \brief Dot product
+	/// \todo: unit test
+	friend unit_type operator*( const my_type_& op1, const my_type_& op2)
+	{
+		return op1.v_[0]*op2.v_[0] + op1.v_[1]*op2.v_[1];
+	}
 };
 
 } // namespace algebra

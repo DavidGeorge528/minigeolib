@@ -174,6 +174,14 @@ public:
 		}
 		v_[0] = temp[0]; v_[1] = temp[1]; v_[2] = temp[2];
 	}
+
+	/// \brief Dot product
+	/// \todo: unit test
+	friend unit_type operator*( const my_type_& op1, const my_type_& op2)
+	{
+		return op1.v_[0]*op2.v_[0] + op1.v_[1]*op2.v_[1] + op1.v_[2]*op2.v_[2];
+	}
+
 };
 
 } // namespace algebra
