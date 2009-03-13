@@ -1,5 +1,4 @@
-#include "geometry/homogenous/distances_2d.hpp"
-#include "geometry/homogenous/distances_3d.hpp" // Keep this include, to check on SFINAE
+#include "geometry/homogenous/distances.hpp"
 #include "geometry/homogenous/hcoord_system.hpp"
 #include "geometry/homogenous/vertex.hpp"
 #include "../tests_common.hpp"

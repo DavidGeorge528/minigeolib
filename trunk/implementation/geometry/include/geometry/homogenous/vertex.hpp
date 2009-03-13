@@ -3,7 +3,9 @@
 
 #include "geometry/vertex.hpp"
 #include "geometry/transformation_concept.hpp"
+#include "geometry/homogenous/hcoord_system_concept.hpp"
 #include <boost/concept/requires.hpp>
+#include <boost/concept/assert.hpp>
 
 namespace geometry
 {
@@ -27,12 +29,11 @@ namespace impl
 template< typename CS, typename Derived>
 class hvertex_base: public vertex_base< CS>
 {
+	BOOST_CONCEPT_ASSERT( (HCoordSystem<CS>));
 	typedef typename CS::pos_rep pos_rep;
 public:
-	// TODO: Check position concept
-	// TODO: Check Coordinate system concept - homogenous
-	pos_rep normalize() const { return CS::normalize_coords( this->position()); }
-	void normalize( pos_rep& pos) const { CS::normalize_coords( this->position(), pos); }
+	pos_rep normalized() const { return CS::normalize_coords( this->position()); }
+	void normalized( pos_rep& pos) const { CS::normalize_coords( this->position(), pos); }
 
 	template< typename T>
 	BOOST_CONCEPT_REQUIRES( ((Transformation<T>)), (Derived&))
@@ -158,6 +159,7 @@ public:
 private:
 	coord_vector position_;
 };
+
 
 } // namespace geometry
 

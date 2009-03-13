@@ -6,6 +6,7 @@
 #include "geometry/plane_concept.hpp"
 #include "geometry/vertex_concept.hpp"
 #include "geometry/direction_concept.hpp"
+#include "geometry/homogenous/hcoord_system_concept.hpp"
 #include "algebra/vector.hpp"
 #include <boost/type_traits/is_same.hpp>
 #include <boost/concept/assert.hpp>
@@ -16,6 +17,7 @@ namespace geometry
 template< typename CS, typename Enable = void>
 class plane;
 
+// TODO: Make this implementation not dependent on homogenous
 
 // See http://en.wikipedia.org/wiki/Plane_(geometry)
 template< typename CS>
@@ -88,11 +90,13 @@ private:
 namespace impl
 {
 
-/// \see is_plane< typename P, unsigned D>
-template< typename CS, unsigned D>
-struct is_plane< plane< CS>, D>
+/// \see is_plane< typename P, unsigned D, typename CSID>
+template< typename CS, unsigned D, typename CSID>
+struct is_plane< plane< CS>, D, CSID>
 {
-	BOOST_STATIC_CONSTANT( bool, value = (D == CS::DIMENSIONS));
+	BOOST_STATIC_CONSTANT( bool, value = 
+		(D == CS::DIMENSIONS || D == 0)
+		&& (boost::is_same< void, CSID>::value || boost::is_same< CSID, typename CS::system_type>::value));
 };
 
 } // namespace impl

@@ -31,6 +31,8 @@ class hdirection_base: public impl::direction_base<CS>
 public:
 	typedef typename CS::dir_rep dir_rep;
 
+	const dir_rep& representation() const { return this->dir(); }
+
 protected:
 	/// \brief It ensures that the norm of the direction is always one.
 	void normalize()

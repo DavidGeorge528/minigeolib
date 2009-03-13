@@ -1,6 +1,8 @@
 #ifndef GEOMETRY_COORD_SYSTEM_CONCEPT_HPP
 #define GEOMETRY_COORD_SYSTEM_CONCEPT_HPP
 
+#include <boost/concept/usage.hpp>
+
 namespace geometry
 {
 
@@ -10,6 +12,7 @@ namespace geometry
 template< typename C>
 class CoordSystem
 {
+public:
 	typedef C concept;
 
 	/// Require definition of number of spatial dimensions
@@ -22,6 +25,9 @@ class CoordSystem
 
 	/// Require compile-time type identification
 	typedef typename concept::system_type system_type;
+
+	/// Require unit type definition
+	typedef typename concept::unit_type unit_type;
 };
 
 } // namespace geometry
