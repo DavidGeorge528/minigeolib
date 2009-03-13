@@ -6,6 +6,7 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
+#include <cmath>
 
 namespace algebra
 {
@@ -54,6 +55,7 @@ struct fp_test_fixture
 		op1_sub_op2_.reserve( DIMS);
 		scalar_ = 2;
 		op1_dot_op2_ = unit_traits_type::zero();
+		sqnorm_ = unit_traits_type::zero();
 		for( unsigned i = 0; i < DIMS; ++i)
 		{
 			operand1_.push_back( i*unit_type(0.3));
@@ -63,7 +65,9 @@ struct fp_test_fixture
 			smul_.push_back( operand1_[i]*scalar_);
 			sdiv_.push_back( operand1_[i]/scalar_);
 			op1_dot_op2_ += operand1_[i] * operand2_[i];
+			sqnorm_ += operand1_[i]*operand1_[i];
 		}
+		norm_ = std::sqrt( sqnorm_);
 	}
 
 	unit_type c_array_[ DIMS];
@@ -76,6 +80,8 @@ struct fp_test_fixture
 	std::vector< unit_type> op1_sub_op2_;
 	unit_type op1_dot_op2_;
 	unit_type scalar_;
+	unit_type sqnorm_;
+	unit_type norm_;
 	std::vector< unit_type> smul_;
 	std::vector< unit_type> sdiv_;
 };
