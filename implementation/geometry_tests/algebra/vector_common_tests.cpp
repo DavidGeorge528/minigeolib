@@ -221,5 +221,14 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_matrix_multiplication, T, vector_test_types)
 
 // ---------------------------------------------------------------------------------------------------------------------
 
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_dot_product, T, vector_test_types)
+{
+	DEF_TYPES( T);
+	test_fixture f;
+	tested_vector v1( f.operand1_.begin());
+	tested_vector v2( f.operand2_.begin());
+	unit_type result = v1 * v2;
+	ALGTEST_CHECK_EQUAL_UNIT( f.op1_dot_op2_, result);
+}
 
 } // namespace

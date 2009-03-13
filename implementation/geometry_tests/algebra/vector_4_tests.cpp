@@ -29,19 +29,6 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_specific_initialization, V, tested_types)
 	ALGTEST_CHECK_EQUAL_UNIT( f.c_array_[3], v(3));
 }
 
-// ---------------------------------------------------------------------------------------------------------------------
-
-BOOST_AUTO_TEST_CASE_TEMPLATE( test_cross_product, V, tested_types)
-{
-	DEF_TYPES( V);
-	tested_vector v1( 1, 0, 0, 2);
-	tested_vector v2( 0, 1, 0, 3);
-	tested_vector v = v1%v2;
-	ALGTEST_CHECK_EQUAL_UNIT( 0, v(0));
-	ALGTEST_CHECK_EQUAL_UNIT( 0, v(1));
-	ALGTEST_CHECK_EQUAL_UNIT( 1, v(2));
-	ALGTEST_CHECK_EQUAL_UNIT( 6, v(3));
-}
 
 
 } // namespace
