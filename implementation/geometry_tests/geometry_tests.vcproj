@@ -420,6 +420,10 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\geometry\hangle_3d.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\algebra\matrix_test_fixtures.hpp"
 				>
 			</File>
