@@ -231,4 +231,15 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_dot_product, T, vector_test_types)
 	ALGTEST_CHECK_EQUAL_UNIT( f.op1_dot_op2_, result);
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_norm, T, vector_test_types)
+{
+	DEF_TYPES( T);
+	test_fixture f;
+	tested_vector v( f.operand1_.begin());
+	ALGTEST_CHECK_EQUAL_UNIT( f.sqnorm_, sqnorm( v));
+	ALGTEST_CHECK_EQUAL_UNIT( f.norm_, norm( v));
+}
+
 } // namespace

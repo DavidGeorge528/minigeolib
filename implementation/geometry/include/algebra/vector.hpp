@@ -149,6 +149,21 @@ private:
 	/// \}
 };
 
+/// \brief Norm of the vector
+template< unsigned D, typename U, typename UT>
+typename vector<D,U,UT>::unit_type norm( const vector<D,U,UT>& op)
+{
+	return std::sqrt( sqnorm( op));
+}
+
+/// \brief Squared norm of the vector
+template< unsigned D, typename U, typename UT>
+typename vector<D,U,UT>::unit_type sqnorm( const vector<D,U,UT>& op)
+{
+	return op*op;
+}
+
+
 } // namespace algebra
 
 #include "vector_2.hpp"
