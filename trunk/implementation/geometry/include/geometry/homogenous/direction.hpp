@@ -37,7 +37,7 @@ protected:
 	/// \brief It ensures that the norm of the direction is always one.
 	void normalize()
 	{
-		this->dir() /= std::sqrt( CS::squared_norm( this->dir()));
+		this->dir() /= algebra::norm( this->dir());
 	}
 private:
 	dir_rep& dir() { return static_cast< Derived*>( this)->components_; }

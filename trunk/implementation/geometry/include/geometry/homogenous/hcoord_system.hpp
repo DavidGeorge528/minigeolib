@@ -60,12 +60,6 @@ public:
 		pos.at<2>() = coords.at<2>() / coords.at<3>();
 	}
 	/// \}
-
-	/// \brief It calculates the squared norm for the given direction representation.
-	static unit_type squared_norm( const dir_rep& dir)
-	{
-		return dir.at<0>()*dir.at<0>() + dir.at<1>()*dir.at<1>() + dir.at<2>()*dir.at<2>();
-	}
 };
 
 template< typename U, typename UT >
@@ -85,12 +79,6 @@ public:
 	{
 		pos.at<0>() = coords.at<0>() / coords.at<2>();
 		pos.at<1>() = coords.at<1>() / coords.at<2>();
-	}
-
-	/// \copydoc hcoord_system<3,U,UT>::squared_norm
-	static unit_type squared_norm( const dir_rep& dir)
-	{
-		return dir.at<0>()*dir.at<0>() + dir.at<1>()*dir.at<1>();
 	}
 };
 

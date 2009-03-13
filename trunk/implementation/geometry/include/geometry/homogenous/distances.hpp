@@ -25,7 +25,7 @@ typename boost::enable_if< impl::is_vertex< V, 0, hcoord_system_tag>, typename V
 	typedef typename V::coord_system coord_system;
 	typename coord_system::pos_rep vrep1 = v1.normalized(), vrep2 = v2.normalized();
 	vrep2 -= vrep1;
-	return std::sqrt( coord_system::squared_norm( vrep2));
+	return algebra::norm( vrep2);
 }
 
 /// \ingroup geometry
@@ -55,7 +55,7 @@ distance( const V& v, const L& l)
 	dir_rep cross = v_b % line_dir;
 	// Normally, the length of the cross product should be divided to the length of the line direction vector. Since the 
 	// line direction has the length 1, it is not necessary to divide.
-	return std::sqrt( coord_system::squared_norm( cross));
+	return algebra::norm( cross);
 }
 
 template< typename V, typename L>
@@ -130,7 +130,7 @@ typename boost::enable_if< impl::is_line< L, 3, hcoord_system_tag>, typename L::
 
 	// Now, calculate the cross product n = v1 x v2, where v1 and v2 are directions for line 1 and line 2.
 	typename coord_system::dir_rep n = dir1 % dir2;
-	unit_type norm = std::sqrt( coord_system::squared_norm( n));
+	unit_type norm = algebra::sqnorm( n);
 
 	if( unit_traits_type::is_zero( norm))
 	{
@@ -138,7 +138,7 @@ typename boost::enable_if< impl::is_line< L, 3, hcoord_system_tag>, typename L::
 		// The distance D is P1P2 x dir1 / norm of dir1
 		// Since direction of the line is always of norm 1, we don't need to bother to consider that in calculation.
 		n = d % dir1;
-		unit_type dist = std::sqrt( coord_system::squared_norm( n));
+		unit_type dist = algebra::norm( n);
 		return dist;
 	}
 	else 

@@ -1,7 +1,8 @@
 #ifndef GEOMETRY_HCOORD_SYSTEM_CONCEPT_HPP
 #define GEOMETRY_HCOORD_SYSTEM_CONCEPT_HPP
 
-#include <geometry/coord_system_concept.hpp>
+#include "geometry/coord_system_concept.hpp"
+#include "algebra/vector.hpp"
 
 namespace geometry
 {
@@ -25,8 +26,9 @@ public:
 		// TODO: Check dir_rep
 		// TODO: Check transform matrix
 
-		// Require squared_norm static method.
-		unit_ = C::squared_norm( dir_);
+		// Require squared norm.
+		unit_ = algebra::sqnorm( dir_);
+		unit_ = algebra::norm( dir_);
 		// Require coordinate normalization static methods
 		pos_ = C::normalize_coords( coords_);
 		C::normalize_coords( coords_, pos_);
