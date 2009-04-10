@@ -25,6 +25,12 @@ public:
 		std::fill_n( &v_[0], D, unit_traits_type::zero());
 	}
 
+	/// \brief It copies a vector
+	vector( const my_type_& org)
+	{
+		std::copy( &org.v_[0], &org.v_[D], &v_[0]);
+	}
+
 	/// \brief It creates a vector using the elements from the provided sequence.
 	/// \tparam It the type of iterator providing access to the sequence of elements.
 	/// \pre The provided sequence has the size of the vector.

@@ -21,6 +21,13 @@ public:
 		v_[0] = v_[1] = unit_traits_type::zero();
 	}
 
+	/// \brief It copies a vector
+	vector( const my_type_& org)
+	{
+		v_[0] = org.v_[0];
+		v_[1] = org.v_[1];
+	}
+
 	/// \brief It creates a vector using the elements from the provided sequence.
 	/// \tparam It the type of iterator providing access to the sequence of elements.
 	/// \pre The provided sequence has the size of the vector.
