@@ -40,7 +40,7 @@ public:
 	/// \brief It creates a vector using the elements from the provided sequence.
 	/// \tparam It the type of iterator providing access to the sequence of elements.
 	/// \pre The provided sequence has the size of the vector.
-	template< typename It> vector( It begin)
+	template< typename It> explicit vector( It begin)
 	{
 		for( unsigned n = 0; n < DIMENSIONS; ++n, ++begin)
 		{
