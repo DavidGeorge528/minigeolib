@@ -30,6 +30,8 @@ template< typename CS, typename Derived>
 class hvertex_base: public vertex_base< CS>
 {
 	BOOST_CONCEPT_ASSERT( (HCoordSystem<CS>));
+
+protected:
 	typedef typename CS::pos_rep pos_rep;
 public:
 	pos_rep normalized() const { return CS::normalize_coords( this->position()); }
@@ -84,6 +86,12 @@ public:
 	vertex( const coord_vector& coords)
 		: position_( coords) { }
 
+	/// \brief It sets the coordinates from the position internal representation
+	vertex( const pos_rep& coords)
+		: position_( coords.at<0>(), coords.at<1>(), 1)
+	{
+	}
+
 	/// \brief Coordinate accessors. It normalize the coordinate value before returning it.
 	/// \{
 	unit_type x() const 
@@ -132,6 +140,12 @@ public:
 	/// \brief It sets the origin coordinates.
 	vertex()
 		: position_( 0, 0, 0, 1) { }
+
+	/// \brief It sets the coordinates from the position internal representation
+	vertex( const pos_rep& coords)
+		: position_( coords.at<0>(), coords.at<1>(), coords.at<2>(), 1)
+	{
+	}
 
 	/// \brief Coordinate accessors. It normalize the coordinate value before returning it.
 	/// \{
