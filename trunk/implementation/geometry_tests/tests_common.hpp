@@ -23,4 +23,8 @@ typedef boost::mpl::list< float, double> algebraic_types;
 #define ALGTEST_CHECK_SMALL( O) \
 	BOOST_CHECK_SMALL( O, test_traits<unit_type>::check_tolerance())
 
+/// \brief It checks that the specified value is a valid number (not infinity or NaN).
+#define ALGTEST_CHECK_INVALID_UNIT( E ) \
+	BOOST_CHECK( unit_traits_type::is_valid_number( E));
+
 #endif // TESTS_COMMON_HPP

@@ -350,6 +350,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\geometry\hshortest_segment_tests.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\geometry\htransform_3d_tests.cpp"
 				>
 			</File>

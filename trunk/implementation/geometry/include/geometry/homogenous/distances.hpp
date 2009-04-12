@@ -5,6 +5,7 @@
 #include "geometry/vertex_concept.hpp"
 #include "geometry/line_concept.hpp"
 #include "geometry/plane_concept.hpp"
+// TODO: Remove vector utils. There is no need for it
 #include "geometry/impl/vector_utils.hpp"
 #include <boost/concept/assert.hpp>
 #include <boost/static_assert.hpp>
