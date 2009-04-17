@@ -54,6 +54,16 @@ struct unit_traits
 	{
 		return !(not_a_number( value) || is_infinity( value));
 	}
+
+	/// \brief It returns the infinity representation of the number or maximum value in case the unit type doesn't have 
+	///		an infinity representation.
+	static bool infinity()
+	{
+		return std::numeric_limits< unit_type>::has_infinity ?
+			std::numeric_limits< unit_type>::infinity()
+			:
+			std::numeric_limits< unit_type>::max();
+	}
 };
 
 } // namespace algebra
