@@ -366,6 +366,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\geometry\intersections_3d_tests.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\main.cpp"
 				>
 			</File>
