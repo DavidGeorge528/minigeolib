@@ -2,7 +2,7 @@
 #define GEOMETRY_HOMOGENOUS_SHORTEST_SEGMENT_HPP
 
 #include "geometry/homogenous/hcoord_system_concept.hpp"
-#include "geometry/vertex_concept.hpp"
+#include "geometry/homogenous/vertex_concept.hpp"
 #include "geometry/line_concept.hpp"
 #include <boost/concept/assert.hpp>
 #include <utility>
@@ -47,7 +47,7 @@ typename boost::enable_if_c<
 	shortest_segment( const L& l1, const L& l2)
 {
 	BOOST_CONCEPT_ASSERT( (HCoordSystem<typename V::coord_system>));
-	BOOST_CONCEPT_ASSERT( (HVertex<V>));
+	BOOST_CONCEPT_ASSERT( (HomogenousVertex3D<V>));
 	BOOST_CONCEPT_ASSERT( (Line<L>));
 
 	typedef typename V::coord_system coord_system;
