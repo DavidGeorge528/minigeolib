@@ -18,6 +18,10 @@ public:
 	{
 		// Require weight additional coordinate.
 		unit_type w = v_.w();
+
+		// Provides normalized method, returing the position representation.
+		typename coord_system::pos_rep pos = v_.normalized();
+		v_.normalized( pos);
 	}
 
 private:
@@ -38,9 +42,6 @@ public:
 		V v2( pos);
 		// Initialization with coordinates representation
 		V v3( coords_);
-
-		// Provides normalized method, returing the position representation.
-		typename coord_system::pos_rep pos = v_.normalized();
 	}
 
 private:
@@ -65,9 +66,6 @@ public:
 		V v2( pos_);
 		// Initialization with coordinates representation
 		V v3( coords_);
-
-		// Provides normalized method, returing the position representation.
-		typename coord_system::pos_rep pos = v_.normalized();
 	}
 
 private:
