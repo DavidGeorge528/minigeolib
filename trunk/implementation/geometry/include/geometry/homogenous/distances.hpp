@@ -32,7 +32,7 @@ typename boost::enable_if< impl::is_vertex< V, 0, hcoord_system_tag>, typename V
 /// \ingroup geometry
 /// \brief It calculates the distance between a line and a vertex.
 /// \tparam V the type of vertex, implementing HVertex concept
-/// \tparam K the type of the line, implementing Line concept
+/// \tparam L the type of the line, implementing Line concept
 /// \{
 template< typename V, typename L>
 typename boost::enable_if_c< 

@@ -350,6 +350,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\geometry\hintersections_3d_tests.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\geometry\hshortest_segment_tests.cpp"
 				>
 			</File>
@@ -363,10 +367,6 @@
 			</File>
 			<File
 				RelativePath=".\geometry\hvertex_3d_tests.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\geometry\intersections_3d_tests.cpp"
 				>
 			</File>
 			<File
