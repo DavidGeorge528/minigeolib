@@ -13,11 +13,15 @@ namespace geometry
 
 	struct line_tag {};
 
+/// \ingroup geometry
+/// \brief It checks the requirements for a line concept.
 template< typename L>
 class Line: public GeometricObject< L, line_tag>
 {
 public:
+	// Expect vertex alias.
 	typedef typename L::vertex_type vertex_type;
+	// Expect direction alias.
 	typedef typename L::direction_type direction_type;
 
 	BOOST_CONCEPT_ASSERT( (Vertex<vertex_type>));
@@ -25,8 +29,14 @@ public:
 
 	BOOST_CONCEPT_USAGE( Line)
 	{
+		// Require base vertex
 		vertex_type base = line_.base();
+
+		// Require direction.
 		direction_type dir = line_.dir();
+
+		// Require initialization:
+		L line( base, dir);
 	}
 
 private:
