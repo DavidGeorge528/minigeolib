@@ -11,6 +11,8 @@ namespace geometry
 
 	struct plane_tag { };
 
+/// \ingroup geometry
+/// \brief It checks the requirements for a plane concept.
 template< typename P>
 class Plane: public GeometricObject<P, plane_tag>
 {
