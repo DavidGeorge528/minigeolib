@@ -2,7 +2,7 @@
 #define GEOMETRY_HOMOGENOUS_DISTANCES_HPP
 
 #include "geometry/homogenous/hcoord_system_concept.hpp"
-#include "geometry/vertex_concept.hpp"
+#include "geometry/homogenous/vertex_concept.hpp"
 #include "geometry/line_concept.hpp"
 #include "geometry/plane_concept.hpp"
 // TODO: Remove vector utils. There is no need for it
@@ -22,7 +22,7 @@ typename boost::enable_if< impl::is_vertex< V, 0, hcoord_system_tag>, typename V
 	distance( const V& v1, const V& v2)
 {
 	BOOST_CONCEPT_ASSERT( (HCoordSystem<typename V::coord_system>));
-	BOOST_CONCEPT_ASSERT( (HVertex<V>));
+	BOOST_CONCEPT_ASSERT( (HomogenousVertex<V>));
 	typedef typename V::coord_system coord_system;
 	typename coord_system::pos_rep vrep1 = v1.normalized(), vrep2 = v2.normalized();
 	vrep2 -= vrep1;

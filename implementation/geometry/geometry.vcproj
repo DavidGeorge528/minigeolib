@@ -295,6 +295,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\geometry\homogenous\vertex_concept.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\include\geometry\vertex_concept.hpp"
 				>
 			</File>
