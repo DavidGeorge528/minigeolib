@@ -76,6 +76,14 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_line_intersection, P, tested_lines)
 
 	// Superimposed lines
 	lx = line( vertex( 1, 2, 3), direction( 1, 1, 1));
+	ly = line( vertex( 2, 3, 4), direction( 1, 1, 1));
+	v = intersect<vertex>( lx, ly);
+	ALGTEST_CHECK_INVALID_UNIT( v.x());
+	ALGTEST_CHECK_INVALID_UNIT( v.y());
+	ALGTEST_CHECK_INVALID_UNIT( v.z());
+
+	// Superimposed with the same base
+	lx = line( vertex( 1, 2, 3), direction( 1, 1, 1));
 	ly = line( vertex( 1, 2, 3), direction( 1, 1, 1));
 	v = intersect<vertex>( lx, ly);
 	ALGTEST_CHECK_INVALID_UNIT( v.x());

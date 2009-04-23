@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_shortest_segm_btw_lines, P, tested_lines)
 
 	// Test lines that are superimposed
 	lx = line( vertex( 1, 2, 3), direction( 1, 1, 1));
-	ly = line( vertex( 1, 2, 3), direction( 1, 1, 1));
+	ly = line( vertex( 2, 3, 4), direction( 1, 1, 1));
 	segment = shortest_segment<vertex>( lx, ly);
 	ALGTEST_CHECK_INVALID_UNIT( segment.first.x());
 	ALGTEST_CHECK_INVALID_UNIT( segment.first.y());
