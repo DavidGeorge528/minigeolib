@@ -65,5 +65,24 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_translation, V, tested_types)
 	ALGTEST_CHECK_EQUAL_UNIT( 10, tv.w());
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_validity_check, V, tested_types)
+{
+	typedef V vertex;
+	typedef typename vertex::unit_traits_type unit_traits_type;
+
+	BOOST_CHECK( vertex( 1, 2, 3, 1).is_valid());
+	BOOST_CHECK( vertex( 1, 2, 3, 0).is_valid());
+	BOOST_CHECK( !vertex( unit_traits_type::not_a_number(), 2, 3, 1).is_valid());
+	BOOST_CHECK( !vertex( 1, unit_traits_type::not_a_number(), 3, 1).is_valid());
+	BOOST_CHECK( !vertex( 1, 2, unit_traits_type::not_a_number(), 1).is_valid());
+	BOOST_CHECK( !vertex( 1, 2, 3, unit_traits_type::not_a_number()).is_valid());
+	BOOST_CHECK( !vertex( unit_traits_type::infinity(), 2, 3, 1).is_valid());
+	BOOST_CHECK( !vertex( 1, unit_traits_type::infinity(), 3, 1).is_valid());
+	BOOST_CHECK( !vertex( 1, 2, unit_traits_type::infinity(), 1).is_valid());
+	BOOST_CHECK( !vertex( 1, 2, 3, unit_traits_type::infinity()).is_valid());
+}
+
 
 } // namespace

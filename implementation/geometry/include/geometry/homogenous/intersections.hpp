@@ -3,6 +3,7 @@
 
 #include "geometry/homogenous/shortest_segment.hpp"
 #include "geometry/plane_concept.hpp"
+#include <cmath>
 
 namespace geometry
 {
@@ -24,12 +25,13 @@ typename boost::enable_if_c<
 	std::pair<V,V> ssegm = shortest_segment<V>( l1, l2);
 	if( unit_traits_type::is_zero( ssegm.first.x() - ssegm.second.x())
 		&& unit_traits_type::is_zero( ssegm.first.y() - ssegm.second.y())
-		&& unit_traits_type::is_zero( ssegm.first.z() - ssegm.second.z()))
+		&& unit_traits_type::is_zero( ssegm.first.z() - ssegm.second.z())
+		&& !unit_traits_type::is_zero( 1 - std::abs( l1.dir().representation() * l2.dir().representation())))
 	{
-		return ssegm.first;
+		return ssegm.first; 
 	}
 	else
-		V( unit_traits_type::infinity(), unit_traits_type::infinity(), unit_traits_type::infinity());
+		return V( unit_traits_type::infinity(), unit_traits_type::infinity(), unit_traits_type::infinity());
 }
 
 

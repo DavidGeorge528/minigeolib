@@ -51,6 +51,8 @@ public:
 	{
 		return Derived( tr.transformed( this->position()));
 	}
+
+
 private:
 	const coord_vector& position() const { return static_cast< const Derived*>( this)->position_; }
 	coord_vector& position() { return static_cast< Derived*>( this)->position_; }
@@ -109,6 +111,17 @@ public:
 		return position_.at<2>(); 
 	}
 	/// \}
+
+	/// \brief It checks whether the vertex is valid.
+	/// \details
+	///		A vertex is valid if its coordinates (X,Y) are valid, finite numbers and if the weight coordinate is a 
+	///		valid, finite number.
+	bool is_valid() const
+	{
+		return unit_traits_type::is_valid_number( position_.at<0>())
+			&& unit_traits_type::is_valid_number( position_.at<1>())
+			&& unit_traits_type::is_valid_number( position_.at<2>());
+	}
 
 private:
 	coord_vector position_;
@@ -169,6 +182,18 @@ public:
 		return position_.at<3>(); 
 	}
 	/// \}
+
+	/// \brief It checks whether the vertex is valid.
+	/// \details
+	///		A vertex is valid if its coordinates (X,Y,Z) are valid, finite numbers and if the weight coordinate is a 
+	///		valid, finite number.
+	bool is_valid() const
+	{
+		return unit_traits_type::is_valid_number( position_.at<0>())
+			&& unit_traits_type::is_valid_number( position_.at<1>())
+			&& unit_traits_type::is_valid_number( position_.at<2>())
+			&& unit_traits_type::is_valid_number( position_.at<3>());
+	}
 
 private:
 	coord_vector position_;
