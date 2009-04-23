@@ -25,6 +25,10 @@ typedef boost::mpl::list< float, double> algebraic_types;
 
 /// \brief It checks that the specified value is a valid number (not infinity or NaN).
 #define ALGTEST_CHECK_INVALID_UNIT( E ) \
-	BOOST_CHECK( unit_traits_type::is_valid_number( E));
+	{ \
+		std::ostringstream oss; \
+		oss << "Expected number " << E << " is invalid"; \
+		BOOST_CHECK_MESSAGE( !unit_traits_type::is_valid_number( E), oss.str()); \
+	}
 
 #endif // TESTS_COMMON_HPP

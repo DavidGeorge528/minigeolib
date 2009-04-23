@@ -1,5 +1,6 @@
 #include "../test_traits.hpp"
 #include "../tests_common.hpp"
+#include <cfloat>
 
 namespace
 {
@@ -19,6 +20,20 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_infinity, T, tested_types)
 	
 	T infinity = 1/close_to_zero;
 	BOOST_CHECK( std::numeric_limits<T>::max() < infinity);
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+BOOST_AUTO_TEST_CASE_TEMPLATE( test_not_a_number, T, tested_types)
+{
+	BOOST_REQUIRE( std::numeric_limits<T>::has_signaling_NaN);
+	BOOST_REQUIRE( std::numeric_limits<T>::has_quiet_NaN);
+	T sNaN = std::numeric_limits<T>::signaling_NaN();
+	T qNaN = std::numeric_limits<T>::quiet_NaN();
+	BOOST_CHECK( sNaN != std::numeric_limits<T>::signaling_NaN());
+	BOOST_CHECK( qNaN != std::numeric_limits<T>::quiet_NaN());
+	BOOST_CHECK( sNaN != sNaN);
+	BOOST_CHECK( qNaN != qNaN);
 }
 
 } // namespace
