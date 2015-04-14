@@ -1,0 +1,1 @@
+Generic C++ library for multi-dimensional geometry.
